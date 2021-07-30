@@ -1,0 +1,488 @@
+Actor InvMax1 : Inv
+{
+	Inventory.MaxAmount 1
+}
+
+Actor InvMax99 : Inv
+{
+	Inventory.MaxAmount 99
+}
+
+Actor InvMax255 : Inv
+{
+	Inventory.MaxAmount 255
+}
+
+Actor Level : Inv
+{
+	Inventory.MaxAmount 16
+}
+
+Actor Experience : Inv
+{
+	Inventory.MaxAmount 50000
+}
+
+Actor ExpToLevel : Inv
+{
+	Inventory.MaxAmount 50000
+}
+
+Actor Money : Inv
+{
+	Inventory.MaxAmount 99999
+}
+
+Actor MagicPoints : InvMax255
+{
+}
+
+Actor MaxMagicPoints : InvMax255
+{
+}
+
+Actor MaxLife : InvMax255
+{
+}
+
+Actor IncreaseLife : UpgradeStamina
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 207
+}
+
+Actor Force : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ForceLevel : Inv
+{
+	Inventory.MaxAmount 3
+}
+
+Actor ForceLevelNumFlash : InvMax1
+{
+}
+
+Actor Attack : InvMax99
+{
+}
+
+Actor DisplayAttack : Attack
+{
+}
+
+Actor BaseArmorDefense : InvMax99
+{
+}
+
+Actor BaseShieldDefense : InvMax99
+{
+}
+
+Actor ArmorDefense : InvMax99
+{
+}
+
+Actor ShieldDefense : InvMax99
+{
+}
+
+Actor DisplayArmorDefense : InvMax99
+{
+}
+
+Actor DisplayShieldDefense : InvMax99
+{
+}
+
+Actor NewArmorDefense : InvMax99
+{
+}
+
+Actor NewShieldDefense : InvMax99
+{
+}
+
+Actor WearingArmor : InvMax1
+{
+}
+
+Actor HasShield : InvMax1
+{
+}
+
+Actor SpriteWaitCount : InvMax99
+{
+}
+
+Actor ACS_TimeFreezer : PowerupGiver
+{
+	Powerup.Type "TimeFreezer"
+	Powerup.Duration 0x7fffffff
+	Inventory.MaxAmount 0
+	+INVENTORY.ALWAYSPICKUP
+	+AUTOACTIVATE
+	
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			stop
+	}
+}
+
+Actor PlayerStatus : Inv
+{
+	Inventory.MaxAmount 1
+}
+
+Actor ViewInvMenu : InvMax1
+{
+}
+
+Actor InvMenuRowIndex : Inv
+{
+	Inventory.MaxAmount 3
+}
+
+Actor InvMenuColIndex : Inv
+{
+	Inventory.MaxAmount 7
+}
+
+Actor ArmorSlot0 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot1 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot2 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot3 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot4 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot5 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot6 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot7 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot0_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot1_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot2_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot3_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot4_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot5_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot6_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ArmorSlot7_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot0 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot1 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot2 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot3 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot4 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot5 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot6 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot7 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot0_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot1_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot2_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot3_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot4_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot5_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot6_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor ShieldSlot7_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot0 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot1 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot2 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot3 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot4 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot5 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot6 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot7 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot0_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot1_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot2_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot3_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot4_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot5_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot6_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor KeyItemSlot7_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot0 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot1 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot2 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot3 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot4 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot5 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot6 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot7 : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot0_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot1_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot2_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot3_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot4_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot5_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot6_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor MagicSlot7_F : Inv
+{
+	Inventory.MaxAmount 8
+}
+
+Actor TalkedToZebu1 : InvMax1
+{
+}
+
+Actor OpenedWindmillCave : InvMax1
+{
+}
+
+Actor Absorb : BasicArmorPickup
+{
+	Inventory.MaxAmount 65535
+	Armor.SavePercent 100
+	Armor.SaveAmount 1
+}

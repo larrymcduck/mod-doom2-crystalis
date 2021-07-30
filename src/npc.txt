@@ -1,0 +1,294 @@
+Actor CrystalisActor 
+{
+	Scale 2.0
+	+LOOKALLAROUND
+	Speed 1
+	Radius 16
+	Height 64
+	+Solid
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			stop
+	}
+}
+
+Actor CrystalisActorStanding : CrystalisActor
+{
+	Speed 0
+}
+
+Actor TalkingActor : CrystalisActor
+{
+	+USESPECIAL
+}
+
+Actor TalkingActorStanding : CrystalisActorStanding
+{
+	+USESPECIAL
+}
+
+Actor InvisibleTalker : TalkingActor
+{
+	States
+	{
+		Spawn:
+			TNT1 AA 1 
+			loop
+	}
+}
+
+Actor Leaf_0_ElderInHouse : TalkingActorStanding 20000
+{
+	States
+	{
+		Spawn:
+		Wandering:
+			TWN0 A 1
+			TWN0 A 1 Thing_SetSpecial(0, ACS_Execute, 996, 0, 1)
+			loop
+		FacePlayer:
+			TWN0 A 1
+			TWN0 A 1 A_Look
+			loop
+		See:
+			TWN0 A 1 A_FaceTarget
+			Goto Spawn
+	}
+}
+
+Actor Leaf_1_ScaredGuy : TalkingActor 20001
+{
+	States
+	{
+		Spawn:
+			TWN1 A -1
+			stop
+		Standing:
+			TWN1 A -1
+			stop
+		Wandering:
+			TWN1 A 0 Thing_SetSpecial(0, ACS_Execute, 996, 0, 7)
+			TWN1 AAAAAAAAAABBBBBBBBBB 1 A_Wander
+			loop
+		Scared:
+			TWN1 C -1
+			Stop
+		ScaredRun:
+			TWN1 AB 6
+			loop
+		FacePlayer:
+			TWN1 A 1
+			TWN1 A 1 A_Look
+			loop
+		See:
+			TWN1 A 1 A_FaceTarget
+			Goto Standing
+	}
+}
+
+Actor Leaf_2_Girl : TalkingActor 20002
+{
+	Height 32
+	States
+	{
+		Spawn:
+			TWN2 A 1
+			Goto Wandering
+		Standing:
+			TWN2 A -1
+			stop
+		Wandering:
+			TWN2 A 0 Thing_SetSpecial(0, ACS_Execute, 996, 0, 9)
+			TWN2 AAAAAAAAAABBBBBBBBBB 1 A_Wander
+			loop
+		FacePlayer:
+			TWN2 A 1
+			TWN2 A 1 A_Look
+			loop
+		See:
+			TWN2 A 1 A_FaceTarget
+			Goto Standing
+	}
+}
+
+Actor Leaf_3_Woman : TalkingActor 20003
+{
+	States
+	{
+		Spawn:
+			TWN3 A 1
+			Goto Wandering
+		Standing:
+			TWN3 A -1
+			stop
+		Wandering:
+			TWN3 A 0 Thing_SetSpecial(0, ACS_Execute, 996, 0, 10)
+			TWN3 AAAAAAAAAABBBBBBBBBB 1 A_Wander
+			loop
+		FacePlayer:
+			TWN3 A 1
+			TWN3 A 1 A_Look
+			loop
+		See:
+			TWN3 A 1 A_FaceTarget
+			Goto Standing
+	}
+}
+
+Actor Leaf_4_Guy : TalkingActor 20004
+{
+	States
+	{
+		Spawn:
+			TWN4 A 1
+			Goto Wandering
+		Standing:
+			TWN4 A -1
+			stop
+		Wandering:
+			TWN4 A 0 Thing_SetSpecial(0, ACS_Execute, 996, 0, 11)
+			TWN4 AAAAAAAAAABBBBBBBBBB 1 A_Wander
+			loop
+		FacePlayer:
+			TWN4 A 1
+			TWN4 A 1 A_Look
+			loop
+		See:
+			TWN4 A 1 A_FaceTarget
+			Goto Standing
+	}
+}
+
+Actor Leaf_5_ShedThing : TalkingActor 20005
+{
+	Height 32
+	States
+	{
+		Spawn:
+			TWN5 A 1
+			Goto Wandering
+		Standing:
+			TWN5 A -1
+			stop
+		Wandering:
+			TWN5 A 0 Thing_SetSpecial(0, ACS_Execute, 996, 0, 13)
+			TWN5 AAAAAAAAAABBBBBBBBBB 1 A_Wander
+			loop
+		FacePlayer:
+			TWN5 A 1
+			TWN5 A 1 A_Look
+			loop
+		See:
+			TWN5 A 1 A_FaceTarget
+			Goto Standing
+	}
+}
+
+Actor Leaf_6_Boy : TalkingActor 20006
+{
+	Height 32
+	States
+	{
+		Spawn:
+			TWN6 A 1
+			Goto Wandering
+		Standing:
+			TWN6 A -1
+			stop
+		Wandering:
+			TWN6 A 0 Thing_SetSpecial(0, ACS_Execute, 996, 0, 14)
+			TWN6 AAAAAAAAAABBBBBBBBBB 1 A_Wander
+			loop
+		FacePlayer:
+			TWN6 A 1
+			TWN6 A 1 A_Look
+			loop
+		See:
+			TWN6 A 1 A_FaceTarget
+			Goto Standing
+	}
+}
+
+Actor Leaf_7_Pupil : TalkingActorStanding 20007
+{
+	States
+	{
+		Spawn:
+		Wandering:
+			TWN7 A 1
+			TWN7 A 1 Thing_SetSpecial(0, ACS_Execute, 996, 0, 16)
+			loop
+		FacePlayer:
+			TWN7 A 1
+			TWN7 A 1 A_Look
+			loop
+		See:
+			TWN7 A 1 A_FaceTarget
+			Goto Spawn
+	}
+}
+
+Actor Zebu_1 : TalkingActorStanding 20008
+{
+	States
+	{
+		Spawn:
+		Wandering:
+			ZEBU A 1
+			ZEBU A 1 Thing_SetSpecial(0, ACS_Execute, 996, 0, 18)
+			loop
+		FacePlayer:
+			ZEBU A 1
+			ZEBU A 1 A_Look
+			loop
+		See:
+			ZEBU A 1 A_FaceTarget
+			Goto Spawn
+	}
+}
+
+Actor Zebu_GetRefresh : Zebu_1
+{
+	RenderStyle "Add"
+}
+
+Actor SleepingWindmillGuard : TalkingActorStanding
+{
+	States
+	{
+		Spawn:
+		Wandering:
+			TWN8 A 0
+			TWN8 A 0 Thing_SetSpecial(0, ACS_Execute, 996, 0, 21)
+			TWN8 AB 35
+			loop
+		FacePlayer:
+			TWN8 A 1
+			TWN8 A 1 A_Look
+			loop
+		See:
+			TWN8 A 1 A_FaceTarget
+			Goto Spawn
+	}
+}
+
+Actor AwakeWindmillGuard : TalkingActorStanding
+{
+	States
+	{
+		Spawn:
+		Wandering:
+			TWN8 C 1
+			TWN8 C 1 Thing_SetSpecial(0, ACS_Execute, 996, 0, 22)
+			loop
+		FacePlayer:
+			TWN8 C 1
+			TWN8 C 1 A_Look
+			loop
+		See:
+			TWN8 C 1 A_FaceTarget
+			Goto Spawn
+	}
+}

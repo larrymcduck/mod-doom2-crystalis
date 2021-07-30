@@ -1,0 +1,36 @@
+alias choiceup "puke 992 0"
+alias choicedown "puke 992 1"
+alias choiceleft "puke 992 2"
+alias choiceright "puke 992 3"
+alias choiceselect "puke 992 4"
+alias choicecancel "puke 992 5"
+
+alias invmenu "puke 991"
+alias magiccast "puke 990"
+alias keyitemuse "puke 989"
+
+defaultbind ENTER choiceselect
+defaultbind UPARROW choiceup
+defaultbind DOWNARROW choicedown
+defaultbind LEFTARROW choiceleft
+defaultbind RIGHTARROW choiceright
+defaultbind BACKSPACE choicecancel
+
+defaultbind Z invmenu
+defaultbind F magiccast 
+defaultbind R keyitemuse
+ 
+addkeysection "Crystalis Controls" Crystalis
+
+addmenukey "Menu Cursor Up" choiceup
+addmenukey "Menu Cursor Down" choicedown
+addmenukey "Menu Cursor Left" choiceleft
+addmenukey "Menu Cursor Right" choiceright
+addmenukey "Menu Select" choiceselect
+addmenukey "Menu Cancel" choicecancel
+addmenukey "Open Inventory Menu" invmenu
+addmenukey "Cast Magic" magiccast
+addmenukey "Use Key Item" keyitemuse
+
+clearplayerclasses
+addplayerclass CrystalisPlayer

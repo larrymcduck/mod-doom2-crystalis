@@ -1,0 +1,17 @@
+Tanned Hide: Defensive Value: 2
+Leather Armor: Defensive Value: 6
+Bronze Armor: Defensive Value: 10
+Platinum Armor: Defensive Value: 14
+Soldier Suit: Defensive Value: 18
+Battle Armor: Defensive Value: 20
+Ceramic Suit: Defensive Value: 24
+Psycho Armor: Defensive Value: 32
+
+Carapace Shield:Defensive Value: 2
+Bronze Shield: Defensive Value: 6
+Platinum Shield: Defensive Value: 8
+Mirrored Shield: Defensive Value: 12, prevent stone
+Sacred Shield: Defensive Value: 16, prevent paral
+Ceramic Shield: Defensive Value: 18
+Battle Shield: Defensive Value: 24
+Psycho Shield: Defensive Value: 32, prevent poison, paral, stone

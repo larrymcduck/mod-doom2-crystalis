@@ -1,0 +1,25 @@
+item/alarmflute			alrmflut
+
+misc/playerstart		playstrt
+misc/clearstatus		csclerst
+
+magic/refresh			csmagref
+
+sword/force				csforce
+sword/blast1			csshot1
+
+voice/silence			silence
+voice/voice13			CV000013
+
+$playersound	cplay	male	*death		festhurt
+$playersound	cplay	male	*xdeath		festhurt
+$playersound	cplay	male	*gibbed		festhurt
+$playersound	cplay	male	*pain100	festhurt
+$playersounddup	cplay	male	*pain75		*pain100
+$playersounddup	cplay	male	*pain50		*pain100
+$playersounddup	cplay	male	*pain25		*pain100
+$playersound	cplay	male	*grunt		null
+$playersounddup	cplay	male	*land		*grunt
+$playersound	cplay	male	*jump		null
+$playersound	cplay	male	*fist		null
+$playersound	cplay	male	*usefail	null

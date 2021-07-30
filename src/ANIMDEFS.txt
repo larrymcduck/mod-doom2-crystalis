@@ -1,0 +1,21 @@
+texture o01_w21
+	pic o01_w21 tics 5
+	pic o01_w22 tics 5
+
+texture w_left1
+	pic w_left1 tics 5
+	pic w_left2 tics 5
+	pic w_left3 tics 5
+	pic w_left4 tics 5
+
+texture w_right1
+	pic w_right1 tics 5
+	pic w_right2 tics 5
+	pic w_right3 tics 5
+	pic w_right4 tics 5
+
+texture w_fall1
+	pic w_fall1 tics 5
+	pic w_fall2 tics 5
+	pic w_fall3 tics 5
+	pic w_fall4 tics 5

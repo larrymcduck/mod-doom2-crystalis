@@ -1,0 +1,98 @@
+clearepisodes
+clearskills
+
+gameinfo
+{
+	titlemusic = "title"
+	borderflat = ""
+	quitsound = "menu/quitsound"
+	infopage = "CREDIT"
+}
+
+episode map01
+{
+	picname = "M_EP1"
+}
+
+skill Crystalis
+{
+	RespawnTime = 30
+	SpawnFilter = hard
+	PicName = "CRYSTAL"
+	Key = "c"
+}
+
+cluster 1
+{
+	hub
+}
+
+map MAP01 "Cave/Leaf"
+{
+	levelnum = 1
+	next = "MAP02"
+	music = "vill1"
+	Sky1 = "crysky"
+	cluster = 1
+	NoCrouch
+}
+
+map MAP02 "Outside1"
+{
+	levelnum = 2
+	next = "MAP03"
+	music = "outside1"
+	Sky1 = "crysky"
+	cluster = 1
+	NoCrouch
+}
+
+map MAP03 "Cave1"
+{
+	levelnum = 3
+	next = "MAP04"
+	music = "cave1"
+	Sky1 = "crysky"
+	cluster = 1
+	NoCrouch
+}
+
+map MAP04 "Cave2"
+{
+	levelnum = 4
+	next = "MAP05"
+	music = "cave2"
+	Sky1 = "crysky"
+	cluster = 1
+	NoCrouch
+}
+
+map MAP05 "Cave3"
+{
+	levelnum = 5
+	next = "MAP05"
+	music = "cave1"
+	Sky1 = "crysky"
+	cluster = 1
+	NoCrouch
+}
+
+map MAP06 "Outside2"
+{
+	levelnum = 6
+	next = "MAP07"
+	music = "outside1"
+	Sky1 = "crysky"
+	cluster = 1
+	NoCrouch
+}
+
+map MAP07 "Brynmaer"
+{
+	levelnum = 7
+	next = "MAP08"
+	music = "vill1"
+	Sky1 = "crysky"
+	cluster = 1
+	NoCrouch
+}

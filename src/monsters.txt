@@ -1,0 +1,95 @@
+Actor CrystalisMonster
+{
+	+LOOKALLAROUND
+	+NOBLOOD
+	Radius 16
+	Height 64
+	Scale 2.0
+	Monster
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			stop
+	}
+}
+			
+Actor BlueSlime : CrystalisMonster
+{
+	Health 2
+	Speed 2	
+	Height 32
+	Mass 10
+	DropItem "CoinDrop_1"
+	
+	States
+	{
+		Spawn:
+			SLIM A 0
+			SLIM A 0 ACS_ExecuteAlways(253, 0, 0, 1)
+			SLIM A 1 A_Look
+			loop
+		See:
+			SLIM AAAAAABBBBBB 1 A_Chase
+			loop
+		Melee:
+			SLIM A 6 A_CustomMeleeAttack((10),"")
+			SLIM B 6
+			Goto See
+		Death:
+			SLIM A 0 A_Stop
+			SLIM A 0 A_NoBlocking			
+			SLIM A 0 A_SpawnItemEx("WindDeathSpewer")
+			SLIM A 0 A_GiveToTarget("Experience", 1)
+			SLIM CDCDCDCDCDCDCDCDCDCDCDCDCD 1
+			stop
+	}
+}
+
+Actor TestSpawn : CrystalisMonster
+{
+	-SHOOTABLE
+	Radius 25
+	Height 50
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor DragonBoss : CrystalisMonster
+{
+	-SHOOTABLE
+	Health 40
+	Mass 1000000
+	Radius 25
+	Height 50
+	DropItem "RabbitBoots"
+	States
+	{
+		Spawn:
+			DBOS A 0
+			DBOS A 0 ACS_ExecuteAlways(253, 0, 1, 2)
+			DBOS AZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZ 1
+			DBOS A 0 A_SetShootable
+			DBOS A 1 A_Look
+			Goto Spawn+4
+		See:
+			DBOS A 0
+			DBOS A 0 ACS_ExecuteAlways(256, 0)
+			Goto Fighting
+		Fighting:
+			DBOS AB 6
+			loop
+		Death:
+			DBOS A 0 A_Stop
+			DBOS A 0 A_NoBlocking
+			DBOS A 0 A_Quake(4, 150, 0, 1000)
+			DBOS A 0 A_SpawnItemEx("WindDeathExplosions")
+			SLIM A 0 A_GiveToTarget("Experience", 10)
+			DBOS ZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZAZA 1
+			stop
+	}
+}

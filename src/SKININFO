@@ -1,0 +1,1024 @@
+{
+name = "Megaman-Hair"
+sprite = HMEG
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Protoman"
+sprite = prom
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Protoman-Break"
+sprite = BREK
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Bass"
+sprite = bass
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Bass-SGC"
+sprite = bas2
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Bass-RM7FC"
+sprite = bas3
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Roll"
+sprite = roll
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Roll-Classic"
+sprite = clro
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = female
+}
+
+
+
+{
+name = "SniperJoe"
+sprite = snip
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Auto"
+sprite = auto
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Auto-Unknown"
+sprite = aut2
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MEGAPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Cutman"
+sprite = cutm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Elecman"
+sprite = elec
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Gutsman"
+sprite = guts
+class = Megaman
+dsnoway = LAND
+dsoof = FATLAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Fireman"
+sprite = firm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Iceman"
+sprite = icem
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Bombman"
+sprite = bomm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Bubbleman"
+sprite = bubm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Metalman"
+sprite = metm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "Airman"
+sprite = airm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Flashman"
+sprite = flsm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Heatman"
+sprite = heam
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "Quickman"
+sprite = quim
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Crashman"
+sprite = cram
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Woodman"
+sprite = wodm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "Needleman"
+sprite = need
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Snakeman"
+sprite = snam
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Magnetman"
+sprite = magm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Shadowman"
+sprite = SHAM
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Geminiman"
+sprite = GEMM
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Hardman"
+sprite = harm
+class = Megaman
+dsnoway = LAND
+dsoof = FATLAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = BOSSPAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Sparkman"
+sprite = spar
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Topman"
+sprite = topm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Docrobot"
+sprite = docb
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM3PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Ringman"
+sprite = rinm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Drillman"
+sprite = drim
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Toadman"
+sprite = toad
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Skullman"
+sprite = skul
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Brightman"
+sprite = brig
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "PharaohMan"
+sprite = phar
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "DiveMan"
+sprite = divm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "DustMan"
+sprite = dusm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "GravityMan"
+sprite = gram
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "StoneMan"
+sprite = stom
+class = Megaman
+dsnoway = FATLAND
+dsoof = FATLAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "ChargeMan"
+sprite = chrm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "NapalmMan"
+sprite = napm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "WaveMan"
+sprite = wavm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "GyroMan"
+sprite = gyrm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "StarMan"
+sprite = stam
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "CrystalMan"
+sprite = crym
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Darkman1"
+sprite = dar1
+class = Megaman
+dsnoway = FATLAND
+dsoof = FATLAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Darkman2"
+sprite = dar2
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Darkman3"
+sprite = dar3
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Darkman4"
+sprite = dar4
+class = Megaman
+dsnoway = FATLAND
+dsoof = FATLAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "BlizzardMan"
+sprite = blzz
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "FlameMan"
+sprite = flam
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "TomahawkMan"
+sprite = tomm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "WindMan"
+sprite = winm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "KnightMan"
+sprite = knim
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "PlantMan"
+sprite = plam
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "CentaurMan"
+sprite = cent
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "YamatoMan"
+sprite = yamm
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+{
+name = "FreezeMan"
+sprite = free
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "CloudMan"
+sprite = clom
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "JunkMan"
+sprite = junm
+class = Megaman
+dsnoway = FATLAND
+dsoof = FATLAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "ShadeMan"
+sprite = shde
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "BurstMan"
+sprite = burs
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "SlashMan"
+sprite = slas
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "SlashMan-MM10"
+sprite = sla2
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "SpringMan"
+sprite = spng
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "TurboMan"
+sprite = turb
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Enker"
+sprite = enkr
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Quint"
+sprite = quin
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Punk"
+sprite = punk
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Ballade"
+sprite = bald
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Ballade-alt"
+sprite = bal2
+class = Megaman
+dsnoway = LAND
+dsoof = LAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM4PAIN
+dstaunt = dsnone
+gender = male
+}
+
+
+{
+name = "WilySkullSuit"
+sprite = drwi
+class = Megaman
+dsnoway = FATLAND
+dsoof = FATLAND
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+{
+name = "Alien"
+sprite = alie
+class = Megaman
+dsnoway = dsnone
+dsoof = dsnone
+dspldeth = MEGADEAT
+dspdiehi = MEGADEAT
+dsplpain = MM2PAIN
+dstaunt = dsnone
+gender = male
+}
+
+

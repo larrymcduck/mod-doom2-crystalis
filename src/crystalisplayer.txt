@@ -1,0 +1,671 @@
+ACTOR CrystalisPlayer : PlayerPawn
+{
+	Speed 1
+	Radius 12
+	Height 48
+	Mass 100
+	
+	+NOBLOOD
+	
+	Health 48
+
+	Scale 2.0
+	Player.ViewHeight 36
+	Player.JumpZ 0.0
+	MaxStepHeight 16
+	Player.ForwardMove 0.45, 0.45
+	Player.SideMove 0.45, 0.45
+	Player.ColorRange 112, 127
+	
+	Player.MaxHealth 48
+  
+	Player.SoundClass "cplay"
+	Player.DisplayName "Player"
+	Player.StartItem "Level", 1
+	Player.StartItem "MagicPoints", 34
+	Player.StartItem "MaxMagicPoints", 34
+	Player.StartItem "MaxLife", 48
+	Player.StartItem "ExpToLevel", 30
+	Player.StartItem "Attack", 1
+	Player.StartItem "BaseArmorDefense", 1
+	Player.StartItem "BaseShieldDefense", 1
+	Player.WeaponSlot 1, SwordOfWind
+	Player.WeaponSlot 2, SwordOfFire
+	Player.WeaponSlot 3, SwordOfWater
+	Player.WeaponSlot 4, SwordOfThunder
+	Player.WeaponSlot 5, Crystalis
+	Player.WeaponSlot 6, NULL
+	Player.WeaponSlot 7, NULL
+	Player.WeaponSlot 8, NULL
+
+	Player.StartItem "Money", 99999
+	Player.StartItem "SwordOfWind", 1
+	Player.StartItem "BallOfWind", 1
+	Player.StartItem "RabbitBoots", 1
+	Player.StartItem "RabbitBootsSelected", 1
+	
+	States
+	{
+		Spawn:
+			PLAY A -1
+			Stop
+		SpawnArmor:
+			PLAY F -1
+			Stop
+		SpawnShield:
+			PLAY K -1
+			Stop
+		SpawnArmorShield:
+			PLAY P -1
+			Stop
+		SpawnMutated:
+			PLAY U -1
+			Stop
+		See:
+			Play BA 6
+			Loop
+		SeeArmor:
+			PLAY GF 6
+			Loop
+		SeeShield:
+			PLAY LK 6
+			Loop
+		SeeArmorShield:
+			PLAY QP 6
+			Loop
+		SeeMutated:
+			PLAY VU 6
+			Loop
+		Fly:
+			PLAY A 3
+			Loop
+		FlyArmor:
+			PLAY F 3
+			Loop
+		FlyShield:
+			PLAY K 3
+			Loop
+		FlyArmorShield:
+			PLAY P 3
+			Loop
+		Melee:
+			PLAY C 0 A_TakeInventory("SpriteWaitCount", 999)
+			PLAY C 0 A_GiveInventory("SpriteWaitCount", 5)
+			PLAY C 0 A_JumpIfInventory("WearingArmor", 1, "MeleeArmor")
+			PLAY C 0 A_JumpIfInventory("HasShield", 1, "MeleeShield")
+			PLAY CD 3
+			PLAY E 4
+			Goto Spawn
+		MeleeArmor:
+			PLAY H 0 A_JumpIfInventory("HasShield", 1, "MeleeArmorShield")
+			PLAY HI 3
+			PLAY J 4
+			Goto SpawnArmor
+		MeleeShield:
+			PLAY MN 3
+			PLAY O 4
+			Goto SpawnShield
+		MeleeArmorShield:
+			PLAY RS 3
+			PLAY T 4
+			Goto SpawnArmorShield
+		Death:
+			PLAY A 1 A_Pain
+			PLAY Z 1 A_NoBlocking
+			PLAY Z -1
+			Stop
+	}
+}
+
+Actor Sword : Weapon
+{
+	+NoAutoFire
+}
+
+Actor WindSwordPuff
+{
+	+NOBLOCKMAP
+	+NOGRAVITY
+	+PUFFONACTORS
+	DamageType "Wind"
+	SeeSound "" // hit thing
+	AttackSound "" // hit wall
+	ActiveSound "" // miss
+	
+	States
+	{
+		Spawn:
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor FireSwordPuff : WindSwordPuff
+{
+	DamageType "Fire"
+}
+
+Actor WaterSwordPuff : WindSwordPuff
+{
+	DamageType "Water"
+}
+
+Actor ThunderSwordPuff : WindSwordPuff
+{
+	DamageType "Thunder"
+}
+
+Actor SwordOfWind : Sword
+{
+	States
+	{
+		Select:
+			WIND A 1 A_Raise
+			loop
+		Deselect:
+			WIND A 1 A_Lower
+			loop
+		Ready:
+			WIND A 1 A_WeaponReady
+			loop
+		Fire:
+			WIND BC 2 A_GunFlash
+			WIND D 2 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"WindSwordPuff",96)
+			WIND E 2 A_WeaponReady
+			WIND F 10 A_WeaponReady
+			WIND G 1 A_WeaponReady
+			WIND H 1 A_WeaponReady
+			WIND I 1 A_WeaponReady
+			WIND J 1 A_WeaponReady
+			WIND K 1 A_WeaponReady
+			Goto Ready
+		AltFire:
+			WIND L 1 A_GunFlash
+			WIND L 0 A_ReFire			
+		NoShot:
+			WIND L 0 A_TakeInventory("Force", 999)
+			WIND L 0 A_TakeInventory("ForceLevel", 999)
+			WIND M 2
+			Goto EndAlt
+		Charge1:
+			WIND L 0 A_TakeInventory("Force", 999)
+			WIND L 0 A_TakeInventory("ForceLevel", 999)
+			WIND M 2 A_FireCustomMissile("WindBlast")
+			Goto EndAlt
+		Charge2:
+			WIND L 0 A_TakeInventory("Force", 999)
+			WIND L 0 A_TakeInventory("ForceLevel", 999)
+			WIND M 2 A_FireCustomMissile("WindBall")
+			Goto EndAlt
+		Charge3:
+			WIND L 0 A_TakeInventory("Force", 999)
+			WIND L 0 A_TakeInventory("ForceLevel", 999)
+			WIND M 2 // custom missiles
+			Goto EndAlt
+		EndAlt:
+			WIND N 2 A_WeaponReady
+			WIND O 1 A_WeaponReady
+			WIND P 1 A_WeaponReady
+			Goto Ready
+		AltHold:
+			WIND L 0 A_JumpIf(ACS_ExecuteWithResult(994, 0) == 1, "AltHoldNoMoreCharge")
+			WIND L 0 A_GiveInventory("Force", 1)
+			WIND L 1 A_GunFlash
+			WIND L 1 A_GunFlash
+			WIND L 0 A_JumpIfInventory("Force", 8, "ForceLevelUp")
+			WIND L 0 A_ReFire
+		HitAndCheck:
+			WIND L 0 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"WindSwordPuff",96)
+			WIND L 0 A_JumpIfInventory("ForceLevel", 3, "Charge3")
+			WIND L 0 A_JumpIfInventory("ForceLevel", 2, "Charge2")
+			WIND L 0 A_JumpIfInventory("ForceLevel", 1, "Charge1")
+			Goto NoShot
+		AltHoldNoMoreCharge:
+			WIND L 1 A_GunFlash
+			WIND L 0 A_ReFire
+			Goto HitAndCheck
+		ForceLevelUp:
+			WIND L 0 A_PlaySound("sword/force")
+			WIND L 0 A_TakeInventory("Force", 999)
+			WIND L 0 A_GiveInventory("ForceLevel", 1)
+			WIND L 1 A_GunFlash
+			Goto AltHold
+	}
+}
+
+Actor SwordBlast : FastProjectile
+{
+	Scale 2.0
+	Radius 8
+	Height 8
+	Speed 36
+	SeeSound "sword/blast1"
+}
+
+Actor WindBlast : SwordBlast
+{
+	DamageType "Wind"
+	Damage (ACS_ExecuteWithResult(995,1) + 1)
+	States
+	{
+		Spawn:
+			WIND Q -1 Bright
+			loop
+		Death:
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor WindBallTrail
+{
+	+NOGRAVITY
+	Radius 1
+	Height 2
+	States
+	{
+		Spawn:
+			TNT1 A 0
+			TNT1 A 0 A_Jump(256, "White", "LightGreen", "Green")
+		White:
+			DTHW A 35
+			stop
+		LightGreen:
+			DTHW B 35
+			stop
+		Green:
+			DTHW C 35
+			stop
+	}
+}
+
+Actor WindBall : SwordBlast
+{
+	DamageType "Wind"
+	Damage (ACS_ExecuteWithResult(995,1) + 2)
+	States
+	{
+		Spawn:
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 1 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			loop
+		Death:
+			TNT1 A 1 ACS_Execute(1004)
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor SwordOfFire : Sword
+{
+	States
+	{
+		Select:
+			FIRE A 1 A_Raise
+			loop
+		Deselect:
+			FIRE A 1 A_Lower
+			loop
+		Ready:
+			FIRE A 1 A_WeaponReady
+			loop
+		Fire:
+			FIRE BC 2 A_GunFlash
+			FIRE D 2 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"FireSwordPuff",96)
+			FIRE E 2 A_WeaponReady
+			FIRE F 10 A_WeaponReady
+			FIRE G 1 A_WeaponReady
+			FIRE H 1 A_WeaponReady
+			FIRE I 1 A_WeaponReady
+			FIRE J 1 A_WeaponReady
+			FIRE K 1 A_WeaponReady
+			Goto Ready
+		AltFire:
+			FIRE L 1 A_GunFlash
+			FIRE L 0 A_ReFire			
+		NoShot:
+			FIRE L 0 A_TakeInventory("Force", 999)
+			FIRE L 0 A_TakeInventory("ForceLevel", 999)
+			FIRE M 2
+			Goto EndAlt
+		Charge1:
+			FIRE L 0 A_TakeInventory("Force", 999)
+			FIRE L 0 A_TakeInventory("ForceLevel", 999)
+			FIRE M 2 A_FireCustomMissile("FireBlast")
+			Goto EndAlt
+		Charge2:
+			FIRE L 0 A_TakeInventory("Force", 999)
+			FIRE L 0 A_TakeInventory("ForceLevel", 999)
+			FIRE M 2 A_FireCustomMissile("FireBall")
+			Goto EndAlt
+		Charge3:
+			FIRE L 0 A_TakeInventory("Force", 999)
+			FIRE L 0 A_TakeInventory("ForceLevel", 999)
+			FIRE M 2 // custom missiles
+			Goto EndAlt
+		EndAlt:
+			FIRE N 2 A_WeaponReady
+			FIRE O 1 A_WeaponReady
+			FIRE P 1 A_WeaponReady
+			Goto Ready
+		AltHold:
+			FIRE L 0 A_JumpIf(ACS_ExecuteWithResult(994, 1) == 1, "AltHoldNoMoreCharge")
+			FIRE L 0 A_GiveInventory("Force", 1)
+			FIRE L 1 A_GunFlash
+			FIRE L 1 A_GunFlash
+			FIRE L 0 A_JumpIfInventory("Force", 8, "ForceLevelUp")
+			FIRE L 0 A_ReFire
+		HitAndCheck:
+			FIRE L 0 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"FireSwordPuff",96)
+			FIRE L 0 A_JumpIfInventory("ForceLevel", 3, "Charge3")
+			FIRE L 0 A_JumpIfInventory("ForceLevel", 2, "Charge2")
+			FIRE L 0 A_JumpIfInventory("ForceLevel", 1, "Charge1")
+			Goto NoShot
+		AltHoldNoMoreCharge:
+			FIRE L 1 A_GunFlash
+			FIRE L 0 A_ReFire
+			Goto HitAndCheck
+		ForceLevelUp:
+			FIRE L 0 A_PlaySound("sword/force")
+			FIRE L 0 A_TakeInventory("Force", 999)
+			FIRE L 0 A_GiveInventory("ForceLevel", 1)
+			FIRE L 1 A_GunFlash
+			Goto AltHold
+	}
+}
+
+Actor FireBlast : SwordBlast
+{
+	DamageType "Fire"
+	Damage (ACS_ExecuteWithResult(995,1) + 1)
+	States
+	{
+		Spawn:
+			WIND Q -1 Bright
+			loop
+		Death:
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor FireBall : SwordBlast
+{
+	DamageType "Fire"
+	Damage (ACS_ExecuteWithResult(995,1) + 2)
+	States
+	{
+		Spawn:
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 1 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			loop
+		Death:
+			TNT1 A 1 ACS_Execute(1004)
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor SwordOfWater : Sword
+{
+	States
+	{
+		Select:
+			WATR A 1 A_Raise
+			loop
+		Deselect:
+			WATR A 1 A_Lower
+			loop
+		Ready:
+			WATR A 1 A_WeaponReady
+			loop
+		Fire:
+			WATR BC 2 A_GunFlash
+			WATR D 2 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"WaterSwordPuff",96)
+			WATR E 2 A_WeaponReady
+			WATR F 10 A_WeaponReady
+			WATR G 1 A_WeaponReady
+			WATR H 1 A_WeaponReady
+			WATR I 1 A_WeaponReady
+			WATR J 1 A_WeaponReady
+			WATR K 1 A_WeaponReady
+			Goto Ready
+		AltFire:
+			WATR L 1 A_GunFlash
+			WATR L 0 A_ReFire			
+		NoShot:
+			WATR L 0 A_TakeInventory("Force", 999)
+			WATR L 0 A_TakeInventory("ForceLevel", 999)
+			WATR M 2
+			Goto EndAlt
+		Charge1:
+			WATR L 0 A_TakeInventory("Force", 999)
+			WATR L 0 A_TakeInventory("ForceLevel", 999)
+			WATR M 2 A_FireCustomMissile("WaterBlast")
+			Goto EndAlt
+		Charge2:
+			WATR L 0 A_TakeInventory("Force", 999)
+			WATR L 0 A_TakeInventory("ForceLevel", 999)
+			WATR M 2 A_FireCustomMissile("WaterBall")
+			Goto EndAlt
+		Charge3:
+			WATR L 0 A_TakeInventory("Force", 999)
+			WATR L 0 A_TakeInventory("ForceLevel", 999)
+			WATR M 2 // custom missiles
+			Goto EndAlt
+		EndAlt:
+			WATR N 2 A_WeaponReady
+			WATR O 1 A_WeaponReady
+			WATR P 1 A_WeaponReady
+			Goto Ready
+		AltHold:
+			WATR L 0 A_JumpIf(ACS_ExecuteWithResult(994, 2) == 1, "AltHoldNoMoreCharge")
+			WATR L 0 A_GiveInventory("Force", 1)
+			WATR L 1 A_GunFlash
+			WATR L 1 A_GunFlash
+			WATR L 0 A_JumpIfInventory("Force", 8, "ForceLevelUp")
+			WATR L 0 A_ReFire
+		HitAndCheck:
+			WATR L 0 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"WaterSwordPuff",96)
+			WATR L 0 A_JumpIfInventory("ForceLevel", 3, "Charge3")
+			WATR L 0 A_JumpIfInventory("ForceLevel", 2, "Charge2")
+			WATR L 0 A_JumpIfInventory("ForceLevel", 1, "Charge1")
+			Goto NoShot
+		AltHoldNoMoreCharge:
+			WATR L 1 A_GunFlash
+			WATR L 0 A_ReFire
+			Goto HitAndCheck
+		ForceLevelUp:
+			WATR L 0 A_PlaySound("sword/force")
+			WATR L 0 A_TakeInventory("Force", 999)
+			WATR L 0 A_GiveInventory("ForceLevel", 1)
+			WATR L 1 A_GunFlash
+			Goto AltHold
+	}
+}
+
+Actor WaterBlast : SwordBlast
+{
+	DamageType "Water"
+	Damage (ACS_ExecuteWithResult(995,1) + 1)
+	States
+	{
+		Spawn:
+			WIND Q -1 Bright
+			loop
+		Death:
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor WaterBall : SwordBlast
+{
+	DamageType "Water"
+	Damage (ACS_ExecuteWithResult(995,1) + 2)
+	States
+	{
+		Spawn:
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 1 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			loop
+		Death:
+			TNT1 A 1 ACS_Execute(1004)
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor SwordOfThunder : Sword
+{
+	States
+	{
+		Select:
+			TNDR A 1 A_Raise
+			loop
+		Deselect:
+			TNDR A 1 A_Lower
+			loop
+		Ready:
+			TNDR A 1 A_WeaponReady
+			loop
+		Fire:
+			TNDR BC 2 A_GunFlash
+			TNDR D 2 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"ThunderSwordPuff",96)
+			TNDR E 2 A_WeaponReady
+			TNDR F 10 A_WeaponReady
+			TNDR G 1 A_WeaponReady
+			TNDR H 1 A_WeaponReady
+			TNDR I 1 A_WeaponReady
+			TNDR J 1 A_WeaponReady
+			TNDR K 1 A_WeaponReady
+			Goto Ready
+		AltFire:
+			TNDR L 1 A_GunFlash
+			TNDR L 0 A_ReFire			
+		NoShot:
+			TNDR L 0 A_TakeInventory("Force", 999)
+			TNDR L 0 A_TakeInventory("ForceLevel", 999)
+			TNDR M 2
+			Goto EndAlt
+		Charge1:
+			TNDR L 0 A_TakeInventory("Force", 999)
+			TNDR L 0 A_TakeInventory("ForceLevel", 999)
+			TNDR M 2 A_FireCustomMissile("ThunderBlast")
+			Goto EndAlt
+		Charge2:
+			TNDR L 0 A_TakeInventory("Force", 999)
+			TNDR L 0 A_TakeInventory("ForceLevel", 999)
+			TNDR M 2 A_FireCustomMissile("ThunderBall")
+			Goto EndAlt
+		Charge3:
+			TNDR L 0 A_TakeInventory("Force", 999)
+			TNDR L 0 A_TakeInventory("ForceLevel", 999)
+			TNDR M 2 // custom missiles
+			Goto EndAlt
+		EndAlt:
+			TNDR N 2 A_WeaponReady
+			TNDR O 1 A_WeaponReady
+			TNDR P 1 A_WeaponReady
+			Goto Ready
+		AltHold:
+			TNDR L 0 A_JumpIf(ACS_ExecuteWithResult(994, 3) == 1, "AltHoldNoMoreCharge")
+			TNDR L 0 A_GiveInventory("Force", 1)
+			TNDR L 1 A_GunFlash
+			TNDR L 1 A_GunFlash
+			TNDR L 0 A_JumpIfInventory("Force", 8, "ForceLevelUp")
+			TNDR L 0 A_ReFire
+		HitAndCheck:
+			TNDR L 0 A_CustomPunch(ACS_ExecuteWithResult(995,1),1,0,"ThunderSwordPuff",96)
+			TNDR L 0 A_JumpIfInventory("ForceLevel", 3, "Charge3")
+			TNDR L 0 A_JumpIfInventory("ForceLevel", 2, "Charge2")
+			TNDR L 0 A_JumpIfInventory("ForceLevel", 1, "Charge1")
+			Goto NoShot
+		AltHoldNoMoreCharge:
+			TNDR L 1 A_GunFlash
+			TNDR L 0 A_ReFire
+			Goto HitAndCheck
+		ForceLevelUp:
+			TNDR L 0 A_PlaySound("sword/force")
+			TNDR L 0 A_TakeInventory("Force", 999)
+			TNDR L 0 A_GiveInventory("ForceLevel", 1)
+			TNDR L 1 A_GunFlash
+			Goto AltHold
+	}
+}
+
+Actor ThunderBlast : SwordBlast
+{
+	DamageType "Thunder"
+	Damage (ACS_ExecuteWithResult(995,1) + 1)
+	States
+	{
+		Spawn:
+			WIND Q -1 Bright
+			loop
+		Death:
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor ThunderBall : SwordBlast
+{
+	DamageType "Thunder"
+	Damage (ACS_ExecuteWithResult(995,1) + 2)
+	States
+	{
+		Spawn:
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 0 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			WIND R 1 A_SpawnItemEx("WindBallTrail", Random(-8,8), Random(-8,8), Random(-8,8), Random(-1,1), Random(-1,1), Random(-1, 1))
+			loop
+		Death:
+			TNT1 A 1 ACS_Execute(1004)
+			TNT1 A 1
+			stop
+	}
+}
+
+Actor Crystalis : Sword
+{
+}

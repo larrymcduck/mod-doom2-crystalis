@@ -1,0 +1,85 @@
+int feet[255];      // footsteps on or off?
+int v[255];      	// velocity per player
+
+FUNCTION int GetVelocity (int x1, int y1, int z1, int x2, int y2, int z2)
+{
+	int x, y, z, d, r;
+	x = x1 - x2 >> 16;
+	y = y1 - y2 >> 16;
+	z = z1 - z2 >> 16;
+	d = x*x + y*y + z*z + 1 >> 1;
+	while (d > r)
+	{
+		d -= r++;
+	}
+	return r;
+}
+
+script 999 (void)
+{
+	if (feet[PlayerNumber()] != ON)
+	{
+		Delay(1);
+		restart;
+	}
+	
+	int x, y, z;
+
+	if (GetCvar("g_momentum") == 0)
+	{
+		if (GetPlayerInput(-1, INPUT_BUTTONS) & (BT_FORWARD | BT_BACK | BT_MOVELEFT | BT_MOVERIGHT))
+		if (GetActorProperty(0,PROP_FLY))
+		{
+			SetActorVelocity(0,0,0,0,FALSE, FALSE);
+		}
+		else
+		{
+			SetActorVelocity(0,0,0,GetActorVelZ(0),FALSE, FALSE);
+		}
+		SetActorProperty(0, APROP_Speed, 6.0);
+	}
+	else
+	{
+		SetActorProperty(0, APROP_Speed, 1.0);
+	}
+
+	x = GetActorX (0);
+	y = GetActorY (0);
+	z = GetActorZ (0);
+	
+	Delay(1);
+	
+	if (GetActorProperty(0, APROP_Health) > 0)
+	{
+		v[PlayerNumber()] = GetVelocity (x, y, z, GetActorX (0), GetActorY (0), GetActorZ (0));
+		if (v[PlayerNumber()] == 0 && GetPlayerInput(-1,INPUT_BUTTONS) != BT_ATTACK)
+		{
+			SetActorState(0,"Spawn");
+		}
+	}
+	
+	restart;
+}
+
+script 998 enter
+{
+	if (!PlayerIsBot(PlayerNumber()))
+	{
+		feet[PlayerNumber()] = ON;
+		ACS_ExecuteAlways(999, 0);
+	}
+}
+
+script 997 respawn
+{
+	if (!PlayerIsBot(PlayerNumber()))
+	{
+		feet[PlayerNumber()] = ON;
+		ACS_ExecuteAlways(999, 0);
+	}
+}
+
+SCRIPT 996 DEATH
+{
+	feet[PlayerNumber()] = OFF;
+}

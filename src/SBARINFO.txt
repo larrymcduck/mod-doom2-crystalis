@@ -1,0 +1,5548 @@
+height 32;
+monospacefonts true, "0";
+interpolatehealth false, 0;
+
+statusbar fullscreen, fullscreenoffsets
+{
+	drawimage "life_l", 8, 8;
+	drawimage "life1_l", 68, 8;
+	drawbar "life1f_l", "life1e_l", health, horizontal, 72, 8;
+	
+	InInventory Level, 2
+	{
+		drawimage "life2_l", 68, 8;
+		drawbar "life2f_l", "life2e_l", health, horizontal, 72, 8;
+
+		InInventory Level, 3
+		{
+			drawimage "life3_l", 68, 8;
+			drawbar "life3f_l", "life3e_l", health, horizontal, 72, 8;
+			
+			InInventory Level, 4
+			{
+				drawimage "life4_l", 68, 8;
+				drawbar "life4f_l", "life4e_l", health, horizontal, 72, 8;
+
+				InInventory Level, 5
+				{
+					drawimage "life5_l", 68, 8;
+					drawbar "life5f_l", "life5e_l", health, horizontal, 72, 8;
+					
+					InInventory Level, 6
+					{
+						drawimage "life6_l", 68, 8;
+						drawbar "life6f_l", "life6e_l", health, horizontal, 72, 8;
+						
+						InInventory Level, 7
+						{
+							drawimage "life7_l", 68, 8;
+							drawbar "life7f_l", "life7e_l", health, horizontal, 72, 8;
+							
+							InInventory Level, 8
+							{
+								drawimage "life8_l", 68, 8;
+								drawbar "life8f_l", "life8e_l", health, horizontal, 72, 8;
+								
+								InInventory Level, 9
+								{
+									drawimage "life9_l", 68, 8;
+									drawbar "life9f_l", "life9e_l", health, horizontal, 72, 8;
+									
+									InInventory Level, 10
+									{
+										drawimage "lif10_l", 68, 8;
+										drawbar "lif10f_l", "lif10e_l", health, horizontal, 72, 8;
+										
+										InInventory Level, 11
+										{
+											drawimage "lif11_l", 68, 8;
+											drawbar "lif11f_l", "lif11e_l", health, horizontal, 72, 8;
+											
+											InInventory Level, 12
+											{
+												drawimage "lif12_l", 68, 8;
+												drawbar "lif12f_l", "lif12e_l", health, horizontal, 72, 8;
+												
+												InInventory Level, 13
+												{
+													drawimage "lif13_l", 68, 8;
+													drawbar "lif13f_l", "lif13e_l", health, horizontal, 72, 8;
+													
+													InInventory Level, 14
+													{
+														drawimage "lif14_l", 68, 8;
+														drawbar "lif14f_l", "lif14e_l", health, horizontal, 72, 8;
+														
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	drawimage "mp_l", 8, 26;
+	drawnumber 3, CRYNUML, untranslated, MagicPoints, fillzeros, alignment(left), 40, 24;
+	drawnumber 3, CRYNUML, untranslated, MaxMagicPoints, fillzeros, alignment(left), 104, 24;
+	
+	drawimage "force2_l", 8, 40;
+	drawimage "forceb_l", 72, 42;
+	drawimage "plevb_l", 188, 42;
+
+	drawimage "exp_l", 8, 58;
+	drawnumber 5, CRYNUML, untranslated, Experience, fillzeros, alignment(left), 40, 56;
+	drawnumber 5, CRYNUML, untranslated, ExpToLevel, fillzeros, alignment(left), 136, 56;
+
+	IsSelected SwordOfWind
+	{
+		InInventory BallOfWind, 1
+		{
+			drawimage "plevb_l", 236, 42;
+		}
+		InInventory WindBracelet, 1
+		{
+			drawimage "plevb_l", 284, 42;
+		}
+	}
+
+	InInventory Force, 1
+	{
+		DrawImage "force_l", 72, 42;
+		
+		InInventory Force, 2
+		{
+			DrawImage "force_l", 88, 42;
+			
+			InInventory Force, 3
+			{
+				DrawImage "force_l", 104, 42;
+				
+				InInventory Force, 4
+				{
+					DrawImage "force_l", 120, 42;
+					
+					InInventory Force, 5
+					{
+						DrawImage "force_l", 136, 42;
+						
+						InInventory Force, 6
+						{
+							DrawImage "force_l", 152, 42;
+							
+							InInventory Force, 7
+							{
+								DrawImage "force_l", 168, 42;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	InInventory ForceLevelNumFlash, 1
+	{
+		InInventory ForceLevel, 3
+		{
+			DrawImage "plev3_l", 284, 40;
+		}
+		Else
+		{
+			InInventory ForceLevel, 2
+			{
+				DrawImage "plev2_l", 236, 40;
+			}
+			Else
+			{
+				InInventory ForceLevel, 1
+				{
+					DrawImage "plev1_l", 188, 40;
+				}
+			}
+		}
+	}
+	
+	drawimage "B_BLANK", 8, -30;
+	drawimage "B_BLANK", 31, -30;
+	drawimage "B_BLANK", 54, -30;
+	
+	drawselectedinventory CRYINDEX, 8, -30, 30, -17, untranslated;
+
+	InInventory RabbitBootsSelected, 1
+	{
+		drawimage "f_keyi01", 31, -30;
+	}
+
+	InInventory RefreshSelected, 1
+	{
+		drawimage "f_magic1", 56, -30;
+	}
+	
+	InInventory ViewInvMenu, 1
+	{
+		drawimage "INVBAR2", -160+center, -40;
+		
+		InInventory NOT InvMenuRowIndex
+		{
+			drawimage "inv_armr", -118+center, -28;
+			
+			InInventory ArmorSlot0, 8
+			{
+				drawimage "B_ARMR08", -92+center, -35;
+				InInventory ArmorSlot0_F, 8
+				{
+					drawimage "F_ARMR08", -92+center, -35;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot0, 7
+				{
+					drawimage "B_ARMR07", -92+center, -35;
+					InInventory ArmorSlot0_F, 7
+					{
+						drawimage "F_ARMR07", -92+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot0, 6
+					{
+						drawimage "B_ARMR06", -92+center, -35;
+						InInventory ArmorSlot0_F, 6
+						{
+							drawimage "F_ARMR06", -92+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot0, 5
+						{
+							drawimage "B_ARMR05", -92+center, -35;
+							InInventory ArmorSlot0_F, 5
+							{
+								drawimage "F_ARMR05", -92+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot0, 4
+							{
+								drawimage "B_ARMR04", -92+center, -35;
+								InInventory ArmorSlot0_F, 4
+								{
+									drawimage "F_ARMR04", -92+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot0, 3
+								{
+									drawimage "B_ARMR03", -92+center, -35;
+									InInventory ArmorSlot0_F, 3
+									{
+										drawimage "F_ARMR03", -92+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory ArmorSlot0, 2
+									{
+										drawimage "B_ARMR02", -92+center, -35;
+										InInventory ArmorSlot0_F, 2
+										{
+											drawimage "F_ARMR02", -92+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory ArmorSlot0, 1
+										{
+											drawimage "B_ARMR01", -92+center, -35;
+											InInventory ArmorSlot0_F, 1
+											{
+												drawimage "F_ARMR01", -92+center, -35;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			InInventory ArmorSlot1, 8
+			{
+				drawimage "B_ARMR08", -69+center, -35;
+				InInventory ArmorSlot1_F, 8
+				{
+					drawimage "F_ARMR08", -69+center, -35;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot1, 7
+				{
+					drawimage "B_ARMR07", -69+center, -35;
+					InInventory ArmorSlot1_F, 7
+					{
+						drawimage "F_ARMR07", -69+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot1, 6
+					{
+						drawimage "B_ARMR06", -69+center, -35;
+						InInventory ArmorSlot1_F, 6
+						{
+							drawimage "F_ARMR06", -69+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot1, 5
+						{
+							drawimage "B_ARMR05", -69+center, -35;
+							InInventory ArmorSlot1_F, 5
+							{
+								drawimage "F_ARMR05", -69+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot1, 4
+							{
+								drawimage "B_ARMR04", -69+center, -35;
+								InInventory ArmorSlot1_F, 4
+								{
+									drawimage "F_ARMR04", -69+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot1, 3
+								{
+									drawimage "B_ARMR03", -69+center, -35;
+									InInventory ArmorSlot1_F, 3
+									{
+										drawimage "F_ARMR03", -69+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory ArmorSlot1, 2
+									{
+										drawimage "B_ARMR02", -69+center, -35;
+										InInventory ArmorSlot1_F, 2
+										{
+											drawimage "F_ARMR02", -69+center, -35;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot2, 8
+			{
+				drawimage "B_ARMR08", -46+center, -35;
+				InInventory ArmorSlot2_F, 8
+				{
+					drawimage "F_ARMR08", -46+center, -35;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot2, 7
+				{
+					drawimage "B_ARMR07", -46+center, -35;
+					InInventory ArmorSlot2_F, 7
+					{
+						drawimage "F_ARMR07", -46+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot2, 6
+					{
+						drawimage "B_ARMR06", -46+center, -35;
+						InInventory ArmorSlot2_F, 6
+						{
+							drawimage "F_ARMR06", -46+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot2, 5
+						{
+							drawimage "B_ARMR05", -46+center, -35;
+							InInventory ArmorSlot2_F, 5
+							{
+								drawimage "F_ARMR05", -46+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot2, 4
+							{
+								drawimage "B_ARMR04", -46+center, -35;
+								InInventory ArmorSlot2_F, 4
+								{
+									drawimage "F_ARMR04", -46+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot2, 3
+								{
+									drawimage "B_ARMR03", -46+center, -35;
+									InInventory ArmorSlot2_F, 3
+									{
+										drawimage "F_ARMR03", -46+center, -35;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot3, 8
+			{
+				drawimage "B_ARMR08", -23+center, -35;
+				InInventory ArmorSlot3_F, 8
+				{
+					drawimage "F_ARMR08", -23+center, -35;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot3, 7
+				{
+					drawimage "B_ARMR07", -23+center, -35;
+					InInventory ArmorSlot3_F, 7
+					{
+						drawimage "F_ARMR07", -23+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot3, 6
+					{
+						drawimage "B_ARMR06", -23+center, -35;
+						InInventory ArmorSlot3_F, 6
+						{
+							drawimage "F_ARMR06", -23+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot3, 5
+						{
+							drawimage "B_ARMR05", -23+center, -35;
+							InInventory ArmorSlot3_F, 5
+							{
+								drawimage "F_ARMR05", -23+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot3, 4
+							{
+								drawimage "B_ARMR04", -23+center, -35;
+								InInventory ArmorSlot3_F, 4
+								{
+									drawimage "F_ARMR04", -23+center, -35;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot4, 8
+			{
+				drawimage "B_ARMR08", 0+center, -35;
+				InInventory ArmorSlot4_F, 8
+				{
+					drawimage "F_ARMR08", 0+center, -35;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot4, 7
+				{
+					drawimage "B_ARMR07", 0+center, -35;
+					InInventory ArmorSlot4_F, 7
+					{
+						drawimage "F_ARMR07", 0+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot4, 6
+					{
+						drawimage "B_ARMR06", 0+center, -35;
+						InInventory ArmorSlot4_F, 6
+						{
+							drawimage "F_ARMR06", 0+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot4, 5
+						{
+							drawimage "B_ARMR05", 0+center, -35;
+							InInventory ArmorSlot4_F, 5
+							{
+								drawimage "F_ARMR05", 0+center, -35;
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot5, 8
+			{
+				drawimage "B_ARMR08", 23+center, -35;
+				InInventory ArmorSlot5_F, 8
+				{
+					drawimage "F_ARMR08", 23+center, -35;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot5, 7
+				{
+					drawimage "B_ARMR07", 23+center, -35;
+					InInventory ArmorSlot5_F, 7
+					{
+						drawimage "F_ARMR07", 23+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot5, 6
+					{
+						drawimage "B_ARMR06", 23+center, -35;
+						InInventory ArmorSlot5_F, 6
+						{
+							drawimage "F_ARMR06", 23+center, -35;
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot6, 8
+			{
+				drawimage "B_ARMR08", 46+center, -35;
+				InInventory ArmorSlot6_F, 8
+				{
+					drawimage "F_ARMR08", 46+center, -35;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot6, 7
+				{
+					drawimage "B_ARMR07", 46+center, -35;
+					InInventory ArmorSlot6_F, 7
+					{
+						drawimage "F_ARMR07", 46+center, -35;
+					}
+				}
+			}
+			
+			InInventory ArmorSlot7, 8
+			{
+				drawimage "B_ARMR08", 69+center, -35;
+				InInventory ArmorSlot7_F, 8
+				{
+					drawimage "F_ARMR08", 69+center, -35;
+				}
+			}
+		}
+		Else
+		{
+			InInventory InvMenuRowIndex, 3
+			{
+				drawimage "inv_mag", -118+center, -28;
+				
+				InInventory MagicSlot0, 8
+				{
+					drawimage "b_magic8", -92+center, -35;
+					InInventory MagicSlot0_F, 8
+					{
+						drawimage "f_magic8", -92+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot0, 7
+					{
+						drawimage "b_magic7", -92+center, -35;
+						InInventory MagicSlot0_F, 7
+						{
+							drawimage "f_magic7", -92+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot0, 6
+						{
+							drawimage "b_magic6", -92+center, -35;
+							InInventory MagicSlot0_F, 6
+							{
+								drawimage "f_magic6", -92+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot0, 5
+							{
+								drawimage "b_magic5", -92+center, -35;
+								InInventory MagicSlot0_F, 5
+								{
+									drawimage "f_magic5", -92+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot0, 4
+								{
+									drawimage "b_magic4", -92+center, -35;
+									InInventory MagicSlot0_F, 4
+									{
+										drawimage "f_magic4", -92+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory MagicSlot0, 3
+									{
+										drawimage "b_magic3", -92+center, -35;
+										InInventory MagicSlot0_F, 3
+										{
+											drawimage "f_magic3", -92+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory MagicSlot0, 2
+										{
+											drawimage "b_magic2", -92+center, -35;
+											InInventory MagicSlot0_F, 2
+											{
+												drawimage "f_magic2", -92+center, -35;
+											}
+										}
+										Else
+										{
+											InInventory MagicSlot0, 1
+											{
+												drawimage "b_magic1", -92+center, -35;
+												InInventory MagicSlot0_F, 1
+												{
+													drawimage "f_magic1", -92+center, -35;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot1, 8
+				{
+					drawimage "b_magic8", -69+center, -35;
+					InInventory MagicSlot1_F, 8
+					{
+						drawimage "f_magic8", -69+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot1, 7
+					{
+						drawimage "b_magic7", -69+center, -35;
+						InInventory MagicSlot1_F, 7
+						{
+							drawimage "f_magic7", -69+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot1, 6
+						{
+							drawimage "b_magic6", -69+center, -35;
+							InInventory MagicSlot1_F, 6
+							{
+								drawimage "f_magic6", -69+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot1, 5
+							{
+								drawimage "b_magic5", -69+center, -35;
+								InInventory MagicSlot1_F, 5
+								{
+									drawimage "f_magic5", -69+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot1, 4
+								{
+									drawimage "b_magic4", -69+center, -35;
+									InInventory MagicSlot1_F, 4
+									{
+										drawimage "f_magic4", -69+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory MagicSlot1, 3
+									{
+										drawimage "b_magic3", -69+center, -35;
+										InInventory MagicSlot1_F, 3
+										{
+											drawimage "f_magic3", -69+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory MagicSlot1, 2
+										{
+											drawimage "b_magic2", -69+center, -35;
+											InInventory MagicSlot1_F, 2
+											{
+												drawimage "f_magic2", -69+center, -35;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot2, 8
+				{
+					drawimage "b_magic8", -46+center, -35;
+					InInventory MagicSlot2_F, 8
+					{
+						drawimage "f_magic8", -46+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot2, 7
+					{
+						drawimage "b_magic7", -46+center, -35;
+						InInventory MagicSlot2_F, 7
+						{
+							drawimage "f_magic7", -46+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot2, 6
+						{
+							drawimage "b_magic6", -46+center, -35;
+							InInventory MagicSlot2_F, 6
+							{
+								drawimage "f_magic6", -46+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot2, 5
+							{
+								drawimage "b_magic5", -46+center, -35;
+								InInventory MagicSlot2_F, 5
+								{
+									drawimage "f_magic5", -46+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot2, 4
+								{
+									drawimage "b_magic4", -46+center, -35;
+									InInventory MagicSlot2_F, 4
+									{
+										drawimage "f_magic4", -46+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory MagicSlot2, 3
+									{
+										drawimage "b_magic3", -46+center, -35;
+										InInventory MagicSlot2_F, 3
+										{
+											drawimage "f_magic3", -46+center, -35;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				InInventory MagicSlot3, 8
+				{
+					drawimage "b_magic8", -23+center, -35;
+					InInventory MagicSlot3_F, 8
+					{
+						drawimage "f_magic8", -23+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot3, 7
+					{
+						drawimage "b_magic7", -23+center, -35;
+						InInventory MagicSlot3_F, 7
+						{
+							drawimage "f_magic7", -23+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot3, 6
+						{
+							drawimage "b_magic6", -23+center, -35;
+							InInventory MagicSlot3_F, 6
+							{
+								drawimage "f_magic6", -23+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot3, 5
+							{
+								drawimage "b_magic5", -23+center, -35;
+								InInventory MagicSlot3_F, 5
+								{
+									drawimage "f_magic5", -23+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot3, 4
+								{
+									drawimage "b_magic4", -23+center, -35;
+									InInventory MagicSlot3_F, 4
+									{
+										drawimage "f_magic4", -23+center, -35;
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot4, 8
+				{
+					drawimage "b_magic8", 0+center, -35;
+					InInventory MagicSlot4_F, 8
+					{
+						drawimage "f_magic8", 0+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot4, 7
+					{
+						drawimage "b_magic7", 0+center, -35;
+						InInventory MagicSlot4_F, 7
+						{
+							drawimage "f_magic7", 0+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot4, 6
+						{
+							drawimage "b_magic6", 0+center, -35;
+							InInventory MagicSlot4_F, 6
+							{
+								drawimage "f_magic6", 0+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot4, 5
+							{
+								drawimage "b_magic5", 0+center, -35;
+								InInventory MagicSlot4_F, 5
+								{
+									drawimage "f_magic5", 0+center, -35;
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot5, 8
+				{
+					drawimage "b_magic8", 23+center, -35;
+					InInventory MagicSlot5_F, 8
+					{
+						drawimage "f_magic8", 23+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot5, 7
+					{
+						drawimage "b_magic7", 23+center, -35;
+						InInventory MagicSlot5_F, 7
+						{
+							drawimage "f_magic7", 23+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot5, 6
+						{
+							drawimage "b_magic6", 23+center, -35;
+							InInventory MagicSlot5_F, 6
+							{
+								drawimage "f_magic6", 23+center, -35;
+							}
+						}
+					}
+				}
+
+				InInventory MagicSlot6, 8
+				{
+					drawimage "b_magic8", 46+center, -35;
+					InInventory MagicSlot6_F, 8
+					{
+						drawimage "f_magic8", 46+center, -35;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot6, 7
+					{
+						drawimage "b_magic7", 46+center, -35;
+						InInventory MagicSlot6_F, 7
+						{
+							drawimage "f_magic7", 46+center, -35;
+						}
+					}
+				}
+
+				InInventory MagicSlot7, 8
+				{
+					drawimage "b_magic8", 69+center, -35;
+					InInventory MagicSlot7_F, 8
+					{
+						drawimage "f_magic8", 69+center, -35;
+					}
+				}				
+			}
+			Else
+			{
+				InInventory InvMenuRowIndex, 2
+				{
+					drawimage "inv_item", -118+center, -28;
+					
+					InInventory KeyItemSlot0, 8
+					{
+						drawimage "B_KEYI08", -92+center, -35;
+						InInventory KeyItemSlot0_F, 8
+						{
+							drawimage "F_KEYI08", -92+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot0, 7
+						{
+							drawimage "B_KEYI07", -92+center, -35;
+							InInventory KeyItemSlot0_F, 7
+							{
+								drawimage "F_KEYI07", -92+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot0, 6
+							{
+								drawimage "B_KEYI06", -92+center, -35;
+								InInventory KeyItemSlot0_F, 6
+								{
+									drawimage "F_KEYI06", -92+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot0, 5
+								{
+									drawimage "B_KEYI05", -92+center, -35;
+									InInventory KeyItemSlot0_F, 5
+									{
+										drawimage "F_KEYI05", -92+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot0, 4
+									{
+										drawimage "B_KEYI04", -92+center, -35;
+										InInventory KeyItemSlot0_F, 4
+										{
+											drawimage "F_KEYI04", -92+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory KeyItemSlot0, 3
+										{
+											drawimage "B_KEYI03", -92+center, -35;
+											InInventory KeyItemSlot0_F, 3
+											{
+												drawimage "F_KEYI03", -92+center, -35;
+											}
+										}
+										Else
+										{
+											InInventory KeyItemSlot0, 2
+											{
+												drawimage "B_KEYI02", -92+center, -35;
+												InInventory KeyItemSlot0_F, 2
+												{
+													drawimage "F_KEYI02", -92+center, -35;
+												}
+											}
+											Else
+											{
+												InInventory KeyItemSlot0, 1
+												{
+													drawimage "B_KEYI01", -92+center, -35;
+													InInventory KeyItemSlot0_F, 1
+													{
+														drawimage "F_KEYI01", -92+center, -35;
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot1, 8
+					{
+						drawimage "B_KEYI08", -69+center, -35;
+						InInventory KeyItemSlot1_F, 8
+						{
+							drawimage "F_KEYI08", -69+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot1, 7
+						{
+							drawimage "B_KEYI07", -69+center, -35;
+							InInventory KeyItemSlot1_F, 7
+							{
+								drawimage "F_KEYI07", -69+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot1, 6
+							{
+								drawimage "B_KEYI06", -69+center, -35;
+								InInventory KeyItemSlot1_F, 6
+								{
+									drawimage "F_KEYI06", -69+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot1, 5
+								{
+									drawimage "B_KEYI05", -69+center, -35;
+									InInventory KeyItemSlot1_F, 5
+									{
+										drawimage "F_KEYI05", -69+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot1, 4
+									{
+										drawimage "B_KEYI04", -69+center, -35;
+										InInventory KeyItemSlot1_F, 4
+										{
+											drawimage "F_KEYI04", -69+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory KeyItemSlot1, 3
+										{
+											drawimage "B_KEYI03", -69+center, -35;
+											InInventory KeyItemSlot1_F, 3
+											{
+												drawimage "F_KEYI03", -69+center, -35;
+											}
+										}
+										Else
+										{
+											InInventory KeyItemSlot1, 2
+											{
+												drawimage "B_KEYI02", -69+center, -35;
+												InInventory KeyItemSlot1_F, 2
+												{
+													drawimage "F_KEYI02", -69+center, -35;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot2, 8
+					{
+						drawimage "B_KEYI08", -46+center, -35;
+						InInventory KeyItemSlot2_F, 8
+						{
+							drawimage "F_KEYI08", -46+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot2, 7
+						{
+							drawimage "B_KEYI07", -46+center, -35;
+							InInventory KeyItemSlot2_F, 7
+							{
+								drawimage "F_KEYI07", -46+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot2, 6
+							{
+								drawimage "B_KEYI06", -46+center, -35;
+								InInventory KeyItemSlot2_F, 6
+								{
+									drawimage "F_KEYI06", -46+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot2, 5
+								{
+									drawimage "B_KEYI05", -46+center, -35;
+									InInventory KeyItemSlot2_F, 5
+									{
+										drawimage "F_KEYI05", -46+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot2, 4
+									{
+										drawimage "B_KEYI04", -46+center, -35;
+										InInventory KeyItemSlot2_F, 4
+										{
+											drawimage "F_KEYI04", -46+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory KeyItemSlot2, 3
+										{
+											drawimage "B_KEYI03", -46+center, -35;
+											InInventory KeyItemSlot2_F, 3
+											{
+												drawimage "F_KEYI03", -46+center, -35;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot3, 8
+					{
+						drawimage "B_KEYI08", -23+center, -35;
+						InInventory KeyItemSlot3_F, 8
+						{
+							drawimage "F_KEYI08", -23+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot3, 7
+						{
+							drawimage "B_KEYI07", -23+center, -35;
+							InInventory KeyItemSlot3_F, 7
+							{
+								drawimage "F_KEYI07", -23+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot3, 6
+							{
+								drawimage "B_KEYI06", -23+center, -35;
+								InInventory KeyItemSlot3_F, 6
+								{
+									drawimage "F_KEYI06", -23+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot3, 5
+								{
+									drawimage "B_KEYI05", -23+center, -35;
+									InInventory KeyItemSlot3_F, 5
+									{
+										drawimage "F_KEYI05", -23+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot3, 4
+									{
+										drawimage "B_KEYI04", -23+center, -35;
+										InInventory KeyItemSlot3_F, 4
+										{
+											drawimage "F_KEYI04", -23+center, -35;
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot4, 8
+					{
+						drawimage "B_KEYI08", 0+center, -35;
+						InInventory KeyItemSlot4_F, 8
+						{
+							drawimage "F_KEYI08", 0+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot4, 7
+						{
+							drawimage "B_KEYI07", 0+center, -35;
+							InInventory KeyItemSlot4_F, 7
+							{
+								drawimage "F_KEYI07", 0+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot4, 6
+							{
+								drawimage "B_KEYI06", 0+center, -35;
+								InInventory KeyItemSlot4_F, 6
+								{
+									drawimage "F_KEYI06", 0+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot4, 5
+								{
+									drawimage "B_KEYI05", 0+center, -35;
+									InInventory KeyItemSlot4_F, 5
+									{
+										drawimage "F_KEYI05", 0+center, -35;
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot5, 8
+					{
+						drawimage "B_KEYI08", 23+center, -35;
+						InInventory KeyItemSlot5_F, 8
+						{
+							drawimage "F_KEYI08", 23+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot5, 7
+						{
+							drawimage "B_KEYI07", 23+center, -35;
+							InInventory KeyItemSlot5_F, 7
+							{
+								drawimage "F_KEYI07", 23+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot5, 6
+							{
+								drawimage "B_KEYI06", 23+center, -35;
+								InInventory KeyItemSlot5_F, 6
+								{
+									drawimage "F_KEYI06", 23+center, -35;
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot6, 8
+					{
+						drawimage "B_KEYI08", 46+center, -35;
+						InInventory KeyItemSlot6_F, 8
+						{
+							drawimage "F_KEYI08", 46+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot6, 7
+						{
+							drawimage "B_KEYI07", 46+center, -35;
+							InInventory KeyItemSlot6_F, 7
+							{
+								drawimage "F_KEYI07", 46+center, -35;
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot7, 8
+					{
+						drawimage "B_KEYI08", 69+center, -35;
+						InInventory KeyItemSlot7_F, 8
+						{
+							drawimage "F_KEYI08", 69+center, -35;
+						}
+					}
+				}
+				Else
+				{
+					drawimage "inv_shld", -118+center, -28;
+					
+					InInventory ShieldSlot0, 8
+					{
+						drawimage "B_SHLD08", -92+center, -35;
+						InInventory ShieldSlot0_F, 8
+						{
+							drawimage "F_SHLD08", -92+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot0, 7
+						{
+							drawimage "B_SHLD07", -92+center, -35;
+							InInventory ShieldSlot0_F, 7
+							{
+								drawimage "F_SHLD07", -92+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot0, 6
+							{
+								drawimage "B_SHLD06", -92+center, -35;
+								InInventory ShieldSlot0_F, 6
+								{
+									drawimage "F_SHLD06", -92+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot0, 5
+								{
+									drawimage "B_SHLD05", -92+center, -35;
+									InInventory ShieldSlot0_F, 5
+									{
+										drawimage "F_SHLD05", -92+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot0, 4
+									{
+										drawimage "B_SHLD04", -92+center, -35;
+										InInventory ShieldSlot0_F, 4
+										{
+											drawimage "F_SHLD04", -92+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory ShieldSlot0, 3
+										{
+											drawimage "B_SHLD03", -92+center, -35;
+											InInventory ShieldSlot0_F, 3
+											{
+												drawimage "F_SHLD03", -92+center, -35;
+											}
+										}
+										Else
+										{
+											InInventory ShieldSlot0, 2
+											{
+												drawimage "B_SHLD02", -92+center, -35;
+												InInventory ShieldSlot0_F, 2
+												{
+													drawimage "F_SHLD02", -92+center, -35;
+												}
+											}
+											Else
+											{
+												InInventory ShieldSlot0, 1
+												{
+													drawimage "B_SHLD01", -92+center, -35;
+													InInventory ShieldSlot0_F, 1
+													{
+														drawimage "F_SHLD01", -92+center, -35;
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot1, 8
+					{
+						drawimage "B_SHLD08", -69+center, -35;
+						InInventory ShieldSlot1_F, 8
+						{
+							drawimage "F_SHLD08", -69+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot1, 7
+						{
+							drawimage "B_SHLD07", -69+center, -35;
+							InInventory ShieldSlot1_F, 7
+							{
+								drawimage "F_SHLD07", -69+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot1, 6
+							{
+								drawimage "B_SHLD06", -69+center, -35;
+								InInventory ShieldSlot1_F, 6
+								{
+									drawimage "F_SHLD06", -69+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot1, 5
+								{
+									drawimage "B_SHLD05", -69+center, -35;
+									InInventory ShieldSlot1_F, 5
+									{
+										drawimage "F_SHLD05", -69+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot1, 4
+									{
+										drawimage "B_SHLD04", -69+center, -35;
+										InInventory ShieldSlot1_F, 4
+										{
+											drawimage "F_SHLD04", -69+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory ShieldSlot1, 3
+										{
+											drawimage "B_SHLD03", -69+center, -35;
+											InInventory ShieldSlot1_F, 3
+											{
+												drawimage "F_SHLD03", -69+center, -35;
+											}
+										}
+										Else
+										{
+											InInventory ShieldSlot1, 2
+											{
+												drawimage "B_SHLD02", -69+center, -35;
+												InInventory ShieldSlot1_F, 2
+												{
+													drawimage "F_SHLD02", -69+center, -35;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot2, 8
+					{
+						drawimage "B_SHLD08", -46+center, -35;
+						InInventory ShieldSlot2_F, 8
+						{
+							drawimage "F_SHLD08", -46+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot2, 7
+						{
+							drawimage "B_SHLD07", -46+center, -35;
+							InInventory ShieldSlot2_F, 7
+							{
+								drawimage "F_SHLD07", -46+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot2, 6
+							{
+								drawimage "B_SHLD06", -46+center, -35;
+								InInventory ShieldSlot2_F, 6
+								{
+									drawimage "F_SHLD06", -46+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot2, 5
+								{
+									drawimage "B_SHLD05", -46+center, -35;
+									InInventory ShieldSlot2_F, 5
+									{
+										drawimage "F_SHLD05", -46+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot2, 4
+									{
+										drawimage "B_SHLD04", -46+center, -35;
+										InInventory ShieldSlot2_F, 4
+										{
+											drawimage "F_SHLD04", -46+center, -35;
+										}
+									}
+									Else
+									{
+										InInventory ShieldSlot2, 3
+										{
+											drawimage "B_SHLD03", -46+center, -35;
+											InInventory ShieldSlot2_F, 3
+											{
+												drawimage "F_SHLD03", -46+center, -35;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot3, 8
+					{
+						drawimage "B_SHLD08", -23+center, -35;
+						InInventory ShieldSlot3_F, 8
+						{
+							drawimage "F_SHLD08", -23+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot3, 7
+						{
+							drawimage "B_SHLD07", -23+center, -35;
+							InInventory ShieldSlot3_F, 7
+							{
+								drawimage "F_SHLD07", -23+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot3, 6
+							{
+								drawimage "B_SHLD06", -23+center, -35;
+								InInventory ShieldSlot3_F, 6
+								{
+									drawimage "F_SHLD06", -23+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot3, 5
+								{
+									drawimage "B_SHLD05", -23+center, -35;
+									InInventory ShieldSlot3_F, 5
+									{
+										drawimage "F_SHLD05", -23+center, -35;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot3, 4
+									{
+										drawimage "B_SHLD04", -23+center, -35;
+										InInventory ShieldSlot3_F, 4
+										{
+											drawimage "F_SHLD04", -23+center, -35;
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot4, 8
+					{
+						drawimage "B_SHLD08", 0+center, -35;
+						InInventory ShieldSlot4_F, 8
+						{
+							drawimage "F_SHLD08", 0+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot4, 7
+						{
+							drawimage "B_SHLD07", 0+center, -35;
+							InInventory ShieldSlot4_F, 7
+							{
+								drawimage "F_SHLD07", 0+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot4, 6
+							{
+								drawimage "B_SHLD06", 0+center, -35;
+								InInventory ShieldSlot4_F, 6
+								{
+									drawimage "F_SHLD06", 0+center, -35;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot4, 5
+								{
+									drawimage "B_SHLD05", 0+center, -35;
+									InInventory ShieldSlot4_F, 5
+									{
+										drawimage "F_SHLD05", 0+center, -35;
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot5, 8
+					{
+						drawimage "B_SHLD08", 23+center, -35;
+						InInventory ShieldSlot5_F, 8
+						{
+							drawimage "F_SHLD08", 23+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot5, 7
+						{
+							drawimage "B_SHLD07", 23+center, -35;
+							InInventory ShieldSlot5_F, 7
+							{
+								drawimage "F_SHLD07", 23+center, -35;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot5, 6
+							{
+								drawimage "B_SHLD06", 23+center, -35;
+								InInventory ShieldSlot5_F, 6
+								{
+									drawimage "F_SHLD06", 23+center, -35;
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot6, 8
+					{
+						drawimage "B_SHLD08", 46+center, -35;
+						InInventory ShieldSlot6_F, 8
+						{
+							drawimage "F_SHLD08", 46+center, -35;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot6, 7
+						{
+							drawimage "B_SHLD07", 46+center, -35;
+							InInventory ShieldSlot6_F, 7
+							{
+								drawimage "F_SHLD07", 46+center, -35;
+							}
+						}
+					}
+					
+					InInventory ShieldSlot7, 8
+					{
+						drawimage "B_SHLD08", 69+center, -35;
+						InInventory ShieldSlot7_F, 8
+						{
+							drawimage "F_SHLD08", 69+center, -35;
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory NOT InvMenuColIndex
+		{
+			drawimage "CURSOR", -93+center, -36;
+		}
+		Else
+		{
+			InInventory InvMenuColIndex, 7
+			{
+				drawimage "CURSOR", 68+center, -36;
+			}
+			Else
+			{
+				InInventory InvMenuColIndex, 6
+				{
+					drawimage "CURSOR", 45+center, -36;
+				}
+				Else
+				{
+					InInventory InvMenuColIndex, 5
+					{
+						drawimage "CURSOR", 22+center, -36;
+					}
+					Else
+					{
+						InInventory InvMenuColIndex, 4
+						{
+							drawimage "CURSOR", -1+center, -36;
+						}
+						Else
+						{
+							InInventory InvMenuColIndex, 3
+							{
+								drawimage "CURSOR", -24+center, -36;
+							}
+							Else
+							{
+								InInventory InvMenuColIndex, 2
+								{
+									drawimage "CURSOR", -47+center, -36;
+								}
+								Else
+								{
+									InInventory InvMenuColIndex, 1
+									{
+										drawimage "CURSOR", -70+center, -36;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+statusbar InventoryFullscreen
+{
+	drawinventorybar Doom, alwaysshow, 8, CRYINDEX, 68, 173, 89, 186, untranslated, 0;
+}
+
+statusbar Normal
+{
+	drawimage "bar_s", 0, 168;	
+	drawnumber 2, CRYNUM, untranslated, Level, fillzeros, alignment(left), 228, 172;
+	drawnumber 5, CRYNUM, untranslated, Money, fillzeros, alignment(left), 228, 180;
+	drawnumber 5, CRYNUM, untranslated, Experience, fillzeros, alignment(left), 92, 188;
+	drawnumber 5, CRYNUM, untranslated, ExpToLevel, fillzeros, alignment(left), 140, 188;
+	drawnumber 3, CRYNUM, untranslated, MagicPoints, fillzeros, alignment(left), 212, 188;
+	drawnumber 3, CRYNUM, untranslated, MaxMagicPoints, fillzeros, alignment(left), 244, 188;
+
+	drawselectedinventory CRYINDEX, 7, 173, 29, 186, untranslated;
+
+	drawimage "life1", 74, 172;
+	drawbar "life1f", "life1e", health, horizontal, 76, 172;
+
+	InInventory RefreshSelected, 1
+	{
+		drawimage "f_magic1", 290, 173;
+	}
+	
+	InInventory RabbitBootsSelected, 1
+	{
+		drawimage "f_keyi01", 4, 4;
+	}
+	
+	InInventory Force, 1
+	{
+		DrawImage "force_s", 76, 181;
+		
+		InInventory Force, 2
+		{
+			DrawImage "force_s", 84, 181;
+			
+			InInventory Force, 3
+			{
+				DrawImage "force_s", 92, 181;
+				
+				InInventory Force, 4
+				{
+					DrawImage "force_s", 100, 181;
+					
+					InInventory Force, 5
+					{
+						DrawImage "force_s", 108, 181;
+						
+						InInventory Force, 6
+						{
+							DrawImage "force_s", 116, 181;
+							
+							InInventory Force, 7
+							{
+								DrawImage "force_s", 124, 181;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	IsSelected SwordOfWind
+	{
+		InInventory BallOfWind, 1
+		{
+			drawimage "plevb_s", 158, 181;
+		}
+	}
+	
+	InInventory ForceLevelNumFlash, 1
+	{
+		InInventory ForceLevel, 3
+		{
+			DrawImage "plev3_s", 182, 180;
+		}
+		Else
+		{
+			InInventory ForceLevel, 2
+			{
+				DrawImage "plev2_s", 158, 180;
+			}
+			Else
+			{
+				InInventory ForceLevel, 1
+				{
+					DrawImage "plev1_s", 134, 180;
+				}
+			}
+		}
+	}
+	
+	InInventory Level, 2
+	{
+		drawimage "life2", 74, 172;
+		drawbar "life2f", "life2e", health, horizontal, 76, 172;
+
+		InInventory Level, 3
+		{
+			drawimage "life3", 74, 172;
+			drawbar "life3f", "life3e", health, horizontal, 76, 172;
+			
+			InInventory Level, 4
+			{
+				drawimage "life4", 74, 172;
+				drawbar "life4f", "life4e", health, horizontal, 76, 172;
+
+				InInventory Level, 5
+				{
+					drawimage "life5", 74, 172;
+					drawbar "life5f", "life5e", health, horizontal, 76, 172;
+					
+					InInventory Level, 6
+					{
+						drawimage "life6", 74, 172;
+						drawbar "life6f", "life6e", health, horizontal, 76, 172;
+						
+						InInventory Level, 7
+						{
+							drawimage "life7", 74, 172;
+							drawbar "life7f", "life7e", health, horizontal, 76, 172;
+							
+							InInventory Level, 8
+							{
+								drawimage "life8", 74, 172;
+								drawbar "life8f", "life8e", health, horizontal, 76, 172;
+								
+								InInventory Level, 9
+								{
+									drawimage "life9", 74, 172;
+									drawbar "life9f", "life9e", health, horizontal, 76, 172;
+									
+									InInventory Level, 10
+									{
+										drawimage "life10", 74, 172;
+										drawbar "life10f", "life10e", health, horizontal, 76, 172;
+										
+										InInventory Level, 11
+										{
+											drawimage "life11", 74, 172;
+											drawbar "life11f", "life11e", health, horizontal, 76, 172;
+											
+											InInventory Level, 12
+											{
+												drawimage "life12", 74, 172;
+												drawbar "life12f", "life12e", health, horizontal, 76, 172;
+												
+												InInventory Level, 13
+												{
+													drawimage "life13", 74, 172;
+													drawbar "life13f", "life13e", health, horizontal, 76, 172;
+													
+													InInventory Level, 14
+													{
+														drawimage "life14", 74, 172;
+														drawbar "life14f", "life14e", health, horizontal, 76, 172;
+														
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	InInventory ViewInvMenu, 1
+	{
+		drawimage "INVBAR", 0, 168;
+		
+		InInventory NOT InvMenuRowIndex
+		{
+			drawimage "inv_armr", 42, 179;
+			
+			InInventory ArmorSlot0, 8
+			{
+				drawimage "B_ARMR08", 68, 173;
+				InInventory ArmorSlot0_F, 8
+				{
+					drawimage "F_ARMR08", 68, 173;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot0, 7
+				{
+					drawimage "B_ARMR07", 68, 173;
+					InInventory ArmorSlot0_F, 7
+					{
+						drawimage "F_ARMR07", 68, 173;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot0, 6
+					{
+						drawimage "B_ARMR06", 68, 173;
+						InInventory ArmorSlot0_F, 6
+						{
+							drawimage "F_ARMR06", 68, 173;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot0, 5
+						{
+							drawimage "B_ARMR05", 68, 173;
+							InInventory ArmorSlot0_F, 5
+							{
+								drawimage "F_ARMR05", 68, 173;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot0, 4
+							{
+								drawimage "B_ARMR04", 68, 173;
+								InInventory ArmorSlot0_F, 4
+								{
+									drawimage "F_ARMR04", 68, 173;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot0, 3
+								{
+									drawimage "B_ARMR03", 68, 173;
+									InInventory ArmorSlot0_F, 3
+									{
+										drawimage "F_ARMR03", 68, 173;
+									}
+								}
+								Else
+								{
+									InInventory ArmorSlot0, 2
+									{
+										drawimage "B_ARMR02", 68, 173;
+										InInventory ArmorSlot0_F, 2
+										{
+											drawimage "F_ARMR02", 68, 173;
+										}
+									}
+									Else
+									{
+										InInventory ArmorSlot0, 1
+										{
+											drawimage "B_ARMR01", 68, 173;
+											InInventory ArmorSlot0_F, 1
+											{
+												drawimage "F_ARMR01", 68, 173;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			InInventory ArmorSlot1, 8
+			{
+				drawimage "B_ARMR08", 91, 173;
+				InInventory ArmorSlot1_F, 8
+				{
+					drawimage "F_ARMR08", 91, 173;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot1, 7
+				{
+					drawimage "B_ARMR07", 91, 173;
+					InInventory ArmorSlot1_F, 7
+					{
+						drawimage "F_ARMR07", 91, 173;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot1, 6
+					{
+						drawimage "B_ARMR06", 91, 173;
+						InInventory ArmorSlot1_F, 6
+						{
+							drawimage "F_ARMR06", 91, 173;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot1, 5
+						{
+							drawimage "B_ARMR05", 91, 173;
+							InInventory ArmorSlot1_F, 5
+							{
+								drawimage "F_ARMR05", 91, 173;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot1, 4
+							{
+								drawimage "B_ARMR04", 91, 173;
+								InInventory ArmorSlot1_F, 4
+								{
+									drawimage "F_ARMR04", 91, 173;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot1, 3
+								{
+									drawimage "B_ARMR03", 91, 173;
+									InInventory ArmorSlot1_F, 3
+									{
+										drawimage "F_ARMR03", 91, 173;
+									}
+								}
+								Else
+								{
+									InInventory ArmorSlot1, 2
+									{
+										drawimage "B_ARMR02", 91, 173;
+										InInventory ArmorSlot1_F, 2
+										{
+											drawimage "F_ARMR02", 91, 173;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot2, 8
+			{
+				drawimage "B_ARMR08", 114, 173;
+				InInventory ArmorSlot2_F, 8
+				{
+					drawimage "F_ARMR08", 114, 173;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot2, 7
+				{
+					drawimage "B_ARMR07", 114, 173;
+					InInventory ArmorSlot2_F, 7
+					{
+						drawimage "F_ARMR07", 114, 173;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot2, 6
+					{
+						drawimage "B_ARMR06", 114, 173;
+						InInventory ArmorSlot2_F, 6
+						{
+							drawimage "F_ARMR06", 114, 173;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot2, 5
+						{
+							drawimage "B_ARMR05", 114, 173;
+							InInventory ArmorSlot2_F, 5
+							{
+								drawimage "F_ARMR05", 114, 173;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot2, 4
+							{
+								drawimage "B_ARMR04", 114, 173;
+								InInventory ArmorSlot2_F, 4
+								{
+									drawimage "F_ARMR04", 114, 173;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot2, 3
+								{
+									drawimage "B_ARMR03", 114, 173;
+									InInventory ArmorSlot2_F, 3
+									{
+										drawimage "F_ARMR03", 114, 173;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot3, 8
+			{
+				drawimage "B_ARMR08", 137, 173;
+				InInventory ArmorSlot3_F, 8
+				{
+					drawimage "F_ARMR08", 137, 173;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot3, 7
+				{
+					drawimage "B_ARMR07", 137, 173;
+					InInventory ArmorSlot3_F, 7
+					{
+						drawimage "F_ARMR07", 137, 173;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot3, 6
+					{
+						drawimage "B_ARMR06", 137, 173;
+						InInventory ArmorSlot3_F, 6
+						{
+							drawimage "F_ARMR06", 137, 173;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot3, 5
+						{
+							drawimage "B_ARMR05", 137, 173;
+							InInventory ArmorSlot3_F, 5
+							{
+								drawimage "F_ARMR05", 137, 173;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot3, 4
+							{
+								drawimage "B_ARMR04", 137, 173;
+								InInventory ArmorSlot3_F, 4
+								{
+									drawimage "F_ARMR04", 137, 173;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot4, 8
+			{
+				drawimage "B_ARMR08", 160, 173;
+				InInventory ArmorSlot4_F, 8
+				{
+					drawimage "F_ARMR08", 160, 173;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot4, 7
+				{
+					drawimage "B_ARMR07", 160, 173;
+					InInventory ArmorSlot4_F, 7
+					{
+						drawimage "F_ARMR07", 160, 173;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot4, 6
+					{
+						drawimage "B_ARMR06", 160, 173;
+						InInventory ArmorSlot4_F, 6
+						{
+							drawimage "F_ARMR06", 160, 173;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot4, 5
+						{
+							drawimage "B_ARMR05", 160, 173;
+							InInventory ArmorSlot4_F, 5
+							{
+								drawimage "F_ARMR05", 160, 173;
+							}
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot5, 8
+			{
+				drawimage "B_ARMR08", 183, 173;
+				InInventory ArmorSlot5_F, 8
+				{
+					drawimage "F_ARMR08", 183, 173;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot5, 7
+				{
+					drawimage "B_ARMR07", 183, 173;
+					InInventory ArmorSlot5_F, 7
+					{
+						drawimage "F_ARMR07", 183, 173;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot5, 6
+					{
+						drawimage "B_ARMR06", 183, 173;
+						InInventory ArmorSlot5_F, 6
+						{
+							drawimage "F_ARMR06", 183, 173;
+						}
+					}
+				}
+			}
+			
+			InInventory ArmorSlot6, 8
+			{
+				drawimage "B_ARMR08", 206, 173;
+				InInventory ArmorSlot6_F, 8
+				{
+					drawimage "F_ARMR08", 206, 173;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot6, 7
+				{
+					drawimage "B_ARMR07", 206, 173;
+					InInventory ArmorSlot6_F, 7
+					{
+						drawimage "F_ARMR07", 206, 173;
+					}
+				}
+			}
+			
+			InInventory ArmorSlot7, 8
+			{
+				drawimage "B_ARMR08", 229, 173;
+				InInventory ArmorSlot7_F, 8
+				{
+					drawimage "F_ARMR08", 229, 173;
+				}
+			}
+		}
+		Else
+		{
+			InInventory InvMenuRowIndex, 3
+			{
+				drawimage "inv_mag", 42, 179;
+				
+				InInventory MagicSlot0, 8
+				{
+					drawimage "b_magic8", 68, 173;
+					InInventory MagicSlot0_F, 8
+					{
+						drawimage "f_magic8", 68, 173;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot0, 7
+					{
+						drawimage "b_magic7", 68, 173;
+						InInventory MagicSlot0_F, 7
+						{
+							drawimage "f_magic7", 68, 173;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot0, 6
+						{
+							drawimage "b_magic6", 68, 173;
+							InInventory MagicSlot0_F, 6
+							{
+								drawimage "f_magic6", 68, 173;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot0, 5
+							{
+								drawimage "b_magic5", 68, 173;
+								InInventory MagicSlot0_F, 5
+								{
+									drawimage "f_magic5", 68, 173;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot0, 4
+								{
+									drawimage "b_magic4", 68, 173;
+									InInventory MagicSlot0_F, 4
+									{
+										drawimage "f_magic4", 68, 173;
+									}
+								}
+								Else
+								{
+									InInventory MagicSlot0, 3
+									{
+										drawimage "b_magic3", 68, 173;
+										InInventory MagicSlot0_F, 3
+										{
+											drawimage "f_magic3", 68, 173;
+										}
+									}
+									Else
+									{
+										InInventory MagicSlot0, 2
+										{
+											drawimage "b_magic2", 68, 173;
+											InInventory MagicSlot0_F, 2
+											{
+												drawimage "f_magic2", 68, 173;
+											}
+										}
+										Else
+										{
+											InInventory MagicSlot0, 1
+											{
+												drawimage "b_magic1", 68, 173;
+												InInventory MagicSlot0_F, 1
+												{
+													drawimage "f_magic1", 68, 173;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot1, 8
+				{
+					drawimage "b_magic8", 91, 173;
+					InInventory MagicSlot1_F, 8
+					{
+						drawimage "f_magic8", 91, 173;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot1, 7
+					{
+						drawimage "b_magic7", 91, 173;
+						InInventory MagicSlot1_F, 7
+						{
+							drawimage "f_magic7", 91, 173;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot1, 6
+						{
+							drawimage "b_magic6", 91, 173;
+							InInventory MagicSlot1_F, 6
+							{
+								drawimage "f_magic6", 91, 173;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot1, 5
+							{
+								drawimage "b_magic5", 91, 173;
+								InInventory MagicSlot1_F, 5
+								{
+									drawimage "f_magic5", 91, 173;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot1, 4
+								{
+									drawimage "b_magic4", 91, 173;
+									InInventory MagicSlot1_F, 4
+									{
+										drawimage "f_magic4", 91, 173;
+									}
+								}
+								Else
+								{
+									InInventory MagicSlot1, 3
+									{
+										drawimage "b_magic3", 91, 173;
+										InInventory MagicSlot1_F, 3
+										{
+											drawimage "f_magic3", 91, 173;
+										}
+									}
+									Else
+									{
+										InInventory MagicSlot1, 2
+										{
+											drawimage "b_magic2", 91, 173;
+											InInventory MagicSlot1_F, 2
+											{
+												drawimage "f_magic2", 91, 173;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot2, 8
+				{
+					drawimage "b_magic8", 114, 173;
+					InInventory MagicSlot2_F, 8
+					{
+						drawimage "f_magic8", 114, 173;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot2, 7
+					{
+						drawimage "b_magic7", 114, 173;
+						InInventory MagicSlot2_F, 7
+						{
+							drawimage "f_magic7", 114, 173;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot2, 6
+						{
+							drawimage "b_magic6", 114, 173;
+							InInventory MagicSlot2_F, 6
+							{
+								drawimage "f_magic6", 114, 173;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot2, 5
+							{
+								drawimage "b_magic5", 114, 173;
+								InInventory MagicSlot2_F, 5
+								{
+									drawimage "f_magic5", 114, 173;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot2, 4
+								{
+									drawimage "b_magic4", 114, 173;
+									InInventory MagicSlot2_F, 4
+									{
+										drawimage "f_magic4", 114, 173;
+									}
+								}
+								Else
+								{
+									InInventory MagicSlot2, 3
+									{
+										drawimage "b_magic3", 114, 173;
+										InInventory MagicSlot2_F, 3
+										{
+											drawimage "f_magic3", 114, 173;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				InInventory MagicSlot3, 8
+				{
+					drawimage "b_magic8", 137, 173;
+					InInventory MagicSlot3_F, 8
+					{
+						drawimage "f_magic8", 137, 173;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot3, 7
+					{
+						drawimage "b_magic7", 137, 173;
+						InInventory MagicSlot3_F, 7
+						{
+							drawimage "f_magic7", 137, 173;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot3, 6
+						{
+							drawimage "b_magic6", 137, 173;
+							InInventory MagicSlot3_F, 6
+							{
+								drawimage "f_magic6", 137, 173;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot3, 5
+							{
+								drawimage "b_magic5", 137, 173;
+								InInventory MagicSlot3_F, 5
+								{
+									drawimage "f_magic5", 137, 173;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot3, 4
+								{
+									drawimage "b_magic4", 137, 173;
+									InInventory MagicSlot3_F, 4
+									{
+										drawimage "f_magic4", 137, 173;
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot4, 8
+				{
+					drawimage "b_magic8", 160, 173;
+					InInventory MagicSlot4_F, 8
+					{
+						drawimage "f_magic8", 160, 173;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot4, 7
+					{
+						drawimage "b_magic7", 160, 173;
+						InInventory MagicSlot4_F, 7
+						{
+							drawimage "f_magic7", 160, 173;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot4, 6
+						{
+							drawimage "b_magic6", 160, 173;
+							InInventory MagicSlot4_F, 6
+							{
+								drawimage "f_magic6", 160, 173;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot4, 5
+							{
+								drawimage "b_magic5", 160, 173;
+								InInventory MagicSlot4_F, 5
+								{
+									drawimage "f_magic5", 160, 173;
+								}
+							}
+						}
+					}
+				}
+				
+				InInventory MagicSlot5, 8
+				{
+					drawimage "b_magic8", 183, 173;
+					InInventory MagicSlot5_F, 8
+					{
+						drawimage "f_magic8", 183, 173;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot5, 7
+					{
+						drawimage "b_magic7", 183, 173;
+						InInventory MagicSlot5_F, 7
+						{
+							drawimage "f_magic7", 183, 173;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot5, 6
+						{
+							drawimage "b_magic6", 183, 173;
+							InInventory MagicSlot5_F, 6
+							{
+								drawimage "f_magic6", 183, 173;
+							}
+						}
+					}
+				}
+
+				InInventory MagicSlot6, 8
+				{
+					drawimage "b_magic8", 206, 173;
+					InInventory MagicSlot6_F, 8
+					{
+						drawimage "f_magic8", 206, 173;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot6, 7
+					{
+						drawimage "b_magic7", 206, 173;
+						InInventory MagicSlot6_F, 7
+						{
+							drawimage "f_magic7", 206, 173;
+						}
+					}
+				}
+
+				InInventory MagicSlot7, 8
+				{
+					drawimage "b_magic8", 229, 173;
+					InInventory MagicSlot7_F, 8
+					{
+						drawimage "f_magic8", 229, 173;
+					}
+				}				
+			}
+			Else
+			{
+				InInventory InvMenuRowIndex, 2
+				{
+					drawimage "inv_item", 42, 179;
+					
+					InInventory KeyItemSlot0, 8
+					{
+						drawimage "B_KEYI08", 68, 173;
+						InInventory KeyItemSlot0_F, 8
+						{
+							drawimage "F_KEYI08", 68, 173;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot0, 7
+						{
+							drawimage "B_KEYI07", 68, 173;
+							InInventory KeyItemSlot0_F, 7
+							{
+								drawimage "F_KEYI07", 68, 173;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot0, 6
+							{
+								drawimage "B_KEYI06", 68, 173;
+								InInventory KeyItemSlot0_F, 6
+								{
+									drawimage "F_KEYI06", 68, 173;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot0, 5
+								{
+									drawimage "B_KEYI05", 68, 173;
+									InInventory KeyItemSlot0_F, 5
+									{
+										drawimage "F_KEYI05", 68, 173;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot0, 4
+									{
+										drawimage "B_KEYI04", 68, 173;
+										InInventory KeyItemSlot0_F, 4
+										{
+											drawimage "F_KEYI04", 68, 173;
+										}
+									}
+									Else
+									{
+										InInventory KeyItemSlot0, 3
+										{
+											drawimage "B_KEYI03", 68, 173;
+											InInventory KeyItemSlot0_F, 3
+											{
+												drawimage "F_KEYI03", 68, 173;
+											}
+										}
+										Else
+										{
+											InInventory KeyItemSlot0, 2
+											{
+												drawimage "B_KEYI02", 68, 173;
+												InInventory KeyItemSlot0_F, 2
+												{
+													drawimage "F_KEYI02", 68, 173;
+												}
+											}
+											Else
+											{
+												InInventory KeyItemSlot0, 1
+												{
+													drawimage "B_KEYI01", 68, 173;
+													InInventory KeyItemSlot0_F, 1
+													{
+														drawimage "F_KEYI01", 68, 173;
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot1, 8
+					{
+						drawimage "B_KEYI08", 91, 173;
+						InInventory KeyItemSlot1_F, 8
+						{
+							drawimage "F_KEYI08", 91, 173;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot1, 7
+						{
+							drawimage "B_KEYI07", 91, 173;
+							InInventory KeyItemSlot1_F, 7
+							{
+								drawimage "F_KEYI07", 91, 173;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot1, 6
+							{
+								drawimage "B_KEYI06", 91, 173;
+								InInventory KeyItemSlot1_F, 6
+								{
+									drawimage "F_KEYI06", 91, 173;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot1, 5
+								{
+									drawimage "B_KEYI05", 91, 173;
+									InInventory KeyItemSlot1_F, 5
+									{
+										drawimage "F_KEYI05", 91, 173;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot1, 4
+									{
+										drawimage "B_KEYI04", 91, 173;
+										InInventory KeyItemSlot1_F, 4
+										{
+											drawimage "F_KEYI04", 91, 173;
+										}
+									}
+									Else
+									{
+										InInventory KeyItemSlot1, 3
+										{
+											drawimage "B_KEYI03", 91, 173;
+											InInventory KeyItemSlot1_F, 3
+											{
+												drawimage "F_KEYI03", 91, 173;
+											}
+										}
+										Else
+										{
+											InInventory KeyItemSlot1, 2
+											{
+												drawimage "B_KEYI02", 91, 173;
+												InInventory KeyItemSlot1_F, 2
+												{
+													drawimage "F_KEYI02", 91, 173;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot2, 8
+					{
+						drawimage "B_KEYI08", 114, 173;
+						InInventory KeyItemSlot2_F, 8
+						{
+							drawimage "F_KEYI08", 114, 173;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot2, 7
+						{
+							drawimage "B_KEYI07", 114, 173;
+							InInventory KeyItemSlot2_F, 7
+							{
+								drawimage "F_KEYI07", 114, 173;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot2, 6
+							{
+								drawimage "B_KEYI06", 114, 173;
+								InInventory KeyItemSlot2_F, 6
+								{
+									drawimage "F_KEYI06", 114, 173;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot2, 5
+								{
+									drawimage "B_KEYI05", 114, 173;
+									InInventory KeyItemSlot2_F, 5
+									{
+										drawimage "F_KEYI05", 114, 173;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot2, 4
+									{
+										drawimage "B_KEYI04", 114, 173;
+										InInventory KeyItemSlot2_F, 4
+										{
+											drawimage "F_KEYI04", 114, 173;
+										}
+									}
+									Else
+									{
+										InInventory KeyItemSlot2, 3
+										{
+											drawimage "B_KEYI03", 114, 173;
+											InInventory KeyItemSlot2_F, 3
+											{
+												drawimage "F_KEYI03", 114, 173;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot3, 8
+					{
+						drawimage "B_KEYI08", 137, 173;
+						InInventory KeyItemSlot3_F, 8
+						{
+							drawimage "F_KEYI08", 137, 173;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot3, 7
+						{
+							drawimage "B_KEYI07", 137, 173;
+							InInventory KeyItemSlot3_F, 7
+							{
+								drawimage "F_KEYI07", 137, 173;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot3, 6
+							{
+								drawimage "B_KEYI06", 137, 173;
+								InInventory KeyItemSlot3_F, 6
+								{
+									drawimage "F_KEYI06", 137, 173;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot3, 5
+								{
+									drawimage "B_KEYI05", 137, 173;
+									InInventory KeyItemSlot3_F, 5
+									{
+										drawimage "F_KEYI05", 137, 173;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot3, 4
+									{
+										drawimage "B_KEYI04", 137, 173;
+										InInventory KeyItemSlot3_F, 4
+										{
+											drawimage "F_KEYI04", 137, 173;
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot4, 8
+					{
+						drawimage "B_KEYI08", 160, 173;
+						InInventory KeyItemSlot4_F, 8
+						{
+							drawimage "F_KEYI08", 160, 173;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot4, 7
+						{
+							drawimage "B_KEYI07", 160, 173;
+							InInventory KeyItemSlot4_F, 7
+							{
+								drawimage "F_KEYI07", 160, 173;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot4, 6
+							{
+								drawimage "B_KEYI06", 160, 173;
+								InInventory KeyItemSlot4_F, 6
+								{
+									drawimage "F_KEYI06", 160, 173;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot4, 5
+								{
+									drawimage "B_KEYI05", 160, 173;
+									InInventory KeyItemSlot4_F, 5
+									{
+										drawimage "F_KEYI05", 160, 173;
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot5, 8
+					{
+						drawimage "B_KEYI08", 183, 173;
+						InInventory KeyItemSlot5_F, 8
+						{
+							drawimage "F_KEYI08", 183, 173;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot5, 7
+						{
+							drawimage "B_KEYI07", 183, 173;
+							InInventory KeyItemSlot5_F, 7
+							{
+								drawimage "F_KEYI07", 183, 173;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot5, 6
+							{
+								drawimage "B_KEYI06", 183, 173;
+								InInventory KeyItemSlot5_F, 6
+								{
+									drawimage "F_KEYI06", 183, 173;
+								}
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot6, 8
+					{
+						drawimage "B_KEYI08", 206, 173;
+						InInventory KeyItemSlot6_F, 8
+						{
+							drawimage "F_KEYI08", 206, 173;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot6, 7
+						{
+							drawimage "B_KEYI07", 206, 173;
+							InInventory KeyItemSlot6_F, 7
+							{
+								drawimage "F_KEYI07", 206, 173;
+							}
+						}
+					}
+					
+					InInventory KeyItemSlot7, 8
+					{
+						drawimage "B_KEYI08", 229, 173;
+						InInventory KeyItemSlot7_F, 8
+						{
+							drawimage "F_KEYI08", 229, 173;
+						}
+					}
+				}
+				Else
+				{
+					drawimage "inv_shld", 42, 179;
+					
+					InInventory ShieldSlot0, 8
+					{
+						drawimage "B_SHLD08", 68, 173;
+						InInventory ShieldSlot0_F, 8
+						{
+							drawimage "F_SHLD08", 68, 173;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot0, 7
+						{
+							drawimage "B_SHLD07", 68, 173;
+							InInventory ShieldSlot0_F, 7
+							{
+								drawimage "F_SHLD07", 68, 173;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot0, 6
+							{
+								drawimage "B_SHLD06", 68, 173;
+								InInventory ShieldSlot0_F, 6
+								{
+									drawimage "F_SHLD06", 68, 173;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot0, 5
+								{
+									drawimage "B_SHLD05", 68, 173;
+									InInventory ShieldSlot0_F, 5
+									{
+										drawimage "F_SHLD05", 68, 173;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot0, 4
+									{
+										drawimage "B_SHLD04", 68, 173;
+										InInventory ShieldSlot0_F, 4
+										{
+											drawimage "F_SHLD04", 68, 173;
+										}
+									}
+									Else
+									{
+										InInventory ShieldSlot0, 3
+										{
+											drawimage "B_SHLD03", 68, 173;
+											InInventory ShieldSlot0_F, 3
+											{
+												drawimage "F_SHLD03", 68, 173;
+											}
+										}
+										Else
+										{
+											InInventory ShieldSlot0, 2
+											{
+												drawimage "B_SHLD02", 68, 173;
+												InInventory ShieldSlot0_F, 2
+												{
+													drawimage "F_SHLD02", 68, 173;
+												}
+											}
+											Else
+											{
+												InInventory ShieldSlot0, 1
+												{
+													drawimage "B_SHLD01", 68, 173;
+													InInventory ShieldSlot0_F, 1
+													{
+														drawimage "F_SHLD01", 68, 173;
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot1, 8
+					{
+						drawimage "B_SHLD08", 91, 173;
+						InInventory ShieldSlot1_F, 8
+						{
+							drawimage "F_SHLD08", 91, 173;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot1, 7
+						{
+							drawimage "B_SHLD07", 91, 173;
+							InInventory ShieldSlot1_F, 7
+							{
+								drawimage "F_SHLD07", 91, 173;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot1, 6
+							{
+								drawimage "B_SHLD06", 91, 173;
+								InInventory ShieldSlot1_F, 6
+								{
+									drawimage "F_SHLD06", 91, 173;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot1, 5
+								{
+									drawimage "B_SHLD05", 91, 173;
+									InInventory ShieldSlot1_F, 5
+									{
+										drawimage "F_SHLD05", 91, 173;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot1, 4
+									{
+										drawimage "B_SHLD04", 91, 173;
+										InInventory ShieldSlot1_F, 4
+										{
+											drawimage "F_SHLD04", 91, 173;
+										}
+									}
+									Else
+									{
+										InInventory ShieldSlot1, 3
+										{
+											drawimage "B_SHLD03", 91, 173;
+											InInventory ShieldSlot1_F, 3
+											{
+												drawimage "F_SHLD03", 91, 173;
+											}
+										}
+										Else
+										{
+											InInventory ShieldSlot1, 2
+											{
+												drawimage "B_SHLD02", 91, 173;
+												InInventory ShieldSlot1_F, 2
+												{
+													drawimage "F_SHLD02", 91, 173;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot2, 8
+					{
+						drawimage "B_SHLD08", 114, 173;
+						InInventory ShieldSlot2_F, 8
+						{
+							drawimage "F_SHLD08", 114, 173;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot2, 7
+						{
+							drawimage "B_SHLD07", 114, 173;
+							InInventory ShieldSlot2_F, 7
+							{
+								drawimage "F_SHLD07", 114, 173;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot2, 6
+							{
+								drawimage "B_SHLD06", 114, 173;
+								InInventory ShieldSlot2_F, 6
+								{
+									drawimage "F_SHLD06", 114, 173;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot2, 5
+								{
+									drawimage "B_SHLD05", 114, 173;
+									InInventory ShieldSlot2_F, 5
+									{
+										drawimage "F_SHLD05", 114, 173;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot2, 4
+									{
+										drawimage "B_SHLD04", 114, 173;
+										InInventory ShieldSlot2_F, 4
+										{
+											drawimage "F_SHLD04", 114, 173;
+										}
+									}
+									Else
+									{
+										InInventory ShieldSlot2, 3
+										{
+											drawimage "B_SHLD03", 114, 173;
+											InInventory ShieldSlot2_F, 3
+											{
+												drawimage "F_SHLD03", 114, 173;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot3, 8
+					{
+						drawimage "B_SHLD08", 137, 173;
+						InInventory ShieldSlot3_F, 8
+						{
+							drawimage "F_SHLD08", 137, 173;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot3, 7
+						{
+							drawimage "B_SHLD07", 137, 173;
+							InInventory ShieldSlot3_F, 7
+							{
+								drawimage "F_SHLD07", 137, 173;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot3, 6
+							{
+								drawimage "B_SHLD06", 137, 173;
+								InInventory ShieldSlot3_F, 6
+								{
+									drawimage "F_SHLD06", 137, 173;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot3, 5
+								{
+									drawimage "B_SHLD05", 137, 173;
+									InInventory ShieldSlot3_F, 5
+									{
+										drawimage "F_SHLD05", 137, 173;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot3, 4
+									{
+										drawimage "B_SHLD04", 137, 173;
+										InInventory ShieldSlot3_F, 4
+										{
+											drawimage "F_SHLD04", 137, 173;
+										}
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot4, 8
+					{
+						drawimage "B_SHLD08", 160, 173;
+						InInventory ShieldSlot4_F, 8
+						{
+							drawimage "F_SHLD08", 160, 173;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot4, 7
+						{
+							drawimage "B_SHLD07", 160, 173;
+							InInventory ShieldSlot4_F, 7
+							{
+								drawimage "F_SHLD07", 160, 173;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot4, 6
+							{
+								drawimage "B_SHLD06", 160, 173;
+								InInventory ShieldSlot4_F, 6
+								{
+									drawimage "F_SHLD06", 160, 173;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot4, 5
+								{
+									drawimage "B_SHLD05", 160, 173;
+									InInventory ShieldSlot4_F, 5
+									{
+										drawimage "F_SHLD05", 160, 173;
+									}
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot5, 8
+					{
+						drawimage "B_SHLD08", 183, 173;
+						InInventory ShieldSlot5_F, 8
+						{
+							drawimage "F_SHLD08", 183, 173;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot5, 7
+						{
+							drawimage "B_SHLD07", 183, 173;
+							InInventory ShieldSlot5_F, 7
+							{
+								drawimage "F_SHLD07", 183, 173;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot5, 6
+							{
+								drawimage "B_SHLD06", 183, 173;
+								InInventory ShieldSlot5_F, 6
+								{
+									drawimage "F_SHLD06", 183, 173;
+								}
+							}
+						}
+					}
+					
+					InInventory ShieldSlot6, 8
+					{
+						drawimage "B_SHLD08", 206, 173;
+						InInventory ShieldSlot6_F, 8
+						{
+							drawimage "F_SHLD08", 206, 173;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot6, 7
+						{
+							drawimage "B_SHLD07", 206, 173;
+							InInventory ShieldSlot6_F, 7
+							{
+								drawimage "F_SHLD07", 206, 173;
+							}
+						}
+					}
+					
+					InInventory ShieldSlot7, 8
+					{
+						drawimage "B_SHLD08", 229, 173;
+						InInventory ShieldSlot7_F, 8
+						{
+							drawimage "F_SHLD08", 229, 173;
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory NOT InvMenuColIndex
+		{
+			drawimage "CURSOR", 67, 172;
+		}
+		Else
+		{
+			InInventory InvMenuColIndex, 7
+			{
+				drawimage "CURSOR", 228, 172;
+			}
+			Else
+			{
+				InInventory InvMenuColIndex, 6
+				{
+					drawimage "CURSOR", 205, 172;
+				}
+				Else
+				{
+					InInventory InvMenuColIndex, 5
+					{
+						drawimage "CURSOR", 182, 172;
+					}
+					Else
+					{
+						InInventory InvMenuColIndex, 4
+						{
+							drawimage "CURSOR", 159, 172;
+						}
+						Else
+						{
+							InInventory InvMenuColIndex, 3
+							{
+								drawimage "CURSOR", 136, 172;
+							}
+							Else
+							{
+								InInventory InvMenuColIndex, 2
+								{
+									drawimage "CURSOR", 113, 172;
+								}
+								Else
+								{
+									InInventory InvMenuColIndex, 1
+									{
+										drawimage "CURSOR", 90, 172;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+statusbar inventory
+{
+	drawimage "INVBAR", 0, 168;
+	drawinventorybar Doom, noartibox, 8, CRYINDEX, 68, 173, 89, 186, untranslated, 0;
+}
+
+statusbar Automap
+{
+	drawimage "status", -160, 0;	
+	drawnumber 3, CRYNUM, untranslated, Health, fillzeros, alignment(left), 85, 3;
+	drawnumber 3, CRYNUM, untranslated, MaxLife, fillzeros, alignment(left), 117, 3;
+	drawnumber 2, CRYNUM, untranslated, DisplayAttack, fillzeros, alignment(left), 109, 11;
+	drawnumber 2, CRYNUM, untranslated, DisplayArmorDefense, fillzeros, alignment(left), 109, 19;
+	drawnumber 2, CRYNUM, untranslated, DisplayShieldDefense, fillzeros, alignment(left), 133, 19;
+
+	IsSelected SwordOfWind
+	{
+		DrawImage "swrdwi_s", 95, 27;
+		
+		InInventory WindBracelet, 1
+		{
+			drawimage "bracwi_s", 95, 50;
+		}
+		Else
+		{
+			InInventory BallOfWind, 1
+			{
+				drawimage "ballwi_s", 95, 50;
+			}
+		}
+	}
+
+	InInventory TannedHideEquip, 1
+	{
+		DrawImage "tanned_s", 95, 73;
+	}
+
+	InInventory CarapaceShieldEquip, 1
+	{
+		DrawImage "carapa_s", 95, 96;
+	}
+	
+	InInventory RabbitBootsSelected, 1
+	{
+		DrawImage "rabbit_s", 95, 119;
+	}
+	
+	drawimage "bar_s", 0, 168;	
+	drawnumber 2, CRYNUM, untranslated, Level, fillzeros, alignment(left), 228, 172;
+	drawnumber 5, CRYNUM, untranslated, Money, fillzeros, alignment(left), 228, 180;
+	drawnumber 5, CRYNUM, untranslated, Experience, fillzeros, alignment(left), 92, 188;
+	drawnumber 5, CRYNUM, untranslated, ExpToLevel, fillzeros, alignment(left), 140, 188;
+	drawnumber 3, CRYNUM, untranslated, MagicPoints, fillzeros, alignment(left), 212, 188;
+	drawnumber 3, CRYNUM, untranslated, MaxMagicPoints, fillzeros, alignment(left), 244, 188;
+
+	drawselectedinventory CRYINDEX, 7, 173, 29, 186, untranslated;
+
+	drawimage "life1", 74, 172;
+	drawbar "life1f", "life1e", health, horizontal, 76, 172;
+	
+	InInventory PlayerStatus, 1
+	{
+		DrawImage "status_1", 165, 11;
+	}
+
+	InInventory Force, 1
+	{
+		DrawImage "force_s", 76, 181;
+		
+		InInventory Force, 2
+		{
+			DrawImage "force_s", 84, 181;
+			
+			InInventory Force, 3
+			{
+				DrawImage "force_s", 92, 181;
+				
+				InInventory Force, 4
+				{
+					DrawImage "force_s", 100, 181;
+					
+					InInventory Force, 5
+					{
+						DrawImage "force_s", 108, 181;
+						
+						InInventory Force, 6
+						{
+							DrawImage "force_s", 116, 181;
+							
+							InInventory Force, 7
+							{
+								DrawImage "force_s", 124, 181;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	InInventory RefreshSelected, 1
+	{
+		drawimage "f_magic1", 290, 173;
+		drawimage "refrsh_s", 95, 142;
+	}
+
+	IsSelected SwordOfWind
+	{
+		InInventory BallOfWind, 1
+		{
+			drawimage "plevb_s", 158, 181;
+		}
+	}
+		
+	InInventory ForceLevelNumFlash, 1
+	{
+		InInventory ForceLevel, 3
+		{
+			DrawImage "plev3_s", 182, 180;
+		}
+		Else
+		{
+			InInventory ForceLevel, 2
+			{
+				DrawImage "plev2_s", 158, 180;
+			}
+			Else
+			{
+				InInventory ForceLevel, 1
+				{
+					DrawImage "plev1_s", 134, 180;
+				}
+			}
+		}
+	}
+	
+	InInventory Level, 2
+	{
+		drawimage "life2", 74, 172;
+		drawbar "life2f", "life2e", health, horizontal, 76, 172;
+
+		InInventory Level, 3
+		{
+			drawimage "life3", 74, 172;
+			drawbar "life3f", "life3e", health, horizontal, 76, 172;
+			
+			InInventory Level, 4
+			{
+				drawimage "life4", 74, 172;
+				drawbar "life4f", "life4e", health, horizontal, 76, 172;
+
+				InInventory Level, 5
+				{
+					drawimage "life5", 74, 172;
+					drawbar "life5f", "life5e", health, horizontal, 76, 172;
+					
+					InInventory Level, 6
+					{
+						drawimage "life6", 74, 172;
+						drawbar "life6f", "life6e", health, horizontal, 76, 172;
+						
+						InInventory Level, 7
+						{
+							drawimage "life7", 74, 172;
+							drawbar "life7f", "life7e", health, horizontal, 76, 172;
+							
+							InInventory Level, 8
+							{
+								drawimage "life8", 74, 172;
+								drawbar "life8f", "life8e", health, horizontal, 76, 172;
+								
+								InInventory Level, 9
+								{
+									drawimage "life9", 74, 172;
+									drawbar "life9f", "life9e", health, horizontal, 76, 172;
+									
+									InInventory Level, 10
+									{
+										drawimage "life10", 74, 172;
+										drawbar "life10f", "life10e", health, horizontal, 76, 172;
+										
+										InInventory Level, 11
+										{
+											drawimage "life11", 74, 172;
+											drawbar "life11f", "life11e", health, horizontal, 76, 172;
+											
+											InInventory Level, 12
+											{
+												drawimage "life12", 74, 172;
+												drawbar "life12f", "life12e", health, horizontal, 76, 172;
+												
+												InInventory Level, 13
+												{
+													drawimage "life13", 74, 172;
+													drawbar "life13f", "life13e", health, horizontal, 76, 172;
+													
+													InInventory Level, 14
+													{
+														drawimage "life14", 74, 172;
+														drawbar "life14f", "life14e", health, horizontal, 76, 172;
+														
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	InInventory ViewInvMenu, 1
+	{
+		drawimage "inv_auto", -160, 0;
+		drawnumber 2, CRYNUM, untranslated, DisplayArmorDefense, fillzeros, alignment(left), 115, 13;
+		drawnumber 2, CRYNUM, untranslated, DisplayShieldDefense, fillzeros, alignment(left), 139, 13;
+
+		InInventory ArmorSlot0, 8
+		{
+			drawimage "B_ARMR08", 85, 38;
+			InInventory ArmorSlot0_F, 8
+			{
+				drawimage "F_ARMR08", 85, 38;
+			}
+		}
+		Else
+		{
+			InInventory ArmorSlot0, 7
+			{
+				drawimage "B_ARMR07", 85, 38;
+				InInventory ArmorSlot0_F, 7
+				{
+					drawimage "F_ARMR07", 85, 38;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot0, 6
+				{
+					drawimage "B_ARMR06", 85, 38;
+					InInventory ArmorSlot0_F, 6
+					{
+						drawimage "F_ARMR06", 85, 38;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot0, 5
+					{
+						drawimage "B_ARMR05", 85, 38;
+						InInventory ArmorSlot0_F, 5
+						{
+							drawimage "F_ARMR05", 85, 38;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot0, 4
+						{
+							drawimage "B_ARMR04", 85, 38;
+							InInventory ArmorSlot0_F, 4
+							{
+								drawimage "F_ARMR04", 85, 38;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot0, 3
+							{
+								drawimage "B_ARMR03", 85, 38;
+								InInventory ArmorSlot0_F, 3
+								{
+									drawimage "F_ARMR03", 85, 38;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot0, 2
+								{
+									drawimage "B_ARMR02", 85, 38;
+									InInventory ArmorSlot0_F, 2
+									{
+										drawimage "F_ARMR02", 85, 38;
+									}
+								}
+								Else
+								{
+									InInventory ArmorSlot0, 1
+									{
+										drawimage "B_ARMR01", 85, 38;
+										InInventory ArmorSlot0_F, 1
+										{
+											drawimage "F_ARMR01", 85, 38;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ArmorSlot1, 8
+		{
+			drawimage "B_ARMR08", 108, 38;
+			InInventory ArmorSlot1_F, 8
+			{
+				drawimage "F_ARMR08", 108, 38;
+			}
+		}
+		Else
+		{
+			InInventory ArmorSlot1, 7
+			{
+				drawimage "B_ARMR07", 108, 38;
+				InInventory ArmorSlot1_F, 7
+				{
+					drawimage "F_ARMR07", 108, 38;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot1, 6
+				{
+					drawimage "B_ARMR06", 108, 38;
+					InInventory ArmorSlot1_F, 6
+					{
+						drawimage "F_ARMR06", 108, 38;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot1, 5
+					{
+						drawimage "B_ARMR05", 108, 38;
+						InInventory ArmorSlot1_F, 5
+						{
+							drawimage "F_ARMR05", 108, 38;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot1, 4
+						{
+							drawimage "B_ARMR04", 108, 38;
+							InInventory ArmorSlot1_F, 4
+							{
+								drawimage "F_ARMR04", 108, 38;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot1, 3
+							{
+								drawimage "B_ARMR03", 108, 38;
+								InInventory ArmorSlot1_F, 3
+								{
+									drawimage "F_ARMR03", 108, 38;
+								}
+							}
+							Else
+							{
+								InInventory ArmorSlot1, 2
+								{
+									drawimage "B_ARMR02", 108, 38;
+									InInventory ArmorSlot1_F, 2
+									{
+										drawimage "F_ARMR02", 108, 38;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ArmorSlot2, 8
+		{
+			drawimage "B_ARMR08", 131, 38;
+			InInventory ArmorSlot2_F, 8
+			{
+				drawimage "F_ARMR08", 131, 38;
+			}
+		}
+		Else
+		{
+			InInventory ArmorSlot2, 7
+			{
+				drawimage "B_ARMR07", 131, 38;
+				InInventory ArmorSlot2_F, 7
+				{
+					drawimage "F_ARMR07", 131, 38;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot2, 6
+				{
+					drawimage "B_ARMR06", 131, 38;
+					InInventory ArmorSlot2_F, 6
+					{
+						drawimage "F_ARMR06", 131, 38;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot2, 5
+					{
+						drawimage "B_ARMR05", 131, 38;
+						InInventory ArmorSlot2_F, 5
+						{
+							drawimage "F_ARMR05", 131, 38;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot2, 4
+						{
+							drawimage "B_ARMR04", 131, 38;
+							InInventory ArmorSlot2_F, 4
+							{
+								drawimage "F_ARMR04", 131, 38;
+							}
+						}
+						Else
+						{
+							InInventory ArmorSlot2, 3
+							{
+								drawimage "B_ARMR03", 131, 38;
+								InInventory ArmorSlot2_F, 3
+								{
+									drawimage "F_ARMR03", 131, 38;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ArmorSlot3, 8
+		{
+			drawimage "B_ARMR08", 154, 38;
+			InInventory ArmorSlot3_F, 8
+			{
+				drawimage "F_ARMR08", 154, 38;
+			}
+		}
+		Else
+		{
+			InInventory ArmorSlot3, 7
+			{
+				drawimage "B_ARMR07", 154, 38;
+				InInventory ArmorSlot3_F, 7
+				{
+					drawimage "F_ARMR07", 154, 38;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot3, 6
+				{
+					drawimage "B_ARMR06", 154, 38;
+					InInventory ArmorSlot3_F, 6
+					{
+						drawimage "F_ARMR06", 154, 38;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot3, 5
+					{
+						drawimage "B_ARMR05", 154, 38;
+						InInventory ArmorSlot3_F, 5
+						{
+							drawimage "F_ARMR05", 154, 38;
+						}
+					}
+					Else
+					{
+						InInventory ArmorSlot3, 4
+						{
+							drawimage "B_ARMR04", 154, 38;
+							InInventory ArmorSlot3_F, 4
+							{
+								drawimage "F_ARMR04", 154, 38;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ArmorSlot4, 8
+		{
+			drawimage "B_ARMR08", 177, 38;
+			InInventory ArmorSlot4_F, 8
+			{
+				drawimage "F_ARMR08", 177, 38;
+			}
+		}
+		Else
+		{
+			InInventory ArmorSlot4, 7
+			{
+				drawimage "B_ARMR07", 177, 38;
+				InInventory ArmorSlot4_F, 7
+				{
+					drawimage "F_ARMR07", 177, 38;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot4, 6
+				{
+					drawimage "B_ARMR06", 177, 38;
+					InInventory ArmorSlot4_F, 6
+					{
+						drawimage "F_ARMR06", 177, 38;
+					}
+				}
+				Else
+				{
+					InInventory ArmorSlot4, 5
+					{
+						drawimage "B_ARMR05", 177, 38;
+						InInventory ArmorSlot4_F, 5
+						{
+							drawimage "F_ARMR05", 177, 38;
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ArmorSlot5, 8
+		{
+			drawimage "B_ARMR08", 200, 38;
+			InInventory ArmorSlot5_F, 8
+			{
+				drawimage "F_ARMR08", 200, 38;
+			}
+		}
+		Else
+		{
+			InInventory ArmorSlot5, 7
+			{
+				drawimage "B_ARMR07", 200, 38;
+				InInventory ArmorSlot5_F, 7
+				{
+					drawimage "F_ARMR07", 200, 38;
+				}
+			}
+			Else
+			{
+				InInventory ArmorSlot5, 6
+				{
+					drawimage "B_ARMR06", 200, 38;
+					InInventory ArmorSlot5_F, 6
+					{
+						drawimage "F_ARMR06", 200, 38;
+					}
+				}
+			}
+		}
+		
+		InInventory ArmorSlot6, 8
+		{
+			drawimage "B_ARMR08", 223, 38;
+			InInventory ArmorSlot6_F, 8
+			{
+				drawimage "F_ARMR08", 223, 38;
+			}
+		}
+		Else
+		{
+			InInventory ArmorSlot6, 7
+			{
+				drawimage "B_ARMR07", 223, 38;
+				InInventory ArmorSlot6_F, 7
+				{
+					drawimage "F_ARMR07", 223, 38;
+				}
+			}
+		}
+		
+		InInventory ArmorSlot7, 8
+		{
+			drawimage "B_ARMR08", 246, 38;
+			InInventory ArmorSlot7_F, 8
+			{
+				drawimage "F_ARMR08", 246, 38;
+			}
+		}
+		
+		InInventory ShieldSlot0, 8
+		{
+			drawimage "B_SHLD08", 85, 61;
+			InInventory ShieldSlot0_F, 8
+			{
+				drawimage "F_SHLD08", 85, 61;
+			}
+		}
+		Else
+		{
+			InInventory ShieldSlot0, 7
+			{
+				drawimage "B_SHLD07", 85, 61;
+				InInventory ShieldSlot0_F, 7
+				{
+					drawimage "F_SHLD07", 85, 61;
+				}
+			}
+			Else
+			{
+				InInventory ShieldSlot0, 6
+				{
+					drawimage "B_SHLD06", 85, 61;
+					InInventory ShieldSlot0_F, 6
+					{
+						drawimage "F_SHLD06", 85, 61;
+					}
+				}
+				Else
+				{
+					InInventory ShieldSlot0, 5
+					{
+						drawimage "B_SHLD05", 85, 61;
+						InInventory ShieldSlot0_F, 5
+						{
+							drawimage "F_SHLD05", 85, 61;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot0, 4
+						{
+							drawimage "B_SHLD04", 85, 61;
+							InInventory ShieldSlot0_F, 4
+							{
+								drawimage "F_SHLD04", 85, 61;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot0, 3
+							{
+								drawimage "B_SHLD03", 85, 61;
+								InInventory ShieldSlot0_F, 3
+								{
+									drawimage "F_SHLD03", 85, 61;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot0, 2
+								{
+									drawimage "B_SHLD02", 85, 61;
+									InInventory ShieldSlot0_F, 2
+									{
+										drawimage "F_SHLD02", 85, 61;
+									}
+								}
+								Else
+								{
+									InInventory ShieldSlot0, 1
+									{
+										drawimage "B_SHLD01", 85, 61;
+										InInventory ShieldSlot0_F, 1
+										{
+											drawimage "F_SHLD01", 85, 61;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		InInventory ShieldSlot1, 8
+		{
+			drawimage "B_SHLD08", 108, 61;
+			InInventory ShieldSlot1_F, 8
+			{
+				drawimage "F_SHLD08", 108, 61;
+			}
+		}
+		Else
+		{
+			InInventory ShieldSlot1, 7
+			{
+				drawimage "B_SHLD07", 108, 61;
+				InInventory ShieldSlot1_F, 7
+				{
+					drawimage "F_SHLD07", 108, 61;
+				}
+			}
+			Else
+			{
+				InInventory ShieldSlot1, 6
+				{
+					drawimage "B_SHLD06", 108, 61;
+					InInventory ShieldSlot1_F, 6
+					{
+						drawimage "F_SHLD06", 108, 61;
+					}
+				}
+				Else
+				{
+					InInventory ShieldSlot1, 5
+					{
+						drawimage "B_SHLD05", 108, 61;
+						InInventory ShieldSlot1_F, 5
+						{
+							drawimage "F_SHLD05", 108, 61;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot1, 4
+						{
+							drawimage "B_SHLD04", 108, 61;
+							InInventory ShieldSlot1_F, 4
+							{
+								drawimage "F_SHLD04", 108, 61;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot1, 3
+							{
+								drawimage "B_SHLD03", 108, 61;
+								InInventory ShieldSlot1_F, 3
+								{
+									drawimage "F_SHLD03", 108, 61;
+								}
+							}
+							Else
+							{
+								InInventory ShieldSlot1, 2
+								{
+									drawimage "B_SHLD02", 108, 61;
+									InInventory ShieldSlot1_F, 2
+									{
+										drawimage "F_SHLD02", 108, 61;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ShieldSlot2, 8
+		{
+			drawimage "B_SHLD08", 131, 61;
+			InInventory ShieldSlot2_F, 8
+			{
+				drawimage "F_SHLD08", 131, 61;
+			}
+		}
+		Else
+		{
+			InInventory ShieldSlot2, 7
+			{
+				drawimage "B_SHLD07", 131, 61;
+				InInventory ShieldSlot2_F, 7
+				{
+					drawimage "F_SHLD07", 131, 61;
+				}
+			}
+			Else
+			{
+				InInventory ShieldSlot2, 6
+				{
+					drawimage "B_SHLD06", 131, 61;
+					InInventory ShieldSlot2_F, 6
+					{
+						drawimage "F_SHLD06", 131, 61;
+					}
+				}
+				Else
+				{
+					InInventory ShieldSlot2, 5
+					{
+						drawimage "B_SHLD05", 131, 61;
+						InInventory ShieldSlot2_F, 5
+						{
+							drawimage "F_SHLD05", 131, 61;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot2, 4
+						{
+							drawimage "B_SHLD04", 131, 61;
+							InInventory ShieldSlot2_F, 4
+							{
+								drawimage "F_SHLD04", 131, 61;
+							}
+						}
+						Else
+						{
+							InInventory ShieldSlot2, 3
+							{
+								drawimage "B_SHLD03", 131, 61;
+								InInventory ShieldSlot2_F, 3
+								{
+									drawimage "F_SHLD03", 131, 61;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	
+		InInventory ShieldSlot3, 8
+		{
+			drawimage "B_SHLD08", 154, 61;
+			InInventory ShieldSlot3_F, 8
+			{
+				drawimage "F_SHLD08", 154, 61;
+			}
+		}
+		Else
+		{
+			InInventory ShieldSlot3, 7
+			{
+				drawimage "B_SHLD07", 154, 61;
+				InInventory ShieldSlot3_F, 7
+				{
+					drawimage "F_SHLD07", 154, 61;
+				}
+			}
+			Else
+			{
+				InInventory ShieldSlot3, 6
+				{
+					drawimage "B_SHLD06", 154, 61;
+					InInventory ShieldSlot3_F, 6
+					{
+						drawimage "F_SHLD06", 154, 61;
+					}
+				}
+				Else
+				{
+					InInventory ShieldSlot3, 5
+					{
+						drawimage "B_SHLD05", 154, 61;
+						InInventory ShieldSlot3_F, 5
+						{
+							drawimage "F_SHLD05", 154, 61;
+						}
+					}
+					Else
+					{
+						InInventory ShieldSlot3, 4
+						{
+							drawimage "B_SHLD04", 154, 61;
+							InInventory ShieldSlot3_F, 4
+							{
+								drawimage "F_SHLD04", 154, 61;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ShieldSlot4, 8
+		{
+			drawimage "B_SHLD08", 177, 61;
+			InInventory ShieldSlot4_F, 8
+			{
+				drawimage "F_SHLD08", 177, 61;
+			}
+		}
+		Else
+		{
+			InInventory ShieldSlot4, 7
+			{
+				drawimage "B_SHLD07", 177, 61;
+				InInventory ShieldSlot4_F, 7
+				{
+					drawimage "F_SHLD07", 177, 61;
+				}
+			}
+			Else
+			{
+				InInventory ShieldSlot4, 6
+				{
+					drawimage "B_SHLD06", 177, 61;
+					InInventory ShieldSlot4_F, 6
+					{
+						drawimage "F_SHLD06", 177, 61;
+					}
+				}
+				Else
+				{
+					InInventory ShieldSlot4, 5
+					{
+						drawimage "B_SHLD05", 177, 61;
+						InInventory ShieldSlot4_F, 5
+						{
+							drawimage "F_SHLD05", 177, 61;
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory ShieldSlot5, 8
+		{
+			drawimage "B_SHLD08", 200, 61;
+			InInventory ShieldSlot5_F, 8
+			{
+				drawimage "F_SHLD08", 200, 61;
+			}
+		}
+		Else
+		{
+			InInventory ShieldSlot5, 7
+			{
+				drawimage "B_SHLD07", 200, 61;
+				InInventory ShieldSlot5_F, 7
+				{
+					drawimage "F_SHLD07", 200, 61;
+				}
+			}
+			Else
+			{
+				InInventory ShieldSlot5, 6
+				{
+					drawimage "B_SHLD06", 200, 61;
+					InInventory ShieldSlot5_F, 6
+					{
+						drawimage "F_SHLD06", 200, 61;
+					}
+				}
+			}
+		}
+		
+		InInventory ShieldSlot6, 8
+		{
+			drawimage "B_SHLD08", 223, 61;
+			InInventory ShieldSlot6_F, 8
+			{
+				drawimage "F_SHLD08", 223, 61;
+			}
+		}
+		Else
+		{
+			InInventory ShieldSlot6, 7
+			{
+				drawimage "B_SHLD07", 223, 61;
+				InInventory ShieldSlot6_F, 7
+				{
+					drawimage "F_SHLD07", 223, 61;
+				}
+			}
+		}
+
+		InInventory ShieldSlot7, 8
+		{
+			drawimage "B_SHLD08", 246, 61;
+			InInventory ShieldSlot7_F, 8
+			{
+				drawimage "F_SHLD08", 246, 61;
+			}
+		}
+
+		InInventory KeyItemSlot0, 8
+		{
+			drawimage "B_KEYI08", 85, 84;
+			InInventory KeyItemSlot0_F, 8
+			{
+				drawimage "F_KEYI08", 85, 84;
+			}
+		}
+		Else
+		{
+			InInventory KeyItemSlot0, 7
+			{
+				drawimage "B_KEYI07", 85, 84;
+				InInventory KeyItemSlot0_F, 7
+				{
+					drawimage "F_KEYI07", 85, 84;
+				}
+			}
+			Else
+			{
+				InInventory KeyItemSlot0, 6
+				{
+					drawimage "B_KEYI06", 85, 84;
+					InInventory KeyItemSlot0_F, 6
+					{
+						drawimage "F_KEYI06", 85, 84;
+					}
+				}
+				Else
+				{
+					InInventory KeyItemSlot0, 5
+					{
+						drawimage "B_KEYI05", 85, 84;
+						InInventory KeyItemSlot0_F, 5
+						{
+							drawimage "F_KEYI05", 85, 84;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot0, 4
+						{
+							drawimage "B_KEYI04", 85, 84;
+							InInventory KeyItemSlot0_F, 4
+							{
+								drawimage "F_KEYI04", 85, 84;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot0, 3
+							{
+								drawimage "B_KEYI03", 85, 84;
+								InInventory KeyItemSlot0_F, 3
+								{
+									drawimage "F_KEYI03", 85, 84;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot0, 2
+								{
+									drawimage "B_KEYI02", 85, 84;
+									InInventory KeyItemSlot0_F, 2
+									{
+										drawimage "F_KEYI02", 85, 84;
+									}
+								}
+								Else
+								{
+									InInventory KeyItemSlot0, 1
+									{
+										drawimage "B_KEYI01", 85, 84;
+										InInventory KeyItemSlot0_F, 1
+										{
+											drawimage "F_KEYI01", 85, 84;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory KeyItemSlot1, 8
+		{
+			drawimage "B_KEYI08", 108, 84;
+			InInventory KeyItemSlot1_F, 8
+			{
+				drawimage "F_KEYI08", 108, 84;
+			}
+		}
+		Else
+		{
+			InInventory KeyItemSlot1, 7
+			{
+				drawimage "B_KEYI07", 108, 84;
+				InInventory KeyItemSlot1_F, 7
+				{
+					drawimage "F_KEYI07", 108, 84;
+				}
+			}
+			Else
+			{
+				InInventory KeyItemSlot1, 6
+				{
+					drawimage "B_KEYI06", 108, 84;
+					InInventory KeyItemSlot1_F, 6
+					{
+						drawimage "F_KEYI06", 108, 84;
+					}
+				}
+				Else
+				{
+					InInventory KeyItemSlot1, 5
+					{
+						drawimage "B_KEYI05", 108, 84;
+						InInventory KeyItemSlot1_F, 5
+						{
+							drawimage "F_KEYI05", 108, 84;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot1, 4
+						{
+							drawimage "B_KEYI04", 108, 84;
+							InInventory KeyItemSlot1_F, 4
+							{
+								drawimage "F_KEYI04", 108, 84;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot1, 3
+							{
+								drawimage "B_KEYI03", 108, 84;
+								InInventory KeyItemSlot1_F, 3
+								{
+									drawimage "F_KEYI03", 108, 84;
+								}
+							}
+							Else
+							{
+								InInventory KeyItemSlot1, 2
+								{
+									drawimage "B_KEYI02", 108, 84;
+									InInventory KeyItemSlot1_F, 2
+									{
+										drawimage "F_KEYI02", 108, 84;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory KeyItemSlot2, 8
+		{
+			drawimage "B_KEYI08", 131, 84;
+			InInventory KeyItemSlot2_F, 8
+			{
+				drawimage "F_KEYI08", 131, 84;
+			}
+		}
+		Else
+		{
+			InInventory KeyItemSlot2, 7
+			{
+				drawimage "B_KEYI07", 131, 84;
+				InInventory KeyItemSlot2_F, 7
+				{
+					drawimage "F_KEYI07", 131, 84;
+				}
+			}
+			Else
+			{
+				InInventory KeyItemSlot2, 6
+				{
+					drawimage "B_KEYI06", 131, 84;
+					InInventory KeyItemSlot2_F, 6
+					{
+						drawimage "F_KEYI06", 131, 84;
+					}
+				}
+				Else
+				{
+					InInventory KeyItemSlot2, 5
+					{
+						drawimage "B_KEYI05", 131, 84;
+						InInventory KeyItemSlot2_F, 5
+						{
+							drawimage "F_KEYI05", 131, 84;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot2, 4
+						{
+							drawimage "B_KEYI04", 131, 84;
+							InInventory KeyItemSlot2_F, 4
+							{
+								drawimage "F_KEYI04", 131, 84;
+							}
+						}
+						Else
+						{
+							InInventory KeyItemSlot2, 3
+							{
+								drawimage "B_KEYI03", 131, 84;
+								InInventory KeyItemSlot2_F, 3
+								{
+									drawimage "F_KEYI03", 131, 84;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory KeyItemSlot3, 8
+		{
+			drawimage "B_KEYI08", 154, 84;
+			InInventory KeyItemSlot3_F, 8
+			{
+				drawimage "F_KEYI08", 154, 84;
+			}
+		}
+		Else
+		{
+			InInventory KeyItemSlot3, 7
+			{
+				drawimage "B_KEYI07", 154, 84;
+				InInventory KeyItemSlot3_F, 7
+				{
+					drawimage "F_KEYI07", 154, 84;
+				}
+			}
+			Else
+			{
+				InInventory KeyItemSlot3, 6
+				{
+					drawimage "B_KEYI06", 154, 84;
+					InInventory KeyItemSlot3_F, 6
+					{
+						drawimage "F_KEYI06", 154, 84;
+					}
+				}
+				Else
+				{
+					InInventory KeyItemSlot3, 5
+					{
+						drawimage "B_KEYI05", 154, 84;
+						InInventory KeyItemSlot3_F, 5
+						{
+							drawimage "F_KEYI05", 154, 84;
+						}
+					}
+					Else
+					{
+						InInventory KeyItemSlot3, 4
+						{
+							drawimage "B_KEYI04", 154, 84;
+							InInventory KeyItemSlot3_F, 4
+							{
+								drawimage "F_KEYI04", 154, 84;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory KeyItemSlot4, 8
+		{
+			drawimage "B_KEYI08", 177, 84;
+			InInventory KeyItemSlot4_F, 8
+			{
+				drawimage "F_KEYI08", 177, 84;
+			}
+		}
+		Else
+		{
+			InInventory KeyItemSlot4, 7
+			{
+				drawimage "B_KEYI07", 177, 84;
+				InInventory KeyItemSlot4_F, 7
+				{
+					drawimage "F_KEYI07", 177, 84;
+				}
+			}
+			Else
+			{
+				InInventory KeyItemSlot4, 6
+				{
+					drawimage "B_KEYI06", 177, 84;
+					InInventory KeyItemSlot4_F, 6
+					{
+						drawimage "F_KEYI06", 177, 84;
+					}
+				}
+				Else
+				{
+					InInventory KeyItemSlot4, 5
+					{
+						drawimage "B_KEYI05", 177, 84;
+						InInventory KeyItemSlot4_F, 5
+						{
+							drawimage "F_KEYI05", 177, 84;
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory KeyItemSlot5, 8
+		{
+			drawimage "B_KEYI08", 200, 84;
+			InInventory KeyItemSlot5_F, 8
+			{
+				drawimage "F_KEYI08", 200, 84;
+			}
+		}
+		Else
+		{
+			InInventory KeyItemSlot5, 7
+			{
+				drawimage "B_KEYI07", 200, 84;
+				InInventory KeyItemSlot5_F, 7
+				{
+					drawimage "F_KEYI07", 200, 84;
+				}
+			}
+			Else
+			{
+				InInventory KeyItemSlot5, 6
+				{
+					drawimage "B_KEYI06", 200, 84;
+					InInventory KeyItemSlot5_F, 6
+					{
+						drawimage "F_KEYI06", 200, 84;
+					}
+				}
+			}
+		}
+		
+		InInventory KeyItemSlot6, 8
+		{
+			drawimage "B_KEYI08", 223, 84;
+			InInventory KeyItemSlot6_F, 8
+			{
+				drawimage "F_KEYI08", 223, 84;
+			}
+		}
+		Else
+		{
+			InInventory KeyItemSlot6, 7
+			{
+				drawimage "B_KEYI07", 223, 84;
+				InInventory KeyItemSlot6_F, 7
+				{
+					drawimage "F_KEYI07", 223, 84;
+				}
+			}
+		}
+		
+		InInventory KeyItemSlot7, 8
+		{
+			drawimage "B_KEYI08", 246, 84;
+			InInventory KeyItemSlot7_F, 8
+			{
+				drawimage "F_KEYI08", 246, 84;
+			}
+		}
+
+		InInventory MagicSlot0, 8
+		{
+			drawimage "B_MAGIC8", 85, 107;
+			InInventory MagicSlot0_F, 8
+			{
+				drawimage "F_MAGIC8", 85, 107;
+			}
+		}
+		Else
+		{
+			InInventory MagicSlot0, 7
+			{
+				drawimage "B_MAGIC7", 85, 107;
+				InInventory MagicSlot0_F, 7
+				{
+					drawimage "F_MAGIC7", 85, 107;
+				}
+			}
+			Else
+			{
+				InInventory MagicSlot0, 6
+				{
+					drawimage "B_MAGIC6", 85, 107;
+					InInventory MagicSlot0_F, 6
+					{
+						drawimage "F_MAGIC6", 85, 107;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot0, 5
+					{
+						drawimage "B_MAGIC5", 85, 107;
+						InInventory MagicSlot0_F, 5
+						{
+							drawimage "F_MAGIC5", 85, 107;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot0, 4
+						{
+							drawimage "B_MAGIC4", 85, 107;
+							InInventory MagicSlot0_F, 4
+							{
+								drawimage "F_MAGIC4", 85, 107;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot0, 3
+							{
+								drawimage "B_MAGIC3", 85, 107;
+								InInventory MagicSlot0_F, 3
+								{
+									drawimage "F_MAGIC3", 85, 107;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot0, 2
+								{
+									drawimage "B_MAGIC2", 85, 107;
+									InInventory MagicSlot0_F, 2
+									{
+										drawimage "F_MAGIC2", 85, 107;
+									}
+								}
+								Else
+								{
+									InInventory MagicSlot0, 1
+									{
+										drawimage "B_MAGIC1", 85, 107;
+										InInventory MagicSlot0_F, 1
+										{
+											drawimage "F_MAGIC1", 85, 107;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory MagicSlot1, 8
+		{
+			drawimage "B_MAGIC8", 108, 107;
+			InInventory MagicSlot1_F, 8
+			{
+				drawimage "F_MAGIC8", 108, 107;
+			}
+		}
+		Else
+		{
+			InInventory MagicSlot1, 7
+			{
+				drawimage "B_MAGIC7", 108, 107;
+				InInventory MagicSlot1_F, 7
+				{
+					drawimage "F_MAGIC7", 108, 107;
+				}
+			}
+			Else
+			{
+				InInventory MagicSlot1, 6
+				{
+					drawimage "B_MAGIC6", 108, 107;
+					InInventory MagicSlot1_F, 6
+					{
+						drawimage "F_MAGIC6", 108, 107;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot1, 5
+					{
+						drawimage "B_MAGIC5", 108, 107;
+						InInventory MagicSlot1_F, 5
+						{
+							drawimage "F_MAGIC5", 108, 107;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot1, 4
+						{
+							drawimage "B_MAGIC4", 108, 107;
+							InInventory MagicSlot1_F, 4
+							{
+								drawimage "F_MAGIC4", 108, 107;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot1, 3
+							{
+								drawimage "B_MAGIC3", 108, 107;
+								InInventory MagicSlot1_F, 3
+								{
+									drawimage "F_MAGIC3", 108, 107;
+								}
+							}
+							Else
+							{
+								InInventory MagicSlot1, 2
+								{
+									drawimage "B_MAGIC2", 108, 107;
+									InInventory MagicSlot1_F, 2
+									{
+										drawimage "F_MAGIC2", 108, 107;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory MagicSlot2, 8
+		{
+			drawimage "B_MAGIC8", 131, 107;
+			InInventory MagicSlot2_F, 8
+			{
+				drawimage "F_MAGIC8", 131, 107;
+			}
+		}
+		Else
+		{
+			InInventory MagicSlot2, 7
+			{
+				drawimage "B_MAGIC7", 131, 107;
+				InInventory MagicSlot2_F, 7
+				{
+					drawimage "F_MAGIC7", 131, 107;
+				}
+			}
+			Else
+			{
+				InInventory MagicSlot2, 6
+				{
+					drawimage "B_MAGIC6", 131, 107;
+					InInventory MagicSlot2_F, 6
+					{
+						drawimage "F_MAGIC6", 131, 107;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot2, 5
+					{
+						drawimage "B_MAGIC5", 131, 107;
+						InInventory MagicSlot2_F, 5
+						{
+							drawimage "F_MAGIC5", 131, 107;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot2, 4
+						{
+							drawimage "B_MAGIC4", 131, 107;
+							InInventory MagicSlot2_F, 4
+							{
+								drawimage "F_MAGIC4", 131, 107;
+							}
+						}
+						Else
+						{
+							InInventory MagicSlot2, 3
+							{
+								drawimage "B_MAGIC3", 131, 107;
+								InInventory MagicSlot2_F, 3
+								{
+									drawimage "F_MAGIC3", 131, 107;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory MagicSlot3, 8
+		{
+			drawimage "B_MAGIC8", 154, 107;
+			InInventory MagicSlot3_F, 8
+			{
+				drawimage "F_MAGIC8", 154, 107;
+			}
+		}
+		Else
+		{
+			InInventory MagicSlot3, 7
+			{
+				drawimage "B_MAGIC7", 154, 107;
+				InInventory MagicSlot3_F, 7
+				{
+					drawimage "F_MAGIC7", 154, 107;
+				}
+			}
+			Else
+			{
+				InInventory MagicSlot3, 6
+				{
+					drawimage "B_MAGIC6", 154, 107;
+					InInventory MagicSlot3_F, 6
+					{
+						drawimage "F_MAGIC6", 154, 107;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot3, 5
+					{
+						drawimage "B_MAGIC5", 154, 107;
+						InInventory MagicSlot3_F, 5
+						{
+							drawimage "F_MAGIC5", 154, 107;
+						}
+					}
+					Else
+					{
+						InInventory MagicSlot3, 4
+						{
+							drawimage "B_MAGIC4", 154, 107;
+							InInventory MagicSlot3_F, 4
+							{
+								drawimage "F_MAGIC4", 154, 107;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory MagicSlot4, 8
+		{
+			drawimage "B_MAGIC8", 177, 107;
+			InInventory MagicSlot4_F, 8
+			{
+				drawimage "F_MAGIC8", 177, 107;
+			}
+		}
+		Else
+		{
+			InInventory MagicSlot4, 7
+			{
+				drawimage "B_MAGIC7", 177, 107;
+				InInventory MagicSlot4_F, 7
+				{
+					drawimage "F_MAGIC7", 177, 107;
+				}
+			}
+			Else
+			{
+				InInventory MagicSlot4, 6
+				{
+					drawimage "B_MAGIC6", 177, 107;
+					InInventory MagicSlot4_F, 6
+					{
+						drawimage "F_MAGIC6", 177, 107;
+					}
+				}
+				Else
+				{
+					InInventory MagicSlot4, 5
+					{
+						drawimage "B_MAGIC5", 177, 107;
+						InInventory MagicSlot4_F, 5
+						{
+							drawimage "F_MAGIC5", 177, 107;
+						}
+					}
+				}
+			}
+		}
+		
+		InInventory MagicSlot5, 8
+		{
+			drawimage "B_MAGIC8", 200, 107;
+			InInventory MagicSlot5_F, 8
+			{
+				drawimage "F_MAGIC8", 200, 107;
+			}
+		}
+		Else
+		{
+			InInventory MagicSlot5, 7
+			{
+				drawimage "B_MAGIC7", 200, 107;
+				InInventory MagicSlot5_F, 7
+				{
+					drawimage "F_MAGIC7", 200, 107;
+				}
+			}
+			Else
+			{
+				InInventory MagicSlot5, 6
+				{
+					drawimage "B_MAGIC6", 200, 107;
+					InInventory MagicSlot5_F, 6
+					{
+						drawimage "F_MAGIC6", 200, 107;
+					}
+				}
+			}
+		}
+		
+		InInventory MagicSlot6, 8
+		{
+			drawimage "B_MAGIC8", 223, 107;
+			InInventory MagicSlot6_F, 8
+			{
+				drawimage "F_MAGIC8", 223, 107;
+			}
+		}
+		Else
+		{
+			InInventory MagicSlot6, 7
+			{
+				drawimage "B_MAGIC7", 223, 107;
+				InInventory MagicSlot6_F, 7
+				{
+					drawimage "F_MAGIC7", 223, 107;
+				}
+			}
+		}
+
+		InInventory MagicSlot7, 8
+		{
+			drawimage "B_MAGIC8", 246, 107;
+			InInventory MagicSlot7_F, 8
+			{
+				drawimage "F_MAGIC8", 246, 107;
+			}
+		}
+
+		InInventory NOT InvMenuRowIndex
+		{
+			drawnumber 2, CRYNUM, untranslated, NewArmorDefense, fillzeros, alignment(left), 163, 13;
+			drawnumber 2, CRYNUM, untranslated, NewShieldDefense, fillzeros, alignment(left), 187, 13;
+		
+			InInventory NOT InvMenuColIndex
+			{
+				drawimage "CURSOR", 84, 37;
+			}
+			Else
+			{
+				InInventory InvMenuColIndex, 7
+				{
+					drawimage "CURSOR", 245, 37;
+				}
+				Else
+				{
+					InInventory InvMenuColIndex, 6
+					{
+						drawimage "CURSOR", 222, 37;
+					}
+					Else
+					{
+						InInventory InvMenuColIndex, 5
+						{
+							drawimage "CURSOR", 199, 37;
+						}
+						Else
+						{
+							InInventory InvMenuColIndex, 4
+							{
+								drawimage "CURSOR", 176, 37;
+							}
+							Else
+							{
+								InInventory InvMenuColIndex, 3
+								{
+									drawimage "CURSOR", 153, 37;
+								}
+								Else
+								{
+									InInventory InvMenuColIndex, 2
+									{
+										drawimage "CURSOR", 130, 37;
+									}
+									Else
+									{
+										InInventory InvMenuColIndex, 1
+										{
+											drawimage "CURSOR", 107, 37;
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Else
+		{
+			InInventory InvMenuRowIndex, 3
+			{
+				InInventory NOT InvMenuColIndex
+				{
+					drawimage "CURSOR", 84, 106;
+				}
+				Else
+				{
+					InInventory InvMenuColIndex, 7
+					{
+						drawimage "CURSOR", 245, 106;
+					}
+					Else
+					{
+						InInventory InvMenuColIndex, 6
+						{
+							drawimage "CURSOR", 222, 106;
+						}
+						Else
+						{
+							InInventory InvMenuColIndex, 5
+							{
+								drawimage "CURSOR", 199, 106;
+							}
+							Else
+							{
+								InInventory InvMenuColIndex, 4
+								{
+									drawimage "CURSOR", 176, 106;
+								}
+								Else
+								{
+									InInventory InvMenuColIndex, 3
+									{
+										drawimage "CURSOR", 153, 106;
+									}
+									Else
+									{
+										InInventory InvMenuColIndex, 2
+										{
+											drawimage "CURSOR", 130, 106;
+										}
+										Else
+										{
+											InInventory InvMenuColIndex, 1
+											{
+												drawimage "CURSOR", 107, 106;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Else
+			{
+				InInventory InvMenuRowIndex, 2
+				{
+					InInventory NOT InvMenuColIndex
+					{
+						drawimage "CURSOR", 84, 83;
+					}
+					Else
+					{
+						InInventory InvMenuColIndex, 7
+						{
+							drawimage "CURSOR", 245, 83;
+						}
+						Else
+						{
+							InInventory InvMenuColIndex, 6
+							{
+								drawimage "CURSOR", 222, 83;
+							}
+							Else
+							{
+								InInventory InvMenuColIndex, 5
+								{
+									drawimage "CURSOR", 199, 83;
+								}
+								Else
+								{
+									InInventory InvMenuColIndex, 4
+									{
+										drawimage "CURSOR", 176, 83;
+									}
+									Else
+									{
+										InInventory InvMenuColIndex, 3
+										{
+											drawimage "CURSOR", 153, 83;
+										}
+										Else
+										{
+											InInventory InvMenuColIndex, 2
+											{
+												drawimage "CURSOR", 130, 83;
+											}
+											Else
+											{
+												InInventory InvMenuColIndex, 1
+												{
+													drawimage "CURSOR", 107, 83;
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Else
+				{
+					InInventory InvMenuRowIndex, 1
+					{
+						drawnumber 2, CRYNUM, untranslated, NewArmorDefense, fillzeros, alignment(left), 163, 13;
+						drawnumber 2, CRYNUM, untranslated, NewShieldDefense, fillzeros, alignment(left), 187, 13;
+						
+						InInventory NOT InvMenuColIndex
+						{
+							drawimage "CURSOR", 84, 60;
+						}
+						Else
+						{
+							InInventory InvMenuColIndex, 7
+							{
+								drawimage "CURSOR", 245, 60;
+							}
+							Else
+							{
+								InInventory InvMenuColIndex, 6
+								{
+									drawimage "CURSOR", 222, 60;
+								}
+								Else
+								{
+									InInventory InvMenuColIndex, 5
+									{
+										drawimage "CURSOR", 199, 60;
+									}
+									Else
+									{
+										InInventory InvMenuColIndex, 4
+										{
+											drawimage "CURSOR", 176, 60;
+										}
+										Else
+										{
+											InInventory InvMenuColIndex, 3
+											{
+												drawimage "CURSOR", 153, 60;
+											}
+											Else
+											{
+												InInventory InvMenuColIndex, 2
+												{
+													drawimage "CURSOR", 130, 60;
+												}
+												Else
+												{
+													InInventory InvMenuColIndex, 1
+													{
+														drawimage "CURSOR", 107, 60;
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

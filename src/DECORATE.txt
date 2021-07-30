@@ -1,0 +1,7 @@
+#include "crystalisplayer.txt"
+#include "decor.txt"
+#include "fx.txt"
+#include "inventory.txt"
+#include "inventory_playerinfo.txt"
+#include "monsters.txt"
+#include "npc.txt"

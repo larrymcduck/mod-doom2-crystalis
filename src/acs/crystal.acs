@@ -1,0 +1,2009 @@
+#library "crystal"
+#include "zcommon.acs"
+
+#define Move_Cursor 10000
+
+int rowCount = 0;
+int colCount = 0;
+
+int currentScript = 0;
+int cursorRow = 0;
+int cursorCol = 0;
+int cursorStartX = 0;
+int cursorStartY = 0;
+int cursorX = 0;
+int cursorY = 0;
+int cursorMoveX = 0;
+int cursorMoveY = 0;
+int cursorID = 0;
+int cancel = OFF;
+
+int shopItemFore = 0;
+
+int mapNum = 0;
+
+str items[4];
+str itemBacks[4];
+str itemFores[4];
+str itemNames[4];
+int itemIndexes[4];
+int itemPrices[4];
+
+int statusWait = 0;
+
+int waterSectors[10];
+
+//int beenTo[town] = OFF;
+
+int shopMenu = OFF;
+int inventoryMenu = OFF;
+int menu = OFF;
+int choiceMade = OFF;
+
+int newPlayerTID = 1000;
+
+int messagesLeft = 0;
+int addMessages = 0;
+int showMessage = OFF;
+int wearingArmor = OFF;
+
+int talkedToElderLeaf = OFF;
+int talkedToScaredGuy = OFF;
+int talkedToGuyLeaf = OFF;
+int talkedToBoyLeaf = OFF;
+int talkedToPupil = OFF;
+int talkedToZebu1 = OFF;
+int receivedWindmillKey = OFF;
+
+int removeAfterTalking = OFF;
+
+int talkingToTID = 0;
+
+int playerSpriteWaitCount = 0;
+
+str armorSlots[8];
+str shieldSlots[8];
+str keyItemSlots[8];
+str magicSlots[8];
+
+int armorSlotsDef[8];
+int shieldSlotsDef[8];
+
+int invMenuRowIndex = 0;
+int invMenuColIndex = 0;
+
+int usingMagic = OFF;
+int usingKeyItem = OFF;
+
+int playerFlying = OFF;
+int playerDropping = OFF;
+
+script 20003 (void)
+{
+	int terminateScript = OFF;
+	int noWater = OFF;
+	
+	int waterIndex = 0;
+	while (waterIndex < 10)
+	{
+		waterSectors[waterIndex] = 0;
+		waterIndex++;
+	}
+	
+	switch (mapNum)
+	{
+		case 6:
+			waterSectors[0] = 6;
+			waterSectors[1] = 7;
+			break;
+		default:
+			noWater = ON;
+			break;
+	}
+	
+	waterIndex = 0;
+	if (ThingCountSector(T_NONE, 0, waterSectors[waterIndex]) > 0)
+	{
+		terminateScript = ON;
+		waterIndex++;
+	}
+	
+	if (terminateScript == OFF)
+	{
+		while (waterIndex < 10)
+		{
+			if (waterSectors[waterIndex] >= 1)
+			{
+				if (GetSectorFloorZ(waterSectors[waterIndex], 0, 0) == GetSectorFloorZ(waterSectors[0], 0, 0))
+				{
+					if (ThingCountSector(T_NONE, 0, waterSectors[waterIndex]) > 0)
+					{
+						terminateScript = ON;
+						break;
+					}
+				}
+			}
+			waterIndex++;
+		}
+	}
+
+	if ((playerFlying == OFF || terminateScript == ON) && noWater == OFF)
+	{
+		terminate;
+	}	
+
+	playerFlying = OFF;
+	playerDropping = ON;
+
+	while (GetActorZ(0) >> 16 >= 32)
+	{
+		Delay(2);
+	}
+	
+	int lineId = 100;
+	while(lineId <= 200)
+	{
+		Line_SetBlocking(lineId, BLOCKF_PLAYERS, 0);
+		lineId++;
+	}
+
+	playerDropping = OFF;
+}
+
+script 20002 (void)
+{
+	if (playerFlying == ON || playerDropping == ON)
+	{
+		terminate;
+	}
+	
+	int lineId = 100;
+	while(lineId <= 200)
+	{
+		Line_SetBlocking(lineId, 0, BLOCKF_PLAYERS);
+		lineId++;
+	}
+	
+	playerFlying = ON;
+}
+
+script 20001 (int setStatus)
+{
+	TakeInventory("PlayerStatus", 999);
+	GiveInventory("PlayerStatus", setStatus);
+	
+	switch (setStatus)
+	{
+		case 1:
+			SetHudSize(512,400,0);
+			SetFont("POISONED");		
+			HudMessage(s:"A";HUDMSG_PLAIN,1,CR_UNTRANSLATED,256.0,64.0,1.5);
+			break;
+	}
+}
+
+script 20000 (void)
+{
+	GiveInventory("Experience", CheckInventory("ExpToLevel"));
+}
+
+script 19999 (void)
+{	
+	GiveInventory("Money", 99999);
+	GiveInventory("TannedHide", 1);
+	GiveInventory("CarapaceShield", 1);
+	GiveInventory("RabbitBoots", 1);
+	GiveInventory("MagicRefresh", 1);
+		
+	while (CheckInventory("Level") < 16)
+	{
+		GiveInventory("Experience", CheckInventory("ExpToLevel"));
+		Delay(1);
+	}
+}
+
+function void ClearScreen(void)
+{
+	int index = 1;
+	while (index <= 100)
+	{
+		HudMessage(s:"";HUDMSG_PLAIN,index,CR_UNTRANSLATED,160.0,100,0);
+		index++;
+	}
+	SetPlayerProperty(TRUE, OFF, PROP_TOTALLYFROZEN);
+	menu = OFF;
+	shopMenu = OFF;
+	inventoryMenu = OFF;
+	TakeInventory("ViewInvMenu", 999);
+}
+
+function void ClearCursor ( void )
+{
+	ACS_Terminate(Move_Cursor,0);
+	HudMessage(s:"";HUDMSG_PLAIN,cursorID,CR_UNTRANSLATED,0.0,0.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,shopItemFore,CR_UNTRANSLATED,0.0,0.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,shopItemFore - 1,CR_UNTRANSLATED,0.0,0.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,shopItemFore - 2,CR_UNTRANSLATED,0.0,0.0,0);
+}
+
+script Move_Cursor ( void )
+{
+	cursorX = cursorStartX + (cursorCol * cursorMoveX);
+	cursorY = cursorStartY + (cursorRow * cursorMoveY);
+
+	SetHudSize(320,200,0);
+	SetFont("CURSOR");
+	HudMessage(s:"A";HUDMSG_PLAIN,cursorID,CR_UNTRANSLATED,cursorX,cursorY,1.0);
+	
+	if (shopMenu == ON)
+	{
+		SetFont(itemFores[cursorCol]);
+		HudMessage(s:"A";HUDMSG_PLAIN,shopItemFore,CR_UNTRANSLATED,cursorX,cursorY,1.0);
+		
+		SetFont("CRYFONT");
+		HudMessage(s:itemNames[cursorCol];HUDMSG_PLAIN,shopItemFore - 1,CR_UNTRANSLATED,160.0,88.0,1.0);
+		
+		if (currentScript == 254)
+		{
+			SetFont("CRYNUM");
+			HudMessage(s:"$", d:itemPrices[cursorCol];HUDMSG_PLAIN,shopItemFore - 2,CR_UNTRANSLATED,160.0,96.0,1.0);
+
+			SetFont("CRYFONT");
+			HudMessage(s:"OWNED: ", d:CheckInventory(items[cursorCol]);HUDMSG_PLAIN,shopItemFore - 3,CR_UNTRANSLATED,100.0,168.0,1.0);
+		}
+	}
+	delay(1);
+	restart;
+}
+
+script 1004 (void)
+{
+	int x = GetActorX(0) >> 16;
+	int y = GetActorY(0) >> 16;
+	int sectorID = -1;
+	int explosionIndex = -1;
+	
+	switch (mapNum)
+	{
+		case 5:
+			if (x >= 1720 && x <= 1800 && y >= 80 && y <= 848)
+			{
+				sectorID = 4;
+				explosionIndex = 2;
+			}
+			else if (x >= 3992 && x <= 4056 && y >= 544 && y <= 592)
+			{
+				sectorID = 5;
+				explosionIndex = 3;
+			}
+			else if (x >= 3448 && x <= 3528 && y >= 2504 && y <= 2552)
+			{
+				sectorID = 7;
+				explosionIndex = 5;
+			}
+			break;
+	}
+	
+	if (sectorID != -1)
+	{
+		if (GetSectorFloorZ(sectorID, 0, 0) == GetSectorCeilingZ(sectorID, 0, 0))
+		{
+			ACS_Execute(1002, 0, explosionIndex);
+			Delay(120);
+		}
+	}
+}
+
+script 1002 (int explosionIndex)
+{
+	int minX = 0;
+	int maxX = 0;
+	int setY = 0;
+	int maxZ = 0;
+	int minZ = 0;
+	int sectorId = 0;
+	str explosionType = "";
+	int raiseCeiling = 0;
+	
+	switch (explosionIndex)
+	{
+		case 0:
+			minX = 192;
+			maxX = 256;
+			setY = 184;
+			maxZ = 64;
+			sectorId = 5;
+			explosionType = "Wind";
+			raiseCeiling = 64;
+			break;
+		case 1:
+			minX = -1116;
+			maxX = -1052;
+			setY = 2616;
+			maxZ = 80;
+			sectorId = 22;
+			explosionType = "Wind";
+			raiseCeiling = 80;
+			break;
+		case 2:
+			minX = 1720;
+			maxX = 1800;
+			setY = 824;
+			maxZ = 160;
+			minZ = 84;
+			sectorId = 4;
+			explosionType = "Wind";
+			raiseCeiling = 80;
+			break;
+		case 3:
+			minX = 3992;
+			maxX = 4072;
+			setY = 568;
+			maxZ = 160;
+			minZ = 84;
+			sectorId = 5;
+			explosionType = "Wind";
+			raiseCeiling = 80;
+			break;
+		case 4:
+			minX = 3096;
+			maxX = 3176;
+			setY = 2749;
+			maxZ = 336;
+			minZ = 252;
+			sectorId = 8;
+			explosionType = "Wind";
+			raiseCeiling = 80;
+			break;
+		case 5:
+			minX = 3448;
+			maxX = 3528;
+			setY = 2536;
+			maxZ = 328;
+			minZ = 252;
+			sectorId = 7;
+			explosionType = "Wind";
+			raiseCeiling = 80;
+			break;
+	}
+	
+    int count = 0;
+    while (count < 100)
+    {
+        int exp = 0;
+        while (exp < 4)
+        {
+            int x = Random(minX,maxX) << 16;
+            int y = setY << 16;
+            int z = Random(minZ,maxZ) << 16;
+
+			str spawnThing = strparam(s:explosionType, s:"Explosion");
+            Spawn(spawnThing,x, y, z);
+            exp++;
+        }
+        count++;
+        Delay(1);
+
+        if (count == 80)
+        {
+            Ceiling_RaiseInstant(sectorId,0,raiseCeiling / 8);
+        }
+    }
+}
+
+script 1001 (int itemNum)
+{	
+	str itemUsed = "";
+	int giveBack = OFF;
+	int nothingHappens = OFF;
+	int returnToNormal = OFF;
+	
+	switch (itemNum)
+	{
+		case 1:
+			itemUsed = "Antidote";
+			if (CheckInventory("PlayerStatus") == 1)
+			{
+				returnToNormal = ON;
+				TakeInventory("PlayerStatus", 999);
+			}
+			else
+			{
+				giveBack = ON;
+				nothingHappens = ON;
+			}
+			break;
+		case 2:
+			itemUsed = "WarpBoots";
+			giveBack = ON;
+			nothingHappens = ON;
+			break;
+		case 3:
+			itemUsed = "AlarmFlute";
+			if (GetActorY(1) > 0 && mapNum == 3 && GetActorY(newPlayerTID) >= 1376 << 16)
+			{
+				Thing_Remove(1);
+				Spawn("AwakeWindmillGuard", -480 << 16, 1424 << 16, 0, 1, 0);
+			}
+			else
+			{
+				PlaySound(0,"item/alarmflute",2,1.0);
+				giveBack = ON;
+				nothingHappens = ON;
+			}
+			break;
+	}
+	
+	if (nothingHappens == ON)
+	{
+		SetHudSize(512,400,0);
+		SetFont("NOTHING");
+		HudMessage(s:"A";HUDMSG_PLAIN,1,CR_UNTRANSLATED,256.0,64.0,1.5);
+	}
+	else if (returnToNormal == ON)
+	{
+		PlaySound(0,"misc/clearstatus", 2, 1.0);
+		SetHudSize(512,400,0);
+		SetFont("RENORMAL");
+		HudMessage(s:"A";HUDMSG_PLAIN,1,CR_UNTRANSLATED,256.0,64.0,1.5);
+	}
+	
+	if (CheckInventory(itemUsed) == 8 && giveBack == ON)
+	{
+		GiveInventory(itemUsed, 1);
+	}
+	else if (giveBack == OFF)
+	{
+		TakeInventory(itemUsed, 1);
+	}
+}
+
+script 1000 death
+{
+	ClearScreen();
+}
+
+script 999 enter
+{
+	Thing_ChangeTID(0, newPlayerTID);
+	showMessage = OFF;
+	TakeInventory("ForceLevel", 999);
+	TakeInventory("Force", 8);
+	playerFlying = OFF;
+	playerDropping = OFF;
+	ACS_Execute(993, 0);
+}
+
+script 998 return
+{
+	ACS_Execute(999, 0);
+}
+
+script 997 death
+{
+	ClearScreen();
+}
+
+script 996 (int messageNum, int willRemoveAfterTalking)
+{
+	if (removeAfterTalking == OFF && willRemoveAfterTalking == 1)
+	{
+		removeAfterTalking = ON;
+	}
+	
+	if (showMessage == ON && messagesLeft <= 0)
+	{
+		PlaySound(0,"voice/silence", 4);
+		showMessage = OFF;
+		addMessages = 0;
+		HudMessage(s:"";HUDMSG_PLAIN,1,CR_UNTRANSLATED,128.0,100.0,0);
+		SetPlayerProperty(TRUE,OFF, PROP_TOTALLYFROZEN);
+		TakeActorInventory(newPlayerTID, "PowerTimeFreezer", 0x7fffffff);
+		SetActorState(talkingToTID, "Wandering", TRUE);
+		
+		if (removeAfterTalking)
+		{
+			removeAfterTalking = OFF;
+			Thing_Remove(talkingToTID);
+		}
+		
+		terminate;
+	}
+	else if (messagesLeft > 0)
+	{
+		messageNum += addMessages;
+	}
+	
+	Thing_Stop(newPlayerTID);
+	SetPlayerProperty(TRUE, ON, PROP_TOTALLYFROZEN);
+	showMessage = ON;
+
+	talkingToTID = 0;
+	
+	str getThisItem = "";
+	int getNumberOfItem = 0;
+
+	str getThisItem2 = "";
+	int getNumberOfItem2 = 0;
+
+	int gettingWeapon = OFF;
+	int gettingItem = OFF;
+	
+	switch (messageNum)
+	{
+		case 1:
+			talkingToTID = 51;
+			if (talkedToElderLeaf == ON)
+			{
+				messageNum = 5;
+			}
+		case 2:
+		case 3:
+		case 4:
+			talkedToElderLeaf = ON;
+			if (messageNum == 4)
+			{
+				getThisItem = "SwordOfWind";
+				getNumberOfItem = 1;
+				gettingWeapon = ON;
+			}
+		case 5:
+			talkingToTID = 51;
+			break;
+		case 7:
+		case 8:
+			talkingToTID = 50;
+			if (talkedToScaredGuy == ON)
+			{
+				messageNum = 8;
+			}
+			talkedToScaredGuy = ON;
+			break;
+		case 9:
+			talkingToTID = 52;
+			break;
+		case 10:
+			talkingToTID = 53;
+			break;
+		case 11:
+			talkingToTID = 54;
+			if (talkedToGuyLeaf == OFF)
+			{
+				talkedToGuyLeaf = ON;
+			}
+			else
+			{
+				talkedToGuyLeaf = OFF;
+				messageNum = 12;
+			}
+			break;
+		case 13:
+			talkingToTID = 55;
+			break;
+		case 14:
+			talkingToTID = 56;
+			if (talkedToBoyLeaf == OFF)
+			{
+				talkedToBoyLeaf = ON;
+			}
+			else
+			{
+				talkedToBoyLeaf = OFF;
+				messageNum = 15;
+			}
+			break;
+		case 16:
+			talkingToTID = 57;
+			if (talkedToPupil == ON)
+			{
+				messageNum = 17;
+			}
+			else
+			{
+				getThisItem = "Money";
+				getNumberOfItem = 100;
+				gettingItem = ON;
+			}
+			talkedToPupil = ON;
+			break;
+		case 18:
+			if (CheckInventory("OpenedWindmillCave"))
+			{
+				messageNum = 26;
+			}
+			else if (talkedToZebu1 == ON)
+			{
+				messageNum = 20;
+			}
+		case 19:
+			if (CheckInventory("OpenedWindmillCave") && messageNum != 26)
+			{
+				messageNum = 27;
+				TakeInventory("OpenedWindmillCave", 999);
+				getThisItem = "MagicRefresh";
+				getNumberOfItem = 1;
+				gettingWeapon = ON;
+			}
+			else if (messageNum == 19)
+			{
+				talkedToZebu1 = ON;
+				GiveInventory("TalkedToZebu1", 1);
+			}
+		case 20:
+			talkingToTID = 1;
+			break;
+		case 21:
+		case 22:
+		case 23:
+		case 24:
+		case 25:
+			if (messageNum == 22)
+			{
+				if (receivedWindmillKey == ON)
+				{
+					messageNum = 24;
+				}
+			}
+			else if (messageNum == 25)
+			{
+				if (receivedWindmillKey == OFF)
+				{
+					receivedWindmillKey = ON;
+					getThisItem = "WindmillKey";
+					getNumberOfItem = 1;
+					gettingItem = ON;
+				}
+			}
+			talkingToTID = 1;
+			break;
+	}
+		
+	Thing_Stop(talkingToTID);
+    SetActorState(talkingToTID, "FacePlayer", TRUE);
+    Delay(1);
+	
+	// set pitch ?
+	//SetActorPitch(newPlayerTID, 0);
+	
+    SetActorAngle(newPlayerTID,GetActorAngle(talkingToTID) + 0.5);
+		
+	str messageImage = "";
+	int boxY = 64.0;
+	
+	if (messageNum < 10)
+	{
+		messageImage = strparam(s:"CM00000", d:messageNum);
+	}
+	else if (messageNum < 100)
+	{
+		messageImage = strparam(s:"CM0000", d:messageNum);
+	}
+	else if (messageNum < 1000)
+	{
+		messageImage = strparam(s:"CM000", d:messageNum);
+	}
+	else if (messageNum < 10000)
+	{
+		messageImage = strparam(s:"CM00", d:messageNum);
+	}
+	else if (messageNum < 100000)
+	{
+		messageImage = strparam(s:"CM0", d:messageNum);
+	}
+	else if (messageNum < 1000000)
+	{
+		messageImage = strparam(s:"CM", d:messageNum);
+	}
+	
+	str messageVoice = StrParam(s:"voice/voice", d:messageNum);
+
+	switch (messageNum)
+	{
+		case 1:
+		case 22:
+			messagesLeft = 4;
+			break;
+		case 7:
+		case 18:
+		case 26:
+			messagesLeft = 2;
+			break;
+	}
+	PlaySound(0,messageVoice, 4);
+	SetHudSize(512,400,0);
+	SetFont(messageImage);	
+	HudMessage(s:"A";HUDMSG_PLAIN,1,CR_UNTRANSLATED,256.0,boxY,0);
+	addMessages++;
+	messagesLeft--;
+
+	//GiveActorInventory(newPlayerTID,"ACS_TimeFreezer", 1); // STOPS MUSIC
+
+	if (gettingWeapon == ON || gettingItem == ON)
+	{
+		GiveInventory(getThisItem, getNumberOfItem);
+		if (getNumberOfItem > 0)
+		{
+			GiveInventory(getThisItem2, getNumberOfItem2);
+		}
+	}
+
+	if (gettingWeapon == ON)
+	{
+		SetMusic("getweap");
+		Delay(17 * 5);
+	}
+	else if (gettingItem == ON)
+	{
+		PlaySound(0,"getitem",2,1.0);
+	}
+	SetMusic("*");
+	
+	
+	// - Messages -
+	// 1 - 5				Leaf Elder
+	// 6					Leaf Scared guy sees you come out of cave
+	// 7 - 8				Leaf Scared guy talks to you again
+	// 9					Leaf girl
+	// 10					Leaf woman
+	// 11 - 12				Leaf guy
+	// 13					Leaf shed thing
+	// 14 - 15				Leaf boy in elders house
+	// 16 - 17				Leaf pupil
+	// 18 - 20, 26 - 27		Zebu in blue cave
+	// 21 - 25  			Windmill Guard
+}
+
+script 995 (int swordDamage)
+{
+    int damage = CheckActorInventory(newPlayerTID, "Attack") + swordDamage;
+
+    SetResultValue(damage);
+}
+
+script 994 (int sword)
+{
+	int retVal = 0;
+	
+	str swordString = "";
+	
+	int windLevel = 1 + CheckInventory("BallOfWind") + CheckInventory("WindBracelet");
+	int fireLevel = 1 + CheckInventory("BallOfFire") + CheckInventory("FireBracelet");
+	int waterLevel = 1 + CheckInventory("BallOfWater") + CheckInventory("WaterBracelet");
+	int thunderLevel = 1 + CheckInventory("BallOfThunder") + CheckInventory("ThunderBracelet");
+	
+	switch (sword)
+	{
+		case 0:
+			if (CheckInventory("ForceLevel") == windLevel)
+			{
+				retVal = 1;
+			}
+			break;
+		case 1:
+			if (CheckInventory("ForceLevel") == fireLevel)
+			{
+				retVal = 1;
+			}
+			break;
+		case 2:
+			if (CheckInventory("ForceLevel") == waterLevel)
+			{
+				retVal = 1;
+			}
+			break;
+		case 3:
+			if (CheckInventory("ForceLevel") == thunderLevel)
+			{
+				retVal = 1;
+			}
+			break;
+	}
+	SetResultValue(retVal);
+}
+
+function void DoExperience (void)
+{
+	if (CheckInventory("Experience") >= CheckInventory("ExpToLevel"))
+	{
+		TakeInventory("Experience", 50000);
+		TakeInventory("ExpToLevel", 50000);
+		TakeInventory("MaxLife", 255);
+		TakeInventory("MaxMagicPoints", 255);
+
+		switch (CheckInventory("Level"))
+		{
+			case 1:
+				GiveInventory("MaxLife", 64);
+				GiveInventory("MaxMagicPoints", 34);
+				GiveInventory("ExpToLevel", 60);
+				break;
+			case 2:
+				GiveInventory("MaxLife", 80);
+				GiveInventory("MaxMagicPoints", 51);
+				GiveInventory("ExpToLevel", 150);
+				break;
+			case 3:
+				GiveInventory("MaxLife", 96);
+				GiveInventory("MaxMagicPoints", 68);
+				GiveInventory("ExpToLevel", 300);
+				break;
+			case 4:
+				GiveInventory("MaxLife", 112);
+				GiveInventory("MaxMagicPoints", 85);
+				GiveInventory("ExpToLevel", 700);
+				break;
+			case 5:
+				GiveInventory("MaxLife", 128);
+				GiveInventory("MaxMagicPoints", 102);
+				GiveInventory("ExpToLevel", 1200);
+				break;
+			case 6:
+				GiveInventory("MaxLife", 144);
+				GiveInventory("MaxMagicPoints", 119);
+				GiveInventory("ExpToLevel", 1600);
+				break;
+			case 7:
+				GiveInventory("MaxLife", 160);
+				GiveInventory("MaxMagicPoints", 136);
+				GiveInventory("ExpToLevel", 3500);
+				break;
+			case 8:
+				GiveInventory("MaxLife", 176);
+				GiveInventory("MaxMagicPoints", 153);
+				GiveInventory("ExpToLevel", 5800);
+				break;
+			case 9:
+				GiveInventory("MaxLife", 192);
+				GiveInventory("MaxMagicPoints", 170);
+				GiveInventory("ExpToLevel", 8000);
+				break;
+			case 10:
+				GiveInventory("MaxLife", 208);
+				GiveInventory("MaxMagicPoints", 187);
+				GiveInventory("ExpToLevel", 10000);
+				break;
+			case 11:
+				GiveInventory("MaxLife", 224);
+				GiveInventory("MaxMagicPoints", 204);
+				GiveInventory("ExpToLevel", 20000);
+				break;
+			case 12:
+				GiveInventory("MaxLife", 240);
+				GiveInventory("MaxMagicPoints", 221);
+				GiveInventory("ExpToLevel", 30000);
+				break;
+			case 13:
+				GiveInventory("MaxLife", 255);
+				GiveInventory("MaxMagicPoints", 238);
+				GiveInventory("ExpToLevel", 40000);
+				break;
+			case 14:
+				GiveInventory("MaxLife", 255);
+				GiveInventory("MaxMagicPoints", 255);
+				GiveInventory("ExpToLevel", 50000);
+				break;
+			case 15:
+				GiveInventory("MaxLife", 255);
+				GiveInventory("MaxMagicPoints", 255);
+				break;
+		}
+		
+		GiveInventory("Level", 1);
+		GiveInventory("BaseArmorDefense", 1);
+		GiveInventory("BaseShieldDefense", 1);
+		GiveInventory("Attack", 1);
+		GiveInventory("IncreaseLife", 16);
+	}
+}
+
+function void GetNewArmor(void)
+{
+	int col = CheckInventory("InvMenuColIndex");
+	
+	if (CheckInventory("InvMenuRowIndex") == 0)
+	{
+		GiveInventory("NewArmorDefense", armorSlotsDef[col]);
+		GiveInventory("NewShieldDefense", CheckInventory("ShieldDefense"));
+	}
+	else if (CheckInventory("InvMenuRowIndex") == 1)
+	{
+		GiveInventory("NewShieldDefense", shieldSlotsDef[col]);
+		GiveInventory("NewArmorDefense", CheckInventory("ArmorDefense"));
+	}
+}
+
+function void GetPlayerSprite(void)
+{
+	if (GetActorProperty(0, APROP_Health) > 0)
+	{
+		TakeInventory("SpriteWaitCount", 1);
+		
+		if (CheckInventory("SpriteWaitCount") == 0)
+		{
+			if (playerFlying == ON || (usingKeyItem == ON && CheckInventory("RabbitBootsSelected")))
+			{
+				if (CheckInventory("WearingArmor"))
+				{
+					if (CheckInventory("HasShield"))
+					{
+						SetActorState(0,"FlyArmorShield");
+					}
+					else
+					{
+						SetActorState(0,"FlyArmor");
+					}
+				}
+				else
+				{
+					if (CheckInventory("HasShield"))
+					{
+						SetActorState(0,"FlyShield");
+					}
+					else
+					{
+						SetActorState(0,"Fly");
+					}
+				}
+			}
+			else if (GetPlayerInput(-1, INPUT_BUTTONS) & (BT_FORWARD | BT_BACK | BT_MOVELEFT | BT_MOVERIGHT))
+			{
+				GiveInventory("SpriteWaitCount", 6);
+				if (CheckInventory("WearingArmor"))
+				{
+					if (CheckInventory("HasShield"))
+					{
+						SetActorState(0,"SeeArmorShield");
+					}
+					else
+					{
+						SetActorState(0,"SeeArmor");
+					}
+				}
+				else
+				{
+					if (CheckInventory("HasShield"))
+					{
+						SetActorState(0,"SeeShield");
+					}
+					else
+					{
+						SetActorState(0,"See");
+					}
+				}
+			}
+			else
+			{
+				if (CheckInventory("WearingArmor"))
+				{
+					if (CheckInventory("HasShield"))
+					{
+						SetActorState(0,"SpawnArmorShield");
+					}
+					else
+					{
+						SetActorState(0,"SpawnArmor");
+					}
+				}
+				else
+				{
+					if (CheckInventory("HasShield"))
+					{
+						SetActorState(0,"SpawnShield");
+					}
+					else
+					{
+						SetActorState(0,"Spawn");
+					}
+				}
+			}
+		}
+	}
+}
+
+script 993 (void)
+{	
+	mapNum = GetLevelInfo(LEVELINFO_LEVELNUM);
+
+	if (GetActorProperty(0, APROP_Health) <= 0)
+	{
+		terminate;
+	}
+	
+	if (CheckInventory("Level") < 16)
+	{
+		DoExperience();
+	}
+	else
+	{
+		TakeInventory("Experience", 50000);
+	}
+	
+	if (menu == ON)
+	{
+		Delay(2);
+		restart;
+	}
+	else if (inventoryMenu == ON)
+	{
+		TakeInventory("NewArmorDefense", 999);
+		TakeInventory("NewShieldDefense", 999);
+		
+		if (CheckInventory("InvMenuRowIndex") <= 1)
+		{
+			GiveInventory("NewArmorDefense", CheckInventory("BaseArmorDefense"));
+			GiveInventory("NewShieldDefense", CheckInventory("BaseShieldDefense"));
+			
+			GetNewArmor();
+		}
+		else
+		{
+			GiveInventory("NewArmorDefense", CheckInventory("ArmorDefense") + CheckInventory("BaseArmorDefense"));
+			GiveInventory("NewShieldDefense", CheckInventory("ShieldDefense") + CheckInventory("BaseShieldDefense"));
+		}
+		
+		SetupArmorKeyItemsMagic();
+	}
+
+	if (CheckInventory("ForceLevelNumFlash"))
+	{
+		TakeInventory("ForceLevelNumFlash", 1);
+	}
+	else
+	{
+		GiveInventory("ForceLevelNumFlash", 1);
+	}
+	
+	GetPlayerSprite();
+	
+	TakeInventory("DisplayAttack", 99);
+	
+	GiveInventory("DisplayAttack", CheckInventory("Attack"));
+	str currentWeapon = GetWeapon();
+	if (StrIcmp(currentWeapon, "SwordOfWind") == 0)
+	{
+		GiveInventory("DisplayAttack", 1);
+	}
+	
+	TakeInventory("DisplayArmorDefense", 999);
+	TakeInventory("DisplayShieldDefense", 999);
+	
+	GiveInventory("DisplayArmorDefense", CheckInventory("ArmorDefense") + CheckInventory("BaseArmorDefense"));
+	GiveInventory("DisplayShieldDefense", CheckInventory("ShieldDefense") + CheckInventory("BaseShieldDefense"));
+	
+	int heroDefense = CheckInventory("ArmorDefense") + CheckInventory("ShieldDefense") + CheckInventory("BaseArmorDefense") + CheckInventory("BaseShieldDefense");
+
+	ACS_ExecuteAlways(253, 0, heroDefense, 0);
+
+	/*
+	---- PLAYER STATUS ----
+	0	Normal
+	1	Poisoned
+	-----------------------
+	*/
+		
+	if (statusWait == 0 && CheckInventory("PlayerStatus") == 1)
+	{
+		DamageThing(4 + heroDefense);
+	}
+	
+	statusWait++;
+	if (statusWait == 35)
+	{
+		statusWait = 0;
+	}
+
+	Delay(2);
+	restart;
+}
+
+function void DoInvSelection(void)
+{
+	int row = CheckInventory("InvMenuRowIndex");
+	int col = CheckInventory("InvMenuColIndex");
+	
+	int unequip = OFF;
+	int itemIndex = 0;
+	int giveArmor = 0;
+		
+	switch (row)
+	{
+		case 0:
+		case 1:
+			str armorOrShieldType = "";
+			str defenseType = "";
+			str spriteType = "";
+			
+			if (row == 0)
+			{
+				armorOrShieldType = armorSlots[col];
+				defenseType = "Armor";
+				spriteType = "WearingArmor";
+				
+				if (StrIcmp(armorOrShieldType, "TannedHide") == 0)
+				{
+					itemIndex = 1;
+					giveArmor = 2;
+				}
+			}
+			else
+			{
+				armorOrShieldType = shieldSlots[col];
+				defenseType = "Shield";
+				spriteType = "HasShield";
+				
+				if (StrIcmp(armorOrShieldType, "CarapaceShield") == 0)
+				{
+					itemIndex = 1;
+					giveArmor = 2;
+				}
+			}
+						
+			if (itemIndex > 0)
+			{
+				if (CheckInventory(StrParam(s:armorOrShieldType, s:"Equip")))
+				{
+					unequip = ON;
+				}
+
+				TakeInventory(StrParam(s:defenseType, s:"Defense"), 999);
+				if (unequip == ON)
+				{
+					TakeInventory(StrParam(s:defenseType, s:"Slot", d:col, s:"_F"), 999);
+					TakeInventory(StrParam(s:armorOrShieldType, s:"Equip"), 999);
+					TakeInventory(spriteType, 999);
+				}
+				else
+				{
+					GiveInventory(StrParam(s:defenseType, s:"Defense"), giveArmor);
+					GiveInventory(StrParam(s:defenseType, s:"Slot", d:col, s:"_F"), itemIndex);
+					GiveInventory(StrParam(s:armorOrShieldType, s:"Equip"), itemIndex);
+					GiveInventory(spriteType, 1);
+				}
+			}
+			break;
+		case 2:
+			str itemType = keyitemSlots[col];
+			int jumpZ = 0.0;
+			if (StrIcmp(itemType, "RabbitBoots") == 0)
+			{
+				itemIndex = 1;
+				jumpZ = 9.0;
+			}
+			
+			if (itemIndex > 0)
+			{
+				if (CheckInventory(StrParam(s:itemType, s:"Selected")))
+				{
+					unequip = ON;
+				}
+				
+				if (unequip == ON)
+				{
+					TakeInventory(StrParam(s:"KeyItemSlot", d:col, s:"_F"), 999);
+					TakeInventory(StrParam(s:itemType, s:"Selected"), 999);
+					SetActorProperty(newPlayerTID, APROP_JumpZ, 0.0);
+				}
+				else
+				{
+					GiveInventory(StrParam(s:"KeyItemSlot", d:col, s:"_F"), itemIndex);
+					GiveInventory(StrParam(s:itemType, s:"Selected"), itemIndex);
+					SetActorProperty(newPlayerTID, APROP_JumpZ, jumpZ);
+				}
+			}
+			break;
+		case 3:
+			str magicType = magicSlots[col];
+			if (StrIcmp(magicType, "Refresh") == 0)
+			{
+				itemIndex = 1;
+			}
+						
+			if (itemIndex > 0)
+			{
+				if (CheckInventory(StrParam(s:magicType, s:"Selected")))
+				{
+					unequip = ON;
+				}
+				
+				if (unequip == ON)
+				{
+					TakeInventory(StrParam(s:"MagicSlot", d:col, s:"_F"), 999);
+					TakeInventory(StrParam(s:magicType, s:"Selected"), 999);
+				}
+				else
+				{
+					GiveInventory(StrParam(s:"MagicSlot", d:col, s:"_F"), itemIndex);
+					GiveInventory(StrParam(s:magicType, s:"Selected"), itemIndex);
+				}
+			}
+			break;
+	}
+}
+
+script 992 (int cursorMovement) NET
+{
+	if ((menu == OFF || choiceMade == ON) && inventoryMenu == OFF)
+	{
+		terminate;
+	}
+	else if (inventoryMenu == ON)
+	{
+		switch (cursorMovement)
+		{
+			case 0: // up
+				if (CheckInventory("InvMenuRowIndex") == 0)
+				{
+					GiveInventory("InvMenuRowIndex", 3);
+				}
+				else
+				{
+					TakeInventory("InvMenuRowIndex", 1);
+				}
+				break;
+			case 1: // down
+				if (CheckInventory("InvMenuRowIndex") == 3)
+				{
+					TakeInventory("InvMenuRowIndex", 3);
+				}
+				else
+				{
+					GiveInventory("InvMenuRowIndex", 1);
+				}
+				break;
+			case 2: // left
+				if (CheckInventory("InvMenuColIndex") == 0)
+				{
+					GiveInventory("InvMenuColIndex", 7);
+				}
+				else
+				{
+					TakeInventory("InvMenuColIndex", 1);
+				}
+				break;
+			case 3: // right
+				if (CheckInventory("InvMenuColIndex") == 7)
+				{
+					TakeInventory("InvMenuColIndex", 7);
+				}
+				else
+				{
+					GiveInventory("InvMenuColIndex", 1);
+				}
+				break;
+			case 4:
+				DoInvSelection();
+				break;
+			case 5:
+				inventoryMenu = OFF;
+				TakeInventory("ViewInvMenu", 999);
+				break;
+		}
+
+		terminate;
+	}
+
+	switch (cursorMovement)
+	{
+		case 0: // up
+			cursorRow--;
+			break;
+		case 1: // down
+			cursorRow++;
+			break;
+		case 2: // left
+			cursorCol--;
+			break;
+		case 3: // right
+			cursorCol++;
+			break;
+		case 4:
+		case 5:
+			choiceMade = ON;
+			ClearCursor();
+			ACS_Execute(currentScript, 0);
+
+			if (cursorMovement == 5)
+			{
+				cancel = ON;
+			}
+
+			terminate;			
+			break;
+	}
+	
+	if (cursorRow == rowCount)
+	{
+		cursorRow = 0;
+	}
+	else if (cursorRow < 0)
+	{
+		cursorRow = rowCount -1;
+	}	
+
+	if (cursorCol == colCount)
+	{
+		cursorCol = 0;
+	}
+	else if (cursorCol < 0)
+	{
+		cursorCol = colCount -1;
+	}
+}
+
+function void SetupArmorKeyItemsMagic(void)
+{
+	int itemIndex = 0;
+	
+	while (itemIndex < 7)
+	{
+		armorSlots[itemIndex] = "";
+		shieldSlots[itemIndex] = "";
+		keyItemSlots[itemIndex] = "";
+		magicSlots[itemIndex] = "";
+		
+		TakeInventory(StrParam(s:"ArmorSlot", d:itemIndex), 999);
+		TakeInventory(StrParam(s:"ArmorSlot", d:itemIndex, s:"_F"), 999);
+
+		TakeInventory(StrParam(s:"ShieldSlot", d:itemIndex), 999);
+		TakeInventory(StrParam(s:"ShieldSlot", d:itemIndex, s:"_F"), 999);
+
+		TakeInventory(StrParam(s:"KeyItemSlot", d:itemIndex), 999);
+		TakeInventory(StrParam(s:"KeyItemSlot", d:itemIndex, s:"_F"), 999);
+
+		TakeInventory(StrParam(s:"MagicSlot", d:itemIndex), 999);
+		TakeInventory(StrParam(s:"MagicSlot", d:itemIndex, s:"_F"), 999);
+		
+		itemIndex++;
+	}
+	
+	itemIndex = 0;
+	if (CheckInventory("TannedHide"))
+	{
+		armorSlots[itemIndex] = "TannedHide";
+		armorSlotsDef[itemIndex] = 2;
+		itemIndex++;
+	}
+	
+	itemIndex = 0;
+	if (CheckInventory("CarapaceShield"))
+	{
+		shieldSlots[itemIndex] = "CarapaceShield";
+		shieldSlotsDef[itemIndex] = 2;
+		itemIndex++;
+	}
+	
+	itemIndex = 0;
+	if (CheckInventory("RabbitBoots"))
+	{
+		keyitemSlots[itemIndex] = "RabbitBoots";
+		itemIndex++;
+	}
+	
+	itemIndex = 0;
+	if (CheckInventory("MagicRefresh"))
+	{
+		magicSlots[itemIndex] = "Refresh";
+		itemIndex++;
+	}
+		
+	itemIndex = 0;
+	while (itemIndex < 7)
+	{
+		str armor = armorSlots[itemIndex];
+		str shield = shieldSlots[itemIndex];
+		str keyitem = keyItemSlots[itemIndex];
+		str magic = magicSlots[itemIndex];
+
+		if (StrICmp(armor, "") != 0)
+		{
+			if (StrICmp(armor, "TannedHide") == 0)
+			{
+				GiveInventory(StrParam(s:"ArmorSlot", d:itemIndex), 1);
+				if (CheckInventory("TannedHideEquip"))
+				{
+					GiveInventory(StrParam(s:"ArmorSlot", d:itemIndex, s:"_F"), 1);
+				}
+			}
+		}
+		
+		if (StrIcmp(shield, "") != 0)
+		{
+			if (StrICmp(shield, "CarapaceShield") == 0)
+			{
+				GiveInventory(StrParam(s:"ShieldSlot", d:itemIndex), 1);
+				if (CheckInventory("CarapaceShieldEquip"))
+				{
+					GiveInventory(StrParam(s:"ShieldSlot", d:itemIndex, s:"_F"), 1);
+				}
+			}
+		}
+		
+		if (StrICmp(keyitem, "") != 0)
+		{
+			if (StrICmp(keyitem, "RabbitBoots") == 0)
+			{
+				GiveInventory(StrParam(s:"KeyItemSlot", d:itemIndex), 1);
+				if (CheckInventory("RabbitBootsSelected"))
+				{
+					GiveInventory(StrParam(s:"KeyItemSlot", d:itemIndex, s:"_F"), 1);
+				}
+			}
+		}
+		
+		if (StrICmp(magic, "") != 0)
+		{
+			if (StrICmp(magic, "Refresh") == 0)
+			{
+				GiveInventory(StrParam(s:"MagicSlot", d:itemIndex), 1);
+				if (CheckInventory("RefreshSelected"))
+				{
+					GiveInventory(StrParam(s:"MagicSlot", d:itemIndex, s:"_F"), 1);
+				}
+			}
+		}
+		
+		itemIndex++;
+	}
+}
+
+script 991 (void) NET // Inv Menu
+{
+	if (GetActorProperty(0, APROP_Health) <= 0 || menu == ON)
+	{
+		terminate;
+	}
+	if (CheckInventory("ViewInvMenu"))
+	{
+		inventoryMenu = OFF;
+		TakeInventory("ViewInvMenu", 999);
+	}
+	else
+	{
+		inventoryMenu = ON;
+		GiveInventory("ViewInvMenu", 1);
+	}
+}
+
+script 990 (void) NET // Cast Magic
+{
+	if (GetActorProperty(0, APROP_Health) > 0 && usingMagic == OFF)
+	{
+		if (CheckInventory("RefreshSelected"))
+		{
+			usingMagic = ON;
+			
+			if (CheckInventory("MagicPoints") >= 2 && GetActorProperty(newPlayerTID, APROP_Health) != CheckInventory("MaxLife"))
+			{
+				PlaySound(newPlayerTID, "magic/refresh");
+			}
+			
+			int refCount = 0;
+			while (refCount < 5 && CheckInventory("MagicPoints") >= 2 && GetActorProperty(newPlayerTID, APROP_Health) != CheckInventory("MaxLife"))
+			{
+				TakeInventory("MagicPoints", 2);
+				DamageThing(-4);
+				Delay(7);
+				
+				refCount++;
+			}
+			
+			usingMagic = OFF;
+		}
+		else if (CheckInventory("FlyingSelected"))
+		{
+		}
+	}
+}
+
+script 989 (void) NET // Use Key Item
+{
+	if (GetActorProperty(0, APROP_Health) > 0 && usingKeyItem == OFF)
+	{
+		if (CheckInventory("RabbitBootsSelected") && playerFlying == OFF)
+		{
+			usingKeyItem = ON;
+			ThrustThingZ(0, 36, 0, 0);
+
+			while (true)
+			{
+				int lastZ = GetActorZ(0);
+				
+				Delay(2);
+				
+				int currentZ = GetActorZ(0);
+								
+				if (lastZ == currentZ)
+				{
+					break;
+				}
+			}
+			
+			usingKeyItem = OFF;
+		}
+	}
+}
+
+function void SetupShop (int rows, int cols, int startX, int startY, int moveX, int moveY, int shopItemForeID, int cID, int scriptNum)
+{
+	Thing_Stop(newPlayerTID);
+	SetPlayerProperty(TRUE, ON, PROP_TOTALLYFROZEN);
+	SetActorAngle(newPlayerTID,0.75);
+
+	inventoryMenu = OFF;
+	TakeInventory("ViewInvMenu", 999);
+	shopMenu = ON;
+
+	int index = 0;
+	while (index < 4)
+	{
+		itemNames[index] = "";
+		index++;
+	}
+	
+	menu = ON;
+	choiceMade = OFF;
+	cancel = OFF;
+	cursorRow = 0;
+	cursorCol = 0;
+	rowCount = rows;
+	colCount = cols;
+
+	cursorStartX = startX;
+	cursorStartY = startY;
+
+	cursorX = cursorStartX;
+	cursorY = cursorStartY;
+	
+	cursorMoveX = moveX;
+	cursorMoveY = moveY;
+	
+	cursorID = cID;
+	shopItemFore = shopItemForeID;
+	
+	currentScript = scriptNum;
+	
+	SetHudSize(320,200,0);
+	SetFont("SHOPBACK");
+	HudMessage(s:"A";HUDMSG_PLAIN,100,CR_UNTRANSLATED,160.0,100.0,0);
+}
+
+script 256 (int bossIndex) // Bosses
+{
+	switch (bossIndex)
+	{
+		case 0:
+			SetActorProperty(0, APROP_Invulnerable, ON);
+			Spawn("MonsterSmokeSpawner", GetActorX(0), GetActorY(0), GetActorZ(0));
+			Delay(8);
+			int waitTime = GetActorProperty(0,APROP_Health) * 4;
+			int spawnX = 0;
+			int spawnY = 0;
+			do
+			{
+				spawnX = Random(2976, 3296) << 16;
+				spawnY = Random(2400, 2720) << 16;
+			} until (Spawn("TestSpawn", spawnX, spawnY, GetActorZ(0)));
+			Delay(1);
+			Spawn("MonsterSmokeSpawner", spawnX, spawnY, GetActorZ(0));
+			SetActorPosition(0, spawnX, spawnY, GetActorZ(0), FALSE);
+			Delay(16);
+			SetActorProperty(0, APROP_Invulnerable, OFF);
+			int countDown = waitTime;
+			while (countDown > 0)
+			{
+				Delay(1);
+				waitTime = GetActorProperty(0,APROP_Health) * 4;
+				if (countDown > waitTime)
+				{
+					countDown -= waitTime;
+				}
+				countDown--;
+				if (GetActorProperty(0,APROP_Health) <= 0)
+				{
+					terminate;
+				}
+			}
+			break;
+	}
+	
+	if (GetActorProperty(0,APROP_Health) <= 0)
+	{
+		terminate;
+	}
+	
+	Delay(1);
+	restart;
+}
+
+script 255 (int innIndex) // Inn
+{
+	int innPrice = 0;
+	
+	switch (innIndex)
+	{
+		case 0:
+			innPrice = 16;
+			break;
+	}
+	
+	SetupShop(1, 2, 140.0, 108.0, 40.0, 0.0, 70, 60, 255);
+			
+	SetFont("T_INN");
+	HudMessage(s:"A";HUDMSG_PLAIN,99,CR_UNTRANSLATED,160.0,32.0,0);
+	SetFont("I_ASK");
+	HudMessage(s:"A";HUDMSG_PLAIN,98,CR_UNTRANSLATED,160.0,72.0,0);
+	SetFont("CRYNUM");
+	HudMessage(d:innPrice;HUDMSG_PLAIN,97,CR_UNTRANSLATED,210.0,84.0,0);
+	
+	itemBacks[0] = "I_YES";
+	itemFores[0] = "I_YES";
+	
+	//item1Back = "I_YES";
+	//item1Fore = "I_YES";
+	//item1Name = "";
+	
+	SetFont("I_YES");
+	HudMessage(s:"A";HUDMSG_PLAIN,96,CR_UNTRANSLATED,140.0,108.0,0);
+
+	itemBacks[1] = "I_NO";
+	itemFores[1] = "I_NO";
+
+	//item2Back = "I_NO";
+	//item2Fore = "I_NO";
+	SetFont("I_NO");
+	HudMessage(s:"A";HUDMSG_PLAIN,95,CR_UNTRANSLATED,180.0,108.0,0);
+
+	SetFont("CRYNUM");
+	HudMessage(s:"$", d:CheckInventory("Money");HUDMSG_PLAIN,94,CR_UNTRANSLATED,220.0,168.0,0);
+	
+	ACS_Execute(Move_Cursor,0);
+	suspend;
+	
+	HudMessage(s:"";HUDMSG_PLAIN,97,CR_UNTRANSLATED,210.0,84.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,96,CR_UNTRANSLATED,140.0,108.0,0);
+	HudMessage(s:"";HUDMSG_PLAIN,95,CR_UNTRANSLATED,180.0,108.0,0);
+		
+	if (cursorCol == 0 && cancel == OFF)
+	{
+		if (CheckInventory("Money") < innPrice)
+		{
+			SetFont("I_BYE2");
+			HudMessage(s:"A";HUDMSG_PLAIN,98,CR_UNTRANSLATED,160.0,72.0,0);
+		}
+		else
+		{
+			TakeInventory("Money", innPrice);
+			SetFont("CRYNUM");
+			HudMessage(s:"$", d:CheckInventory("Money");HUDMSG_PLAIN,94,CR_UNTRANSLATED,220.0,168.0,0);
+			GiveInventory("MagicPoints", CheckInventory("MaxMagicPoints") - CheckInventory("MagicPoints"));
+			GiveInventory("Health", 255);
+			SetFont("OPENBACK");
+			HudMessage(s:"A";HUDMSG_FADEINOUT,93,CR_UNTRANSLATED,160.0,100.0,1.0, 0.25, 0.25);
+			Delay(70);
+			SetFont("I_BYE3");
+			HudMessage(s:"A";HUDMSG_PLAIN,98,CR_UNTRANSLATED,160.0,72.0,0);
+			SetFont("I_BYE");
+			HudMessage(s:"A";HUDMSG_PLAIN,97,CR_UNTRANSLATED,160.0,88.0,0);
+		}
+	}
+	else if (cursorCol == 1 || cancel == ON)
+	{
+		SetFont("I_BYE");
+		HudMessage(s:"A";HUDMSG_PLAIN,98,CR_UNTRANSLATED,160.0,72.0,0);
+	}
+	
+	Delay(70);
+	ClearScreen();
+}
+
+function void GetItemInfo (int itemIndex, int shopIndex)
+{
+	str itemBack = "B_BLANK";
+	str itemFore = "";
+	str itemName = "";
+	str getItem = "";
+	switch(itemIndex)
+	{
+		// --------------- Tools ---------------
+		case 0:
+			itemBack = "B_ITEM01";
+			itemFore = "F_ITEM01";
+			itemName = "Medical Herb";
+			getItem = "MedicalHerb";
+			break;
+		case 1:
+			itemBack = "B_ITEM01";
+			itemFore = "F_ITEM02";
+			itemName = "Antidote";
+			getItem = "Antidote";
+			break;
+		case 2:
+			itemBack = "B_ITEM02";
+			itemFore = "F_ITEM03";
+			itemName = "Warp Boots";
+			getItem = "WarpBoots";
+			break;
+		case 3:
+			itemBack = "B_ITEM03";
+			itemFore = "F_ITEM04";
+			itemName = "Alarm Flute";
+			getItem = "AlarmFlute";
+			break;
+		// -------------------------------------
+
+		// --------------- Armor ---------------
+		case 100:
+			itemBack = "B_ARMR01";
+			itemFore = "F_ARMR01";
+			itemName = "Tanned Hide";
+			getItem = "TannedHide";
+			break;
+		case 101:
+			itemBack = "B_SHLD01";
+			itemFore = "F_SHLD01";
+			itemName = "Carapace Shield";
+			getItem = "CarapaceShield";
+			break;
+		// -------------------------------------
+	}
+	
+	itemBacks[shopIndex] = itemBack;
+	itemFores[shopIndex] = itemFore;
+	itemNames[shopIndex] = itemName;
+	items[shopIndex] = getItem;
+}
+
+function void BuyItem(int itemIndex)
+{
+	int price = itemPrices[itemIndex];
+	str getItem = items[itemIndex];
+	
+	HudMessage(s:"";HUDMSG_PLAIN,80,CR_UNTRANSLATED,0.0,0.0,0);
+
+	if (CheckInventory(getItem) == 9)
+	{
+		SetFont("TOOMANY");
+		HudMessage(s:"A";HUDMSG_PLAIN,80,CR_UNTRANSLATED,160.0,104.0,1.5);
+	}
+	else if (CheckInventory("Money") >= price)
+	{
+		TakeInventory("Money", price);
+		GiveInventory(getItem, 1);
+	}
+	else
+	{
+		SetFont("I_BYE2");
+		HudMessage(s:"A";HUDMSG_PLAIN,80,CR_UNTRANSLATED,160.0,104.0,1.5);
+	}
+}
+
+script 254 (int shopType, int shopIndex)
+{
+	/*
+	------------ Tool Indexes --------
+	0	Medical Herb		30
+	1	Antidote			40
+	2	Warp Boots			60
+	3	Alarm Flute			50	
+	----------------------------------
+	
+	------------ Armor Indexes -------
+	100	Tanned Hide			100
+	101	Carapace Shield		80
+	----------------------------------
+	*/
+	
+	str shopTitle = "";
+
+	int index = 0;
+	while (index < 4)
+	{
+		items[index] = "";
+		itemIndexes[index] = -1;
+		itemPrices[index] = 0;
+		index++;
+	}
+	
+	switch (shopType)
+	{
+		case 0:
+			shopTitle = "T_TOOL";
+			switch (shopIndex)
+			{
+				case 0:
+					itemIndexes[0] = 0;
+					itemIndexes[1] = 1;
+					itemIndexes[2] = 2;
+					itemIndexes[3] = 3;
+					
+					itemPrices[0] = 30;
+					itemPrices[1] = 40;
+					itemPrices[2] = 60;
+					itemPrices[3] = 50;
+					
+					break;
+			}
+			break;
+		case 1:
+			shopTitle = "T_ARMOR";
+			switch (shopIndex)
+			{
+				case 0:
+					itemIndexes[0] = 100;
+					itemIndexes[1] = 101;
+					
+					itemPrices[0] = 100;
+					itemPrices[1] = 80;
+					break;
+			}
+			break;
+	}
+	
+	int cols = 0;
+	index = 0;
+	while (index < 4)
+	{
+		if (itemPrices[index] > 0)
+		{
+			cols++;
+		}
+		index++;
+	}
+	
+	SetupShop(1, cols, 100.0, 64.0, 40.0, 0.0, 70, 60, 254);
+
+	index = 0;
+	while (index < 4)
+	{
+		GetItemInfo(itemIndexes[index], index);
+		index++;
+	}
+	
+	SetFont(shopTitle);
+	HudMessage(s:"A";HUDMSG_PLAIN,99,CR_UNTRANSLATED,160.0,32.0,0);
+
+	SetFont(itemBacks[0]);
+	HudMessage(s:"A";HUDMSG_PLAIN,98,CR_UNTRANSLATED,100.0,64.0,0);
+
+	SetFont(itemBacks[1]);
+	HudMessage(s:"A";HUDMSG_PLAIN,97,CR_UNTRANSLATED,140.0,64.0,0);
+
+	SetFont(itemBacks[2]);
+	HudMessage(s:"A";HUDMSG_PLAIN,96,CR_UNTRANSLATED,180.0,64.0,0);
+
+	SetFont(itemBacks[3]);
+	HudMessage(s:"A";HUDMSG_PLAIN,95,CR_UNTRANSLATED,220.0,64.0,0);
+	
+	while (cancel == OFF)
+	{
+		SetFont("CRYNUM");
+		HudMessage(s:"$", d:CheckInventory("Money");HUDMSG_PLAIN,94,CR_UNTRANSLATED,220.0,168.0,0);
+
+		ACS_Execute(Move_Cursor,0);
+		suspend;
+		
+		if (cancel == OFF)
+		{
+			BuyItem(cursorCol);
+		}
+		
+		choiceMade = OFF;
+	}
+	
+	choiceMade = ON;
+		
+	SetFont("I_BYE");
+	HudMessage(s:"";HUDMSG_PLAIN,80,CR_UNTRANSLATED,0.0,0.0,0);
+	HudMessage(s:"A";HUDMSG_PLAIN,90,CR_UNTRANSLATED,160.0,88.0,0);
+
+	Delay(70);
+	ClearScreen();
+}
+
+script 253 (int defense, int monsterIndex)
+{
+	if (GetActorProperty(0, APROP_Health) <= 0)
+	{
+		terminate;
+	}
+	
+	TakeInventory("Armor",999);
+	
+	int setDefense = defense;
+	
+	if (monsterIndex > 0)
+	{
+		int levelNeeded = 0;
+		str blockWeapon1 = "";
+		str blockWeapon2 = "";
+		str blockWeapon3 = "";		
+		int changeIndex1 = -1;
+		int changeIndex2 = -1;
+		int changeIndex3 = -1;
+		
+		switch (monsterIndex)
+		{
+			case 1:
+				blockWeapon1 = "SwordOfFire";
+				changeIndex1 = "BlueSlimeLarge";
+				break;
+			case 2:
+				levelNeeded = 3;
+				break;
+		}
+		
+		if (levelNeeded > CheckActorInventory(newPlayerTID, "Level"))
+		{
+			setDefense = 999;
+		}
+	}
+	
+	GiveInventory("Absorb",setDefense);
+	
+	if (monsterIndex > 0)
+	{
+		Delay(2);
+		restart;
+	}
+}
+
+script 252 (int bossIndex)
+{
+	int lineId = -1;
+	int changeHeight = 0;
+	int bossId = 0;
+	str bossType = "";
+	int spawnX = 0;
+	int spawnY = 0;
+	int spawnZ = 0;
+	
+	int scriptToRun = -1;
+	int delaySecondsBeforeMusic = 0;
+	int delaySecondsAfterDeath = 0;
+	int sectorExplode = OFF;
+	int sectorExplodeIndex = -1;
+	
+	switch (bossIndex)
+	{
+		case 0:
+			lineId = 1;
+			spawnX = 3136;
+			spawnY = 2720;
+			spawnZ = 252;
+			bossId = 10;
+			bossType = "DragonBoss";
+			delaySecondsAfterDeath = 6;
+			break;
+	}
+	
+	SetLineTexture(lineId, SIDE_FRONT, TEXTURE_MIDDLE, "c04_w04");
+	SetLineTexture(lineId, SIDE_BACK, TEXTURE_MIDDLE, "c04_w04");
+	SetLineBlocking(lineId, BLOCK_EVERYTHING);
+	
+	Spawn(bossType, spawnX << 16, spawnY << 16, spawnZ << 16, bossId);
+	
+	Delay(delaySecondsBeforeMusic * 35);
+	
+    SetMusic("bossmus");
+	
+	while (GetActorProperty(bossId, APROP_Health) > 0)
+	{
+		Delay(3);
+	}
+
+    SetMusic("");
+	
+	Delay(delaySecondsAfterDeath * 35);
+
+    SetMusic("*");
+	
+	if (sectorExplode == ON)
+	{
+		ACS_Execute(1002, 0, sectorExplodeIndex);
+		Delay(70);
+	}
+	
+	SetLineTexture(lineId, SIDE_FRONT, TEXTURE_MIDDLE, "");
+	SetLineTexture(lineId, SIDE_BACK, TEXTURE_MIDDLE, "");
+	SetLineBlocking(lineId, BLOCK_NOTHING);
+}
